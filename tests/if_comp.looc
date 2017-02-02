@@ -1,0 +1,39 @@
+var test : int;
+
+test := 10;
+
+if test == 10
+then
+	write "Okay !";
+else
+	write "Not Okay !";
+fi
+
+if test >= 10
+then
+	write "Okay !";
+else
+	write "Not Okay !";
+fi
+
+if test > 9
+then
+	write "Okay !";
+else
+	write "Not Okay !";
+fi
+
+if test <= 10
+then
+	write "Okay !";
+else
+	write "Not Okay !";
+fi
+
+if test < 11
+then
+	write "Okay !";
+else
+	write "Not Okay !";
+fi
+

@@ -1,0 +1,11 @@
+class Chat =
+(
+	method meow() 
+	{
+		write "Meow !";
+	}
+)
+
+var c : Chat;
+c := new Chat;
+do c.meow();
