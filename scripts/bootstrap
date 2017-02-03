@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Creating the lib directory.
+mkdir lib
+
+# Detecting the operating system.
+os=`uname`
+
+# Downloading the ANTLR jar file.
+if [[ $os == "Darwin" ]]; then
+    pushd lib
+    curl -O http://www.antlr3.org/download/antlr-3.5.2-complete.jar
+    popd
+elif [[ $os == "Linux" ]]; then
+    pushd lib
+    wget http://www.antlr3.org/download/antlr-3.5.2-complete.jar
+    popd
+fi
