@@ -1,4 +1,4 @@
-grammar looc;
+grammar Looc;
 
 program: 	class_decl* var_decl* instruction+
 			;
@@ -36,17 +36,17 @@ instruction:	IDF ':=' definition ';'NEWLINE
 		| read
 		| retour NEWLINE
 		;
-		
+
 
 definition: expression
-		| 
+		|
 		;
 
-print:	'write' print_suite ';'NEWLINE 
+print:	'write' print_suite ';'NEWLINE
 	;
 
-print_suite:	expression 
-		| CSTE_CHAINE {System.out.print($CSTE_CHAINE.text);} 
+print_suite:	expression
+		| CSTE_CHAINE {System.out.print($CSTE_CHAINE.text);}
 		;
 
 read:	'read' IDF ';' NEWLINE
@@ -57,18 +57,18 @@ retour:		'return' '(' expression ')' ';' NEWLINE
 
 expression: 	expression_start expression_suite
 		;
-		
+
 
 expression_start
-	:	 '(' expression ')' 
-		| IDF 
+	:	 '(' expression ')'
+		| IDF
 		| '-' CSTE_ENT
-		| 'this' 
-		| 'super' 
-		| CSTE_ENT 
+		| 'this'
+		| 'super'
+		| CSTE_ENT
 		| 'new' IDF_CLASS
 		;
-		
+
 expression_suite:
 		'.' IDF '(' expression (',' expression)* ')'
 		| multOper
@@ -78,7 +78,7 @@ expression_suite:
 
 multOper returns [int value]
 	:	/*e=atom {$value = $e.value;}*/
-		(  '/' atom 
+		(  '/' atom
 		| '*'  atom
 		| '%'  atom
 		)+
@@ -109,5 +109,4 @@ IDF : ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
 CSTE_ENT :   ('0'..'9')+ ;
 CSTE_CHAINE :	'"' ('a'..'z'|'A'..'Z'|'0'..'9'|';'|':'|'/'|','|'?'|'!'|'%'|'@'|'#'|'~'|'&'|'\\'|'-'|'_'|'|'|'('|')'|'{'|'}'|'['|']'|'='|' ')+ '"';
 NEWLINE:	('\r'? '\n')* ;
-WS  :   (' '|'\t')+ {$channel=HIDDEN;} ;		
-
+WS  :   (' '|'\t')+ {$channel=HIDDEN;} ;
