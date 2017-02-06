@@ -1,0 +1,7 @@
+# Ignoring ANTLR Lexer and Parser.
+src/Looc.tokens
+src/LoocParser.java
+src/LoocLexer.java
+
+# Ignoring the 3rd party libraries.
+lib/
