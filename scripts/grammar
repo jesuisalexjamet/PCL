@@ -1,6 +1,0 @@
-#!/bin/bash
-
-cd src
-
-# Compiling the ANTLR grammar.
-java -jar ../lib/antlr-3.5.2-complete.jar Looc.g
