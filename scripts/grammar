@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Compiling the ANTLR grammar.
+java -jar ../lib/antlr-3.5.2-complete.jar Looc.g
+
+mv Looc.tokens src/main/antlr/
+mv LoocParser.java src/main/antlr/
+mv LoocLexer.java src/main/antlr/
