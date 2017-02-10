@@ -1,6 +1,12 @@
-grammar Looc;
+grammar looc;
 
-program: 	class_decl* var_decl* instruction+
+options {
+	k=1;
+	output=AST;
+	ASTLabelType=CommonTree;
+}
+
+program: 	NEWLINE* class_decl* var_decl* instruction+
 			;
 
 class_decl: 	'class' IDF_CLASS ('inherit' IDF_CLASS)? '=' '('NEWLINE class_item_decl ')' NEWLINE
@@ -31,22 +37,22 @@ instruction:	IDF ':=' definition ';'NEWLINE
 		| 'if' expression 'then' NEWLINE instruction+ ('else'NEWLINE instruction+)?'fi'NEWLINE
 		| 'for' IDF 'in' expression '..' expression  'do'NEWLINE instruction+ 'end' NEWLINE
 		| '{' NEWLINE var_decl* instruction+ NEWLINE '}' NEWLINE
-		| 'do' expression_start '.' IDF '(' expression (',' expression)* ')' ';' NEWLINE
+		| 'do' expression_start '.' IDF '('expression (',' expression)* ')' ';' NEWLINE
 		| print
 		| read
 		| retour NEWLINE
 		;
-
+		
 
 definition: expression
-		|
+		| 
 		;
 
-print:	'write' print_suite ';'NEWLINE
+print:	'write' print_suite ';'NEWLINE 
 	;
 
-print_suite:	expression
-		| CSTE_CHAINE {System.out.print($CSTE_CHAINE.text);}
+print_suite:	expression 
+		| CSTE_CHAINE //{System.out.print($CSTE_CHAINE.text);} 
 		;
 
 read:	'read' IDF ';' NEWLINE
@@ -55,23 +61,28 @@ read:	'read' IDF ';' NEWLINE
 retour:		'return' '(' expression ')' ';' NEWLINE
 			;
 
-expression: 	expression_start expression_suite
+//expression: 	expression_start expression_suite
 		;
-
-
 expression_start
-	:	 '(' expression ')'
+	:	IDF
+	|'this'
+	|'super'
+	;	
+
+expression
+	:	 ('(' expression ')' 
 		| IDF
 		| '-' CSTE_ENT
-		| 'this'
-		| 'super'
-		| CSTE_ENT
+		| 'this' 
+		| 'super' 
+		| CSTE_ENT )expression_suite
 		| 'new' IDF_CLASS
+		|
 		;
-
+		
 expression_suite:
 		'.' IDF '(' expression (',' expression)* ')'
-		| multOper
+		| multOper oper
 		| oper
 		| comparaison expression
 		;
@@ -79,16 +90,15 @@ expression_suite:
 multOper returns [int value]
 	:	/*e=atom {$value = $e.value;}*/
 		(  '/' atom
-		| '*'  atom
-		| '%'  atom
+		| '*'  atom 
+		| '%'  atom 
 		)+
-		|
 	;
 
 oper returns [int value]
 	:	('+' atom multOper //{$value += $e.value;}
 		|'-' atom multOper //{$value -= $e.value;}
-		)+
+		)*
 		;
 
 atom returns [int value]
@@ -109,4 +119,5 @@ IDF : ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
 CSTE_ENT :   ('0'..'9')+ ;
 CSTE_CHAINE :	'"' ('a'..'z'|'A'..'Z'|'0'..'9'|';'|':'|'/'|','|'?'|'!'|'%'|'@'|'#'|'~'|'&'|'\\'|'-'|'_'|'|'|'('|')'|'{'|'}'|'['|']'|'='|' ')+ '"';
 NEWLINE:	('\r'? '\n')* ;
-WS  :   (' '|'\t')+ {$channel=HIDDEN;} ;
+WS  :   (' '|'\t')+ {$channel=HIDDEN;} ;		
+
