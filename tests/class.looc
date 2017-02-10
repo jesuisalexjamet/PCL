@@ -12,7 +12,7 @@ class Human =
 	{	
 		var s : string;
 		s := "Hello !";
-		return s;
+		return (s);
 	}
 	
 
