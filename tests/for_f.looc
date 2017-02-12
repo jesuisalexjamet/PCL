@@ -1,0 +1,13 @@
+var somme : int;
+var boucle : int;
+var n : int;
+
+somme := 5;
+n := 10;
+
+for boucle in 0 . n
+do
+	somme := somme + boucle;
+end
+
+write somme;

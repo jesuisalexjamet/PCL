@@ -1,0 +1,29 @@
+class Chat 
+(
+	method meow()
+	{
+		write "Meow !";
+	}
+)
+
+class Human =
+(
+	method hi() : string
+	{
+		var s : string;
+		s := "Hello !";
+		return (s);
+	}
+
+
+)
+
+var c : Chat;
+var h : Human;
+
+c := new Chat;
+h := new Human;
+
+
+do c.meow();
+write h.hi();

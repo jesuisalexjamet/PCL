@@ -1,0 +1,35 @@
+class Math
+(
+	method fact(n : int) : int
+	{
+		var i : int;
+    var r : int;
+    r:=1;
+    for i in 1..n
+    do
+      r:=r*i
+    end
+    return(r);
+	}
+
+  method max(a : int, b : int) : int
+  {
+    if a>b
+    then
+      return(a);
+    else
+      return(b);
+    fi
+  }
+)
+
+var m : Math;
+var a : int;
+var b : int;
+var c : int;
+
+m := new Math;
+a := m.fact(5);
+b := 721;
+c := m.max(a,b);
+write c; 
