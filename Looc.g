@@ -44,16 +44,10 @@ instruction:	IDF ':=' expression ';'
 		;
 		
 
-/*definition: expression
-		| 
-		;*/
 
-print:	'write' print_suite ';' 
+print:	'write' expression ';' 
 	;
 
-print_suite:	expression 
-		| CSTE_CHAINE //{System.out.print($CSTE_CHAINE.text);} 
-		;
 
 read:	'read' IDF ';' 
 		;
@@ -61,8 +55,6 @@ read:	'read' IDF ';'
 retour:		'return' '(' expression ')' ';' 
 			;
 
-//expression: 	expression_start expression_suite
-		
 expression_start
 	:	IDF
 		|'this'
