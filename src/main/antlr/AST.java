@@ -2,13 +2,20 @@ package main.antlr;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.tree.BaseTree;
 import org.antlr.runtime.tree.CommonTree;
+import org.antlr.runtime.tree.CommonTreeAdaptor;
 import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.stringtemplate.StringTemplate;
+
+import main.antlr.LoocParser.program_return;
+import sun.reflect.generics.tree.Tree;
 
 public class AST {
 	private static ANTLRFileStream input;
@@ -26,24 +33,26 @@ public class AST {
 		parser = new LoocParser(tokens);
 	}
 	
-	private void getAST() {
-		CommonTree tree = (CommonTree)parser.program().getTree();
-		DOTTreeGenerator gen = new DOTTreeGenerator();
-		StringTemplate st=gen.toDOT(tree);
+	private void getAST() throws RecognitionException, IOException {
+		program_return result=parser.program();
+		CommonTree t =(CommonTree)result.getTree();
 		out=new File("AST.dot");
 		fileWriter = new FileWriter(out);
-		printWriter.print(st);
+		printWriter=new PrintWriter(fileWriter);
+		printWriter.print(t.toStringTree());
 		fileWriter.flush();
 		fileWriter.close();
 		System.out.println("Should be OK");
-		
+		System.out.println(t.toStringTree());
 	}
+	
 	
 	
 	public static void main(String[] args) throws Exception {
 		AST ast=new AST();
-		ast.init("tests/class.looc");
+		ast.init("tests/if.looc");
 		ast.getAST();
+
 		
 	}
 

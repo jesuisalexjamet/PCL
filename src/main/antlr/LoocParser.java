@@ -1,5 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 Looc.g 2017-02-13 10:10:07
-package main.antlr;
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 Looc.g 2017-02-13 11:28:27
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -11,7 +10,7 @@ import org.antlr.runtime.tree.*;
 
 public class LoocParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "IDF_CLASS", "IDF", "CSTE_CHAINE", "CSTE_ENT", "WS", "'class'", "'inherit'", "'='", "'('", "')'", "'var'", "':'", "';'", "'int'", "'string'", "'method'", "'{'", "'}'", "','", "':='", "'if'", "'then'", "'else'", "'fi'", "'for'", "'in'", "'..'", "'do'", "'end'", "'.'", "'write'", "'read'", "'return'", "'this'", "'super'", "'-'", "'new'", "'/'", "'*'", "'%'", "'+'", "'<'", "'>'", "'=='", "'!='"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "IDF_CLASS", "IDF", "CSTE_ENT", "CSTE_CHAINE", "WS", "'class'", "'inherit'", "'='", "'('", "')'", "'var'", "':'", "';'", "'int'", "'string'", "'method'", "'{'", "'}'", "','", "':='", "'if'", "'then'", "'else'", "'fi'", "'for'", "'in'", "'..'", "'do'", "'end'", "'.'", "'write'", "'read'", "'return'", "'this'", "'super'", "'-'", "'new'", "'/'", "'*'", "'%'", "'+'", "'<'", "'>'", "'=='", "'!='"
     };
     public static final int EOF=-1;
     public static final int T__9=9;
@@ -56,8 +55,8 @@ public class LoocParser extends Parser {
     public static final int T__48=48;
     public static final int IDF_CLASS=4;
     public static final int IDF=5;
-    public static final int CSTE_CHAINE=6;
-    public static final int CSTE_ENT=7;
+    public static final int CSTE_ENT=6;
+    public static final int CSTE_CHAINE=7;
     public static final int WS=8;
 
     // delegates
@@ -69,9 +68,9 @@ public class LoocParser extends Parser {
         }
         public LoocParser(TokenStream input, RecognizerSharedState state) {
             super(input, state);
-
+             
         }
-
+        
     protected TreeAdaptor adaptor = new CommonTreeAdaptor();
 
     public void setTreeAdaptor(TreeAdaptor adaptor) {
@@ -265,11 +264,11 @@ public class LoocParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal4=(Token)match(input,9,FOLLOW_9_in_class_decl53);
+            string_literal4=(Token)match(input,9,FOLLOW_9_in_class_decl53); 
             string_literal4_tree = (CommonTree)adaptor.create(string_literal4);
             adaptor.addChild(root_0, string_literal4_tree);
 
-            IDF_CLASS5=(Token)match(input,IDF_CLASS,FOLLOW_IDF_CLASS_in_class_decl55);
+            IDF_CLASS5=(Token)match(input,IDF_CLASS,FOLLOW_IDF_CLASS_in_class_decl55); 
             IDF_CLASS5_tree = (CommonTree)adaptor.create(IDF_CLASS5);
             adaptor.addChild(root_0, IDF_CLASS5_tree);
 
@@ -284,11 +283,11 @@ public class LoocParser extends Parser {
                 case 1 :
                     // Looc.g:12:33: 'inherit' IDF_CLASS
                     {
-                    string_literal6=(Token)match(input,10,FOLLOW_10_in_class_decl58);
+                    string_literal6=(Token)match(input,10,FOLLOW_10_in_class_decl58); 
                     string_literal6_tree = (CommonTree)adaptor.create(string_literal6);
                     adaptor.addChild(root_0, string_literal6_tree);
 
-                    IDF_CLASS7=(Token)match(input,IDF_CLASS,FOLLOW_IDF_CLASS_in_class_decl60);
+                    IDF_CLASS7=(Token)match(input,IDF_CLASS,FOLLOW_IDF_CLASS_in_class_decl60); 
                     IDF_CLASS7_tree = (CommonTree)adaptor.create(IDF_CLASS7);
                     adaptor.addChild(root_0, IDF_CLASS7_tree);
 
@@ -298,11 +297,11 @@ public class LoocParser extends Parser {
 
             }
 
-            char_literal8=(Token)match(input,11,FOLLOW_11_in_class_decl64);
+            char_literal8=(Token)match(input,11,FOLLOW_11_in_class_decl64); 
             char_literal8_tree = (CommonTree)adaptor.create(char_literal8);
             adaptor.addChild(root_0, char_literal8_tree);
 
-            char_literal9=(Token)match(input,12,FOLLOW_12_in_class_decl66);
+            char_literal9=(Token)match(input,12,FOLLOW_12_in_class_decl66); 
             char_literal9_tree = (CommonTree)adaptor.create(char_literal9);
             adaptor.addChild(root_0, char_literal9_tree);
 
@@ -312,7 +311,7 @@ public class LoocParser extends Parser {
             state._fsp--;
 
             adaptor.addChild(root_0, class_item_decl10.getTree());
-            char_literal11=(Token)match(input,13,FOLLOW_13_in_class_decl70);
+            char_literal11=(Token)match(input,13,FOLLOW_13_in_class_decl70); 
             char_literal11_tree = (CommonTree)adaptor.create(char_literal11);
             adaptor.addChild(root_0, char_literal11_tree);
 
@@ -474,15 +473,15 @@ public class LoocParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal14=(Token)match(input,14,FOLLOW_14_in_var_decl102);
+            string_literal14=(Token)match(input,14,FOLLOW_14_in_var_decl102); 
             string_literal14_tree = (CommonTree)adaptor.create(string_literal14);
             adaptor.addChild(root_0, string_literal14_tree);
 
-            IDF15=(Token)match(input,IDF,FOLLOW_IDF_in_var_decl104);
+            IDF15=(Token)match(input,IDF,FOLLOW_IDF_in_var_decl104); 
             IDF15_tree = (CommonTree)adaptor.create(IDF15);
             adaptor.addChild(root_0, IDF15_tree);
 
-            char_literal16=(Token)match(input,15,FOLLOW_15_in_var_decl106);
+            char_literal16=(Token)match(input,15,FOLLOW_15_in_var_decl106); 
             char_literal16_tree = (CommonTree)adaptor.create(char_literal16);
             adaptor.addChild(root_0, char_literal16_tree);
 
@@ -492,7 +491,7 @@ public class LoocParser extends Parser {
             state._fsp--;
 
             adaptor.addChild(root_0, type17.getTree());
-            char_literal18=(Token)match(input,16,FOLLOW_16_in_var_decl110);
+            char_literal18=(Token)match(input,16,FOLLOW_16_in_var_decl110); 
             char_literal18_tree = (CommonTree)adaptor.create(char_literal18);
             adaptor.addChild(root_0, char_literal18_tree);
 
@@ -605,15 +604,15 @@ public class LoocParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal20=(Token)match(input,19,FOLLOW_19_in_method_decl144);
+            string_literal20=(Token)match(input,19,FOLLOW_19_in_method_decl144); 
             string_literal20_tree = (CommonTree)adaptor.create(string_literal20);
             adaptor.addChild(root_0, string_literal20_tree);
 
-            IDF21=(Token)match(input,IDF,FOLLOW_IDF_in_method_decl146);
+            IDF21=(Token)match(input,IDF,FOLLOW_IDF_in_method_decl146); 
             IDF21_tree = (CommonTree)adaptor.create(IDF21);
             adaptor.addChild(root_0, IDF21_tree);
 
-            char_literal22=(Token)match(input,12,FOLLOW_12_in_method_decl148);
+            char_literal22=(Token)match(input,12,FOLLOW_12_in_method_decl148); 
             char_literal22_tree = (CommonTree)adaptor.create(char_literal22);
             adaptor.addChild(root_0, char_literal22_tree);
 
@@ -647,7 +646,7 @@ public class LoocParser extends Parser {
                 }
             } while (true);
 
-            char_literal24=(Token)match(input,13,FOLLOW_13_in_method_decl153);
+            char_literal24=(Token)match(input,13,FOLLOW_13_in_method_decl153); 
             char_literal24_tree = (CommonTree)adaptor.create(char_literal24);
             adaptor.addChild(root_0, char_literal24_tree);
 
@@ -736,7 +735,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal26=(Token)match(input,20,FOLLOW_20_in_method_decl_suite169);
+                    char_literal26=(Token)match(input,20,FOLLOW_20_in_method_decl_suite169); 
                     char_literal26_tree = (CommonTree)adaptor.create(char_literal26);
                     adaptor.addChild(root_0, char_literal26_tree);
 
@@ -805,7 +804,7 @@ public class LoocParser extends Parser {
                         cnt9++;
                     } while (true);
 
-                    char_literal29=(Token)match(input,21,FOLLOW_21_in_method_decl_suite177);
+                    char_literal29=(Token)match(input,21,FOLLOW_21_in_method_decl_suite177); 
                     char_literal29_tree = (CommonTree)adaptor.create(char_literal29);
                     adaptor.addChild(root_0, char_literal29_tree);
 
@@ -817,7 +816,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal30=(Token)match(input,15,FOLLOW_15_in_method_decl_suite186);
+                    char_literal30=(Token)match(input,15,FOLLOW_15_in_method_decl_suite186); 
                     char_literal30_tree = (CommonTree)adaptor.create(char_literal30);
                     adaptor.addChild(root_0, char_literal30_tree);
 
@@ -827,7 +826,7 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, type31.getTree());
-                    char_literal32=(Token)match(input,20,FOLLOW_20_in_method_decl_suite190);
+                    char_literal32=(Token)match(input,20,FOLLOW_20_in_method_decl_suite190); 
                     char_literal32_tree = (CommonTree)adaptor.create(char_literal32);
                     adaptor.addChild(root_0, char_literal32_tree);
 
@@ -896,7 +895,7 @@ public class LoocParser extends Parser {
                         cnt11++;
                     } while (true);
 
-                    char_literal35=(Token)match(input,21,FOLLOW_21_in_method_decl_suite198);
+                    char_literal35=(Token)match(input,21,FOLLOW_21_in_method_decl_suite198); 
                     char_literal35_tree = (CommonTree)adaptor.create(char_literal35);
                     adaptor.addChild(root_0, char_literal35_tree);
 
@@ -958,11 +957,11 @@ public class LoocParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            IDF36=(Token)match(input,IDF,FOLLOW_IDF_in_method_args211);
+            IDF36=(Token)match(input,IDF,FOLLOW_IDF_in_method_args211); 
             IDF36_tree = (CommonTree)adaptor.create(IDF36);
             adaptor.addChild(root_0, IDF36_tree);
 
-            char_literal37=(Token)match(input,15,FOLLOW_15_in_method_args213);
+            char_literal37=(Token)match(input,15,FOLLOW_15_in_method_args213); 
             char_literal37_tree = (CommonTree)adaptor.create(char_literal37);
             adaptor.addChild(root_0, char_literal37_tree);
 
@@ -987,15 +986,15 @@ public class LoocParser extends Parser {
             	case 1 :
             	    // Looc.g:33:28: ',' IDF ':' type
             	    {
-            	    char_literal39=(Token)match(input,22,FOLLOW_22_in_method_args218);
+            	    char_literal39=(Token)match(input,22,FOLLOW_22_in_method_args218); 
             	    char_literal39_tree = (CommonTree)adaptor.create(char_literal39);
             	    adaptor.addChild(root_0, char_literal39_tree);
 
-            	    IDF40=(Token)match(input,IDF,FOLLOW_IDF_in_method_args220);
+            	    IDF40=(Token)match(input,IDF,FOLLOW_IDF_in_method_args220); 
             	    IDF40_tree = (CommonTree)adaptor.create(IDF40);
             	    adaptor.addChild(root_0, IDF40_tree);
 
-            	    char_literal41=(Token)match(input,15,FOLLOW_15_in_method_args222);
+            	    char_literal41=(Token)match(input,15,FOLLOW_15_in_method_args222); 
             	    char_literal41_tree = (CommonTree)adaptor.create(char_literal41);
             	    adaptor.addChild(root_0, char_literal41_tree);
 
@@ -1181,11 +1180,11 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    IDF43=(Token)match(input,IDF,FOLLOW_IDF_in_instruction239);
+                    IDF43=(Token)match(input,IDF,FOLLOW_IDF_in_instruction239); 
                     IDF43_tree = (CommonTree)adaptor.create(IDF43);
                     adaptor.addChild(root_0, IDF43_tree);
 
-                    string_literal44=(Token)match(input,23,FOLLOW_23_in_instruction241);
+                    string_literal44=(Token)match(input,23,FOLLOW_23_in_instruction241); 
                     string_literal44_tree = (CommonTree)adaptor.create(string_literal44);
                     adaptor.addChild(root_0, string_literal44_tree);
 
@@ -1195,7 +1194,7 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, expression45.getTree());
-                    char_literal46=(Token)match(input,16,FOLLOW_16_in_instruction245);
+                    char_literal46=(Token)match(input,16,FOLLOW_16_in_instruction245); 
                     char_literal46_tree = (CommonTree)adaptor.create(char_literal46);
                     adaptor.addChild(root_0, char_literal46_tree);
 
@@ -1207,7 +1206,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal47=(Token)match(input,24,FOLLOW_24_in_instruction251);
+                    string_literal47=(Token)match(input,24,FOLLOW_24_in_instruction251); 
                     string_literal47_tree = (CommonTree)adaptor.create(string_literal47);
                     adaptor.addChild(root_0, string_literal47_tree);
 
@@ -1217,7 +1216,7 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, expression48.getTree());
-                    string_literal49=(Token)match(input,25,FOLLOW_25_in_instruction255);
+                    string_literal49=(Token)match(input,25,FOLLOW_25_in_instruction255); 
                     string_literal49_tree = (CommonTree)adaptor.create(string_literal49);
                     adaptor.addChild(root_0, string_literal49_tree);
 
@@ -1267,7 +1266,7 @@ public class LoocParser extends Parser {
                         case 1 :
                             // Looc.g:37:43: 'else' ( instruction )+
                             {
-                            string_literal51=(Token)match(input,26,FOLLOW_26_in_instruction262);
+                            string_literal51=(Token)match(input,26,FOLLOW_26_in_instruction262); 
                             string_literal51_tree = (CommonTree)adaptor.create(string_literal51);
                             adaptor.addChild(root_0, string_literal51_tree);
 
@@ -1312,7 +1311,7 @@ public class LoocParser extends Parser {
 
                     }
 
-                    string_literal53=(Token)match(input,27,FOLLOW_27_in_instruction268);
+                    string_literal53=(Token)match(input,27,FOLLOW_27_in_instruction268); 
                     string_literal53_tree = (CommonTree)adaptor.create(string_literal53);
                     adaptor.addChild(root_0, string_literal53_tree);
 
@@ -1324,15 +1323,15 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal54=(Token)match(input,28,FOLLOW_28_in_instruction274);
+                    string_literal54=(Token)match(input,28,FOLLOW_28_in_instruction274); 
                     string_literal54_tree = (CommonTree)adaptor.create(string_literal54);
                     adaptor.addChild(root_0, string_literal54_tree);
 
-                    IDF55=(Token)match(input,IDF,FOLLOW_IDF_in_instruction276);
+                    IDF55=(Token)match(input,IDF,FOLLOW_IDF_in_instruction276); 
                     IDF55_tree = (CommonTree)adaptor.create(IDF55);
                     adaptor.addChild(root_0, IDF55_tree);
 
-                    string_literal56=(Token)match(input,29,FOLLOW_29_in_instruction278);
+                    string_literal56=(Token)match(input,29,FOLLOW_29_in_instruction278); 
                     string_literal56_tree = (CommonTree)adaptor.create(string_literal56);
                     adaptor.addChild(root_0, string_literal56_tree);
 
@@ -1342,7 +1341,7 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, expression57.getTree());
-                    string_literal58=(Token)match(input,30,FOLLOW_30_in_instruction282);
+                    string_literal58=(Token)match(input,30,FOLLOW_30_in_instruction282); 
                     string_literal58_tree = (CommonTree)adaptor.create(string_literal58);
                     adaptor.addChild(root_0, string_literal58_tree);
 
@@ -1352,7 +1351,7 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, expression59.getTree());
-                    string_literal60=(Token)match(input,31,FOLLOW_31_in_instruction287);
+                    string_literal60=(Token)match(input,31,FOLLOW_31_in_instruction287); 
                     string_literal60_tree = (CommonTree)adaptor.create(string_literal60);
                     adaptor.addChild(root_0, string_literal60_tree);
 
@@ -1391,7 +1390,7 @@ public class LoocParser extends Parser {
                         cnt17++;
                     } while (true);
 
-                    string_literal62=(Token)match(input,32,FOLLOW_32_in_instruction292);
+                    string_literal62=(Token)match(input,32,FOLLOW_32_in_instruction292); 
                     string_literal62_tree = (CommonTree)adaptor.create(string_literal62);
                     adaptor.addChild(root_0, string_literal62_tree);
 
@@ -1403,7 +1402,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal63=(Token)match(input,20,FOLLOW_20_in_instruction299);
+                    char_literal63=(Token)match(input,20,FOLLOW_20_in_instruction299); 
                     char_literal63_tree = (CommonTree)adaptor.create(char_literal63);
                     adaptor.addChild(root_0, char_literal63_tree);
 
@@ -1472,7 +1471,7 @@ public class LoocParser extends Parser {
                         cnt19++;
                     } while (true);
 
-                    char_literal66=(Token)match(input,21,FOLLOW_21_in_instruction309);
+                    char_literal66=(Token)match(input,21,FOLLOW_21_in_instruction309); 
                     char_literal66_tree = (CommonTree)adaptor.create(char_literal66);
                     adaptor.addChild(root_0, char_literal66_tree);
 
@@ -1484,7 +1483,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal67=(Token)match(input,31,FOLLOW_31_in_instruction316);
+                    string_literal67=(Token)match(input,31,FOLLOW_31_in_instruction316); 
                     string_literal67_tree = (CommonTree)adaptor.create(string_literal67);
                     adaptor.addChild(root_0, string_literal67_tree);
 
@@ -1494,15 +1493,15 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, expression_start68.getTree());
-                    char_literal69=(Token)match(input,33,FOLLOW_33_in_instruction320);
+                    char_literal69=(Token)match(input,33,FOLLOW_33_in_instruction320); 
                     char_literal69_tree = (CommonTree)adaptor.create(char_literal69);
                     adaptor.addChild(root_0, char_literal69_tree);
 
-                    IDF70=(Token)match(input,IDF,FOLLOW_IDF_in_instruction322);
+                    IDF70=(Token)match(input,IDF,FOLLOW_IDF_in_instruction322); 
                     IDF70_tree = (CommonTree)adaptor.create(IDF70);
                     adaptor.addChild(root_0, IDF70_tree);
 
-                    char_literal71=(Token)match(input,12,FOLLOW_12_in_instruction324);
+                    char_literal71=(Token)match(input,12,FOLLOW_12_in_instruction324); 
                     char_literal71_tree = (CommonTree)adaptor.create(char_literal71);
                     adaptor.addChild(root_0, char_literal71_tree);
 
@@ -1527,7 +1526,7 @@ public class LoocParser extends Parser {
                     	case 1 :
                     	    // Looc.g:40:50: ',' expression
                     	    {
-                    	    char_literal73=(Token)match(input,22,FOLLOW_22_in_instruction328);
+                    	    char_literal73=(Token)match(input,22,FOLLOW_22_in_instruction328); 
                     	    char_literal73_tree = (CommonTree)adaptor.create(char_literal73);
                     	    adaptor.addChild(root_0, char_literal73_tree);
 
@@ -1546,11 +1545,11 @@ public class LoocParser extends Parser {
                         }
                     } while (true);
 
-                    char_literal75=(Token)match(input,13,FOLLOW_13_in_instruction334);
+                    char_literal75=(Token)match(input,13,FOLLOW_13_in_instruction334); 
                     char_literal75_tree = (CommonTree)adaptor.create(char_literal75);
                     adaptor.addChild(root_0, char_literal75_tree);
 
-                    char_literal76=(Token)match(input,16,FOLLOW_16_in_instruction336);
+                    char_literal76=(Token)match(input,16,FOLLOW_16_in_instruction336); 
                     char_literal76_tree = (CommonTree)adaptor.create(char_literal76);
                     adaptor.addChild(root_0, char_literal76_tree);
 
@@ -1625,7 +1624,7 @@ public class LoocParser extends Parser {
     };
 
     // $ANTLR start "print"
-    // Looc.g:51:1: print : 'write' print_suite ';' ;
+    // Looc.g:48:1: print : 'write' expression ';' ;
     public final LoocParser.print_return print() throws RecognitionException {
         LoocParser.print_return retval = new LoocParser.print_return();
         retval.start = input.LT(1);
@@ -1634,29 +1633,29 @@ public class LoocParser extends Parser {
 
         Token string_literal80=null;
         Token char_literal82=null;
-        LoocParser.print_suite_return print_suite81 = null;
+        LoocParser.expression_return expression81 = null;
 
 
         CommonTree string_literal80_tree=null;
         CommonTree char_literal82_tree=null;
 
         try {
-            // Looc.g:51:6: ( 'write' print_suite ';' )
-            // Looc.g:51:8: 'write' print_suite ';'
+            // Looc.g:48:6: ( 'write' expression ';' )
+            // Looc.g:48:8: 'write' expression ';'
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal80=(Token)match(input,34,FOLLOW_34_in_print372);
+            string_literal80=(Token)match(input,34,FOLLOW_34_in_print370); 
             string_literal80_tree = (CommonTree)adaptor.create(string_literal80);
             adaptor.addChild(root_0, string_literal80_tree);
 
-            pushFollow(FOLLOW_print_suite_in_print374);
-            print_suite81=print_suite();
+            pushFollow(FOLLOW_expression_in_print372);
+            expression81=expression();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, print_suite81.getTree());
-            char_literal82=(Token)match(input,16,FOLLOW_16_in_print376);
+            adaptor.addChild(root_0, expression81.getTree());
+            char_literal82=(Token)match(input,16,FOLLOW_16_in_print374); 
             char_literal82_tree = (CommonTree)adaptor.create(char_literal82);
             adaptor.addChild(root_0, char_literal82_tree);
 
@@ -1681,127 +1680,44 @@ public class LoocParser extends Parser {
     }
     // $ANTLR end "print"
 
-    public static class print_suite_return extends ParserRuleReturnScope {
-        CommonTree tree;
-        public Object getTree() { return tree; }
-    };
-
-    // $ANTLR start "print_suite"
-    // Looc.g:54:1: print_suite : ( expression | CSTE_CHAINE );
-    public final LoocParser.print_suite_return print_suite() throws RecognitionException {
-        LoocParser.print_suite_return retval = new LoocParser.print_suite_return();
-        retval.start = input.LT(1);
-
-        CommonTree root_0 = null;
-
-        Token CSTE_CHAINE84=null;
-        LoocParser.expression_return expression83 = null;
-
-
-        CommonTree CSTE_CHAINE84_tree=null;
-
-        try {
-            // Looc.g:54:12: ( expression | CSTE_CHAINE )
-            int alt22=2;
-            int LA22_0 = input.LA(1);
-
-            if ( (LA22_0==IDF||LA22_0==CSTE_ENT||(LA22_0>=12 && LA22_0<=13)||LA22_0==16||LA22_0==22||LA22_0==25||(LA22_0>=30 && LA22_0<=31)||(LA22_0>=37 && LA22_0<=40)) ) {
-                alt22=1;
-            }
-            else if ( (LA22_0==CSTE_CHAINE) ) {
-                alt22=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 22, 0, input);
-
-                throw nvae;
-            }
-            switch (alt22) {
-                case 1 :
-                    // Looc.g:54:14: expression
-                    {
-                    root_0 = (CommonTree)adaptor.nil();
-
-                    pushFollow(FOLLOW_expression_in_print_suite386);
-                    expression83=expression();
-
-                    state._fsp--;
-
-                    adaptor.addChild(root_0, expression83.getTree());
-
-                    }
-                    break;
-                case 2 :
-                    // Looc.g:55:5: CSTE_CHAINE
-                    {
-                    root_0 = (CommonTree)adaptor.nil();
-
-                    CSTE_CHAINE84=(Token)match(input,CSTE_CHAINE,FOLLOW_CSTE_CHAINE_in_print_suite393);
-                    CSTE_CHAINE84_tree = (CommonTree)adaptor.create(CSTE_CHAINE84);
-                    adaptor.addChild(root_0, CSTE_CHAINE84_tree);
-
-
-                    }
-                    break;
-
-            }
-            retval.stop = input.LT(-1);
-
-            retval.tree = (CommonTree)adaptor.rulePostProcessing(root_0);
-            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-    	retval.tree = (CommonTree)adaptor.errorNode(input, retval.start, input.LT(-1), re);
-
-        }
-        finally {
-        }
-        return retval;
-    }
-    // $ANTLR end "print_suite"
-
     public static class read_return extends ParserRuleReturnScope {
         CommonTree tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start "read"
-    // Looc.g:58:1: read : 'read' IDF ';' ;
+    // Looc.g:52:1: read : 'read' IDF ';' ;
     public final LoocParser.read_return read() throws RecognitionException {
         LoocParser.read_return retval = new LoocParser.read_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token string_literal85=null;
-        Token IDF86=null;
-        Token char_literal87=null;
+        Token string_literal83=null;
+        Token IDF84=null;
+        Token char_literal85=null;
 
-        CommonTree string_literal85_tree=null;
-        CommonTree IDF86_tree=null;
-        CommonTree char_literal87_tree=null;
+        CommonTree string_literal83_tree=null;
+        CommonTree IDF84_tree=null;
+        CommonTree char_literal85_tree=null;
 
         try {
-            // Looc.g:58:5: ( 'read' IDF ';' )
-            // Looc.g:58:7: 'read' IDF ';'
+            // Looc.g:52:5: ( 'read' IDF ';' )
+            // Looc.g:52:7: 'read' IDF ';'
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal85=(Token)match(input,35,FOLLOW_35_in_read404);
-            string_literal85_tree = (CommonTree)adaptor.create(string_literal85);
-            adaptor.addChild(root_0, string_literal85_tree);
+            string_literal83=(Token)match(input,35,FOLLOW_35_in_read385); 
+            string_literal83_tree = (CommonTree)adaptor.create(string_literal83);
+            adaptor.addChild(root_0, string_literal83_tree);
 
-            IDF86=(Token)match(input,IDF,FOLLOW_IDF_in_read406);
-            IDF86_tree = (CommonTree)adaptor.create(IDF86);
-            adaptor.addChild(root_0, IDF86_tree);
+            IDF84=(Token)match(input,IDF,FOLLOW_IDF_in_read387); 
+            IDF84_tree = (CommonTree)adaptor.create(IDF84);
+            adaptor.addChild(root_0, IDF84_tree);
 
-            char_literal87=(Token)match(input,16,FOLLOW_16_in_read408);
-            char_literal87_tree = (CommonTree)adaptor.create(char_literal87);
-            adaptor.addChild(root_0, char_literal87_tree);
+            char_literal85=(Token)match(input,16,FOLLOW_16_in_read389); 
+            char_literal85_tree = (CommonTree)adaptor.create(char_literal85);
+            adaptor.addChild(root_0, char_literal85_tree);
 
 
             }
@@ -1830,52 +1746,52 @@ public class LoocParser extends Parser {
     };
 
     // $ANTLR start "retour"
-    // Looc.g:61:1: retour : 'return' '(' expression ')' ';' ;
+    // Looc.g:55:1: retour : 'return' '(' expression ')' ';' ;
     public final LoocParser.retour_return retour() throws RecognitionException {
         LoocParser.retour_return retval = new LoocParser.retour_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token string_literal88=null;
+        Token string_literal86=null;
+        Token char_literal87=null;
         Token char_literal89=null;
-        Token char_literal91=null;
-        Token char_literal92=null;
-        LoocParser.expression_return expression90 = null;
+        Token char_literal90=null;
+        LoocParser.expression_return expression88 = null;
 
 
-        CommonTree string_literal88_tree=null;
+        CommonTree string_literal86_tree=null;
+        CommonTree char_literal87_tree=null;
         CommonTree char_literal89_tree=null;
-        CommonTree char_literal91_tree=null;
-        CommonTree char_literal92_tree=null;
+        CommonTree char_literal90_tree=null;
 
         try {
-            // Looc.g:61:7: ( 'return' '(' expression ')' ';' )
-            // Looc.g:61:10: 'return' '(' expression ')' ';'
+            // Looc.g:55:7: ( 'return' '(' expression ')' ';' )
+            // Looc.g:55:10: 'return' '(' expression ')' ';'
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal88=(Token)match(input,36,FOLLOW_36_in_retour420);
-            string_literal88_tree = (CommonTree)adaptor.create(string_literal88);
-            adaptor.addChild(root_0, string_literal88_tree);
+            string_literal86=(Token)match(input,36,FOLLOW_36_in_retour401); 
+            string_literal86_tree = (CommonTree)adaptor.create(string_literal86);
+            adaptor.addChild(root_0, string_literal86_tree);
 
-            char_literal89=(Token)match(input,12,FOLLOW_12_in_retour422);
-            char_literal89_tree = (CommonTree)adaptor.create(char_literal89);
-            adaptor.addChild(root_0, char_literal89_tree);
+            char_literal87=(Token)match(input,12,FOLLOW_12_in_retour403); 
+            char_literal87_tree = (CommonTree)adaptor.create(char_literal87);
+            adaptor.addChild(root_0, char_literal87_tree);
 
-            pushFollow(FOLLOW_expression_in_retour424);
-            expression90=expression();
+            pushFollow(FOLLOW_expression_in_retour405);
+            expression88=expression();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, expression90.getTree());
-            char_literal91=(Token)match(input,13,FOLLOW_13_in_retour426);
-            char_literal91_tree = (CommonTree)adaptor.create(char_literal91);
-            adaptor.addChild(root_0, char_literal91_tree);
+            adaptor.addChild(root_0, expression88.getTree());
+            char_literal89=(Token)match(input,13,FOLLOW_13_in_retour407); 
+            char_literal89_tree = (CommonTree)adaptor.create(char_literal89);
+            adaptor.addChild(root_0, char_literal89_tree);
 
-            char_literal92=(Token)match(input,16,FOLLOW_16_in_retour428);
-            char_literal92_tree = (CommonTree)adaptor.create(char_literal92);
-            adaptor.addChild(root_0, char_literal92_tree);
+            char_literal90=(Token)match(input,16,FOLLOW_16_in_retour409); 
+            char_literal90_tree = (CommonTree)adaptor.create(char_literal90);
+            adaptor.addChild(root_0, char_literal90_tree);
 
 
             }
@@ -1904,27 +1820,27 @@ public class LoocParser extends Parser {
     };
 
     // $ANTLR start "expression_start"
-    // Looc.g:66:1: expression_start : ( IDF | 'this' | 'super' );
+    // Looc.g:58:1: expression_start : ( IDF | 'this' | 'super' );
     public final LoocParser.expression_start_return expression_start() throws RecognitionException {
         LoocParser.expression_start_return retval = new LoocParser.expression_start_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token set93=null;
+        Token set91=null;
 
-        CommonTree set93_tree=null;
+        CommonTree set91_tree=null;
 
         try {
-            // Looc.g:67:2: ( IDF | 'this' | 'super' )
+            // Looc.g:59:2: ( IDF | 'this' | 'super' )
             // Looc.g:
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            set93=(Token)input.LT(1);
+            set91=(Token)input.LT(1);
             if ( input.LA(1)==IDF||(input.LA(1)>=37 && input.LA(1)<=38) ) {
                 input.consume();
-                adaptor.addChild(root_0, (CommonTree)adaptor.create(set93));
+                adaptor.addChild(root_0, (CommonTree)adaptor.create(set91));
                 state.errorRecovery=false;
             }
             else {
@@ -1959,28 +1875,31 @@ public class LoocParser extends Parser {
     };
 
     // $ANTLR start "expression"
-    // Looc.g:72:1: expression : ( '(' expression ')' expression_suite | IDF expression_suite | '-' CSTE_ENT expression_suite | 'this' expression_suite | 'super' expression_suite | CSTE_ENT expression_suite | 'new' IDF_CLASS | );
+    // Looc.g:64:1: expression : ( '(' expression ')' expression_suite | IDF expression_suite | '-' CSTE_ENT expression_suite | 'this' expression_suite | 'super' expression_suite | CSTE_ENT expression_suite | 'new' IDF_CLASS | CSTE_CHAINE | );
     public final LoocParser.expression_return expression() throws RecognitionException {
         LoocParser.expression_return retval = new LoocParser.expression_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
+        Token char_literal92=null;
         Token char_literal94=null;
-        Token char_literal96=null;
-        Token IDF98=null;
-        Token char_literal100=null;
-        Token CSTE_ENT101=null;
+        Token IDF96=null;
+        Token char_literal98=null;
+        Token CSTE_ENT99=null;
+        Token string_literal101=null;
         Token string_literal103=null;
-        Token string_literal105=null;
-        Token CSTE_ENT107=null;
-        Token string_literal109=null;
-        Token IDF_CLASS110=null;
-        LoocParser.expression_return expression95 = null;
+        Token CSTE_ENT105=null;
+        Token string_literal107=null;
+        Token IDF_CLASS108=null;
+        Token CSTE_CHAINE109=null;
+        LoocParser.expression_return expression93 = null;
+
+        LoocParser.expression_suite_return expression_suite95 = null;
 
         LoocParser.expression_suite_return expression_suite97 = null;
 
-        LoocParser.expression_suite_return expression_suite99 = null;
+        LoocParser.expression_suite_return expression_suite100 = null;
 
         LoocParser.expression_suite_return expression_suite102 = null;
 
@@ -1988,97 +1907,62 @@ public class LoocParser extends Parser {
 
         LoocParser.expression_suite_return expression_suite106 = null;
 
-        LoocParser.expression_suite_return expression_suite108 = null;
 
-
+        CommonTree char_literal92_tree=null;
         CommonTree char_literal94_tree=null;
-        CommonTree char_literal96_tree=null;
-        CommonTree IDF98_tree=null;
-        CommonTree char_literal100_tree=null;
-        CommonTree CSTE_ENT101_tree=null;
+        CommonTree IDF96_tree=null;
+        CommonTree char_literal98_tree=null;
+        CommonTree CSTE_ENT99_tree=null;
+        CommonTree string_literal101_tree=null;
         CommonTree string_literal103_tree=null;
-        CommonTree string_literal105_tree=null;
-        CommonTree CSTE_ENT107_tree=null;
-        CommonTree string_literal109_tree=null;
-        CommonTree IDF_CLASS110_tree=null;
+        CommonTree CSTE_ENT105_tree=null;
+        CommonTree string_literal107_tree=null;
+        CommonTree IDF_CLASS108_tree=null;
+        CommonTree CSTE_CHAINE109_tree=null;
 
         try {
-            // Looc.g:73:2: ( '(' expression ')' expression_suite | IDF expression_suite | '-' CSTE_ENT expression_suite | 'this' expression_suite | 'super' expression_suite | CSTE_ENT expression_suite | 'new' IDF_CLASS | )
-            int alt23=8;
-            switch ( input.LA(1) ) {
-            case 12:
-                {
-                alt23=1;
-                }
-                break;
-            case IDF:
-                {
-                alt23=2;
-                }
-                break;
-            case 39:
-                {
-                alt23=3;
-                }
-                break;
-            case 37:
-                {
-                alt23=4;
-                }
-                break;
-            case 38:
-                {
-                alt23=5;
-                }
-                break;
-            case CSTE_ENT:
-                {
-                alt23=6;
-                }
-                break;
-            case 40:
-                {
-                alt23=7;
-                }
-                break;
-            case 13:
-            case 16:
-            case 22:
-            case 25:
-            case 30:
-            case 31:
-                {
-                alt23=8;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("", 23, 0, input);
-
-                throw nvae;
-            }
-
-            switch (alt23) {
+            // Looc.g:65:2: ( '(' expression ')' expression_suite | IDF expression_suite | '-' CSTE_ENT expression_suite | 'this' expression_suite | 'super' expression_suite | CSTE_ENT expression_suite | 'new' IDF_CLASS | CSTE_CHAINE | )
+            int alt22=9;
+            alt22 = dfa22.predict(input);
+            switch (alt22) {
                 case 1 :
-                    // Looc.g:73:4: '(' expression ')' expression_suite
+                    // Looc.g:65:4: '(' expression ')' expression_suite
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal94=(Token)match(input,12,FOLLOW_12_in_expression468);
-                    char_literal94_tree = (CommonTree)adaptor.create(char_literal94);
-                    adaptor.addChild(root_0, char_literal94_tree);
+                    char_literal92=(Token)match(input,12,FOLLOW_12_in_expression445); 
+                    char_literal92_tree = (CommonTree)adaptor.create(char_literal92);
+                    adaptor.addChild(root_0, char_literal92_tree);
 
-                    pushFollow(FOLLOW_expression_in_expression470);
-                    expression95=expression();
+                    pushFollow(FOLLOW_expression_in_expression447);
+                    expression93=expression();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expression95.getTree());
-                    char_literal96=(Token)match(input,13,FOLLOW_13_in_expression472);
-                    char_literal96_tree = (CommonTree)adaptor.create(char_literal96);
-                    adaptor.addChild(root_0, char_literal96_tree);
+                    adaptor.addChild(root_0, expression93.getTree());
+                    char_literal94=(Token)match(input,13,FOLLOW_13_in_expression449); 
+                    char_literal94_tree = (CommonTree)adaptor.create(char_literal94);
+                    adaptor.addChild(root_0, char_literal94_tree);
 
-                    pushFollow(FOLLOW_expression_suite_in_expression474);
+                    pushFollow(FOLLOW_expression_suite_in_expression451);
+                    expression_suite95=expression_suite();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, expression_suite95.getTree());
+
+                    }
+                    break;
+                case 2 :
+                    // Looc.g:66:5: IDF expression_suite
+                    {
+                    root_0 = (CommonTree)adaptor.nil();
+
+                    IDF96=(Token)match(input,IDF,FOLLOW_IDF_in_expression457); 
+                    IDF96_tree = (CommonTree)adaptor.create(IDF96);
+                    adaptor.addChild(root_0, IDF96_tree);
+
+                    pushFollow(FOLLOW_expression_suite_in_expression459);
                     expression_suite97=expression_suite();
 
                     state._fsp--;
@@ -2087,38 +1971,38 @@ public class LoocParser extends Parser {
 
                     }
                     break;
-                case 2 :
-                    // Looc.g:74:5: IDF expression_suite
+                case 3 :
+                    // Looc.g:67:5: '-' CSTE_ENT expression_suite
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    IDF98=(Token)match(input,IDF,FOLLOW_IDF_in_expression480);
-                    IDF98_tree = (CommonTree)adaptor.create(IDF98);
-                    adaptor.addChild(root_0, IDF98_tree);
+                    char_literal98=(Token)match(input,39,FOLLOW_39_in_expression465); 
+                    char_literal98_tree = (CommonTree)adaptor.create(char_literal98);
+                    adaptor.addChild(root_0, char_literal98_tree);
 
-                    pushFollow(FOLLOW_expression_suite_in_expression482);
-                    expression_suite99=expression_suite();
+                    CSTE_ENT99=(Token)match(input,CSTE_ENT,FOLLOW_CSTE_ENT_in_expression467); 
+                    CSTE_ENT99_tree = (CommonTree)adaptor.create(CSTE_ENT99);
+                    adaptor.addChild(root_0, CSTE_ENT99_tree);
+
+                    pushFollow(FOLLOW_expression_suite_in_expression469);
+                    expression_suite100=expression_suite();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expression_suite99.getTree());
+                    adaptor.addChild(root_0, expression_suite100.getTree());
 
                     }
                     break;
-                case 3 :
-                    // Looc.g:75:5: '-' CSTE_ENT expression_suite
+                case 4 :
+                    // Looc.g:68:5: 'this' expression_suite
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal100=(Token)match(input,39,FOLLOW_39_in_expression488);
-                    char_literal100_tree = (CommonTree)adaptor.create(char_literal100);
-                    adaptor.addChild(root_0, char_literal100_tree);
+                    string_literal101=(Token)match(input,37,FOLLOW_37_in_expression475); 
+                    string_literal101_tree = (CommonTree)adaptor.create(string_literal101);
+                    adaptor.addChild(root_0, string_literal101_tree);
 
-                    CSTE_ENT101=(Token)match(input,CSTE_ENT,FOLLOW_CSTE_ENT_in_expression490);
-                    CSTE_ENT101_tree = (CommonTree)adaptor.create(CSTE_ENT101);
-                    adaptor.addChild(root_0, CSTE_ENT101_tree);
-
-                    pushFollow(FOLLOW_expression_suite_in_expression492);
+                    pushFollow(FOLLOW_expression_suite_in_expression477);
                     expression_suite102=expression_suite();
 
                     state._fsp--;
@@ -2127,16 +2011,16 @@ public class LoocParser extends Parser {
 
                     }
                     break;
-                case 4 :
-                    // Looc.g:76:5: 'this' expression_suite
+                case 5 :
+                    // Looc.g:69:5: 'super' expression_suite
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal103=(Token)match(input,37,FOLLOW_37_in_expression498);
+                    string_literal103=(Token)match(input,38,FOLLOW_38_in_expression483); 
                     string_literal103_tree = (CommonTree)adaptor.create(string_literal103);
                     adaptor.addChild(root_0, string_literal103_tree);
 
-                    pushFollow(FOLLOW_expression_suite_in_expression500);
+                    pushFollow(FOLLOW_expression_suite_in_expression485);
                     expression_suite104=expression_suite();
 
                     state._fsp--;
@@ -2145,16 +2029,16 @@ public class LoocParser extends Parser {
 
                     }
                     break;
-                case 5 :
-                    // Looc.g:77:5: 'super' expression_suite
+                case 6 :
+                    // Looc.g:70:5: CSTE_ENT expression_suite
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal105=(Token)match(input,38,FOLLOW_38_in_expression506);
-                    string_literal105_tree = (CommonTree)adaptor.create(string_literal105);
-                    adaptor.addChild(root_0, string_literal105_tree);
+                    CSTE_ENT105=(Token)match(input,CSTE_ENT,FOLLOW_CSTE_ENT_in_expression491); 
+                    CSTE_ENT105_tree = (CommonTree)adaptor.create(CSTE_ENT105);
+                    adaptor.addChild(root_0, CSTE_ENT105_tree);
 
-                    pushFollow(FOLLOW_expression_suite_in_expression508);
+                    pushFollow(FOLLOW_expression_suite_in_expression493);
                     expression_suite106=expression_suite();
 
                     state._fsp--;
@@ -2163,42 +2047,36 @@ public class LoocParser extends Parser {
 
                     }
                     break;
-                case 6 :
-                    // Looc.g:78:5: CSTE_ENT expression_suite
-                    {
-                    root_0 = (CommonTree)adaptor.nil();
-
-                    CSTE_ENT107=(Token)match(input,CSTE_ENT,FOLLOW_CSTE_ENT_in_expression514);
-                    CSTE_ENT107_tree = (CommonTree)adaptor.create(CSTE_ENT107);
-                    adaptor.addChild(root_0, CSTE_ENT107_tree);
-
-                    pushFollow(FOLLOW_expression_suite_in_expression516);
-                    expression_suite108=expression_suite();
-
-                    state._fsp--;
-
-                    adaptor.addChild(root_0, expression_suite108.getTree());
-
-                    }
-                    break;
                 case 7 :
-                    // Looc.g:79:5: 'new' IDF_CLASS
+                    // Looc.g:71:5: 'new' IDF_CLASS
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal109=(Token)match(input,40,FOLLOW_40_in_expression522);
-                    string_literal109_tree = (CommonTree)adaptor.create(string_literal109);
-                    adaptor.addChild(root_0, string_literal109_tree);
+                    string_literal107=(Token)match(input,40,FOLLOW_40_in_expression499); 
+                    string_literal107_tree = (CommonTree)adaptor.create(string_literal107);
+                    adaptor.addChild(root_0, string_literal107_tree);
 
-                    IDF_CLASS110=(Token)match(input,IDF_CLASS,FOLLOW_IDF_CLASS_in_expression524);
-                    IDF_CLASS110_tree = (CommonTree)adaptor.create(IDF_CLASS110);
-                    adaptor.addChild(root_0, IDF_CLASS110_tree);
+                    IDF_CLASS108=(Token)match(input,IDF_CLASS,FOLLOW_IDF_CLASS_in_expression501); 
+                    IDF_CLASS108_tree = (CommonTree)adaptor.create(IDF_CLASS108);
+                    adaptor.addChild(root_0, IDF_CLASS108_tree);
 
 
                     }
                     break;
                 case 8 :
-                    // Looc.g:81:3:
+                    // Looc.g:72:5: CSTE_CHAINE
+                    {
+                    root_0 = (CommonTree)adaptor.nil();
+
+                    CSTE_CHAINE109=(Token)match(input,CSTE_CHAINE,FOLLOW_CSTE_CHAINE_in_expression507); 
+                    CSTE_CHAINE109_tree = (CommonTree)adaptor.create(CSTE_CHAINE109);
+                    adaptor.addChild(root_0, CSTE_CHAINE109_tree);
+
+
+                    }
+                    break;
+                case 9 :
+                    // Looc.g:74:3: 
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -2230,53 +2108,53 @@ public class LoocParser extends Parser {
     };
 
     // $ANTLR start "expression_suite"
-    // Looc.g:83:1: expression_suite : ( '.' IDF '(' expression ( ',' expression )* ')' | ( multOper )+ ( oper )* | ( oper )* | comparaison expression );
+    // Looc.g:76:1: expression_suite : ( '.' IDF '(' expression ( ',' expression )* ')' | ( multOper )+ ( oper )* | ( oper )* | comparaison expression );
     public final LoocParser.expression_suite_return expression_suite() throws RecognitionException {
         LoocParser.expression_suite_return retval = new LoocParser.expression_suite_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token char_literal111=null;
-        Token IDF112=null;
-        Token char_literal113=null;
-        Token char_literal115=null;
-        Token char_literal117=null;
-        LoocParser.expression_return expression114 = null;
+        Token char_literal110=null;
+        Token IDF111=null;
+        Token char_literal112=null;
+        Token char_literal114=null;
+        Token char_literal116=null;
+        LoocParser.expression_return expression113 = null;
 
-        LoocParser.expression_return expression116 = null;
+        LoocParser.expression_return expression115 = null;
 
-        LoocParser.multOper_return multOper118 = null;
+        LoocParser.multOper_return multOper117 = null;
+
+        LoocParser.oper_return oper118 = null;
 
         LoocParser.oper_return oper119 = null;
 
-        LoocParser.oper_return oper120 = null;
+        LoocParser.comparaison_return comparaison120 = null;
 
-        LoocParser.comparaison_return comparaison121 = null;
-
-        LoocParser.expression_return expression122 = null;
+        LoocParser.expression_return expression121 = null;
 
 
-        CommonTree char_literal111_tree=null;
-        CommonTree IDF112_tree=null;
-        CommonTree char_literal113_tree=null;
-        CommonTree char_literal115_tree=null;
-        CommonTree char_literal117_tree=null;
+        CommonTree char_literal110_tree=null;
+        CommonTree IDF111_tree=null;
+        CommonTree char_literal112_tree=null;
+        CommonTree char_literal114_tree=null;
+        CommonTree char_literal116_tree=null;
 
         try {
-            // Looc.g:83:17: ( '.' IDF '(' expression ( ',' expression )* ')' | ( multOper )+ ( oper )* | ( oper )* | comparaison expression )
-            int alt28=4;
+            // Looc.g:76:17: ( '.' IDF '(' expression ( ',' expression )* ')' | ( multOper )+ ( oper )* | ( oper )* | comparaison expression )
+            int alt27=4;
             switch ( input.LA(1) ) {
             case 33:
                 {
-                alt28=1;
+                alt27=1;
                 }
                 break;
             case 41:
             case 42:
             case 43:
                 {
-                alt28=2;
+                alt27=2;
                 }
                 break;
             case 13:
@@ -2288,7 +2166,7 @@ public class LoocParser extends Parser {
             case 39:
             case 44:
                 {
-                alt28=3;
+                alt27=3;
                 }
                 break;
             case 45:
@@ -2296,122 +2174,160 @@ public class LoocParser extends Parser {
             case 47:
             case 48:
                 {
-                alt28=4;
+                alt27=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 28, 0, input);
+                    new NoViableAltException("", 27, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt28) {
+            switch (alt27) {
                 case 1 :
-                    // Looc.g:84:3: '.' IDF '(' expression ( ',' expression )* ')'
+                    // Looc.g:77:3: '.' IDF '(' expression ( ',' expression )* ')'
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal111=(Token)match(input,33,FOLLOW_33_in_expression_suite542);
-                    char_literal111_tree = (CommonTree)adaptor.create(char_literal111);
-                    adaptor.addChild(root_0, char_literal111_tree);
+                    char_literal110=(Token)match(input,33,FOLLOW_33_in_expression_suite525); 
+                    char_literal110_tree = (CommonTree)adaptor.create(char_literal110);
+                    adaptor.addChild(root_0, char_literal110_tree);
 
-                    IDF112=(Token)match(input,IDF,FOLLOW_IDF_in_expression_suite544);
-                    IDF112_tree = (CommonTree)adaptor.create(IDF112);
-                    adaptor.addChild(root_0, IDF112_tree);
+                    IDF111=(Token)match(input,IDF,FOLLOW_IDF_in_expression_suite527); 
+                    IDF111_tree = (CommonTree)adaptor.create(IDF111);
+                    adaptor.addChild(root_0, IDF111_tree);
 
-                    char_literal113=(Token)match(input,12,FOLLOW_12_in_expression_suite546);
-                    char_literal113_tree = (CommonTree)adaptor.create(char_literal113);
-                    adaptor.addChild(root_0, char_literal113_tree);
+                    char_literal112=(Token)match(input,12,FOLLOW_12_in_expression_suite529); 
+                    char_literal112_tree = (CommonTree)adaptor.create(char_literal112);
+                    adaptor.addChild(root_0, char_literal112_tree);
 
-                    pushFollow(FOLLOW_expression_in_expression_suite548);
-                    expression114=expression();
+                    pushFollow(FOLLOW_expression_in_expression_suite531);
+                    expression113=expression();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expression114.getTree());
-                    // Looc.g:84:26: ( ',' expression )*
+                    adaptor.addChild(root_0, expression113.getTree());
+                    // Looc.g:77:26: ( ',' expression )*
+                    loop23:
+                    do {
+                        int alt23=2;
+                        int LA23_0 = input.LA(1);
+
+                        if ( (LA23_0==22) ) {
+                            alt23=1;
+                        }
+
+
+                        switch (alt23) {
+                    	case 1 :
+                    	    // Looc.g:77:27: ',' expression
+                    	    {
+                    	    char_literal114=(Token)match(input,22,FOLLOW_22_in_expression_suite534); 
+                    	    char_literal114_tree = (CommonTree)adaptor.create(char_literal114);
+                    	    adaptor.addChild(root_0, char_literal114_tree);
+
+                    	    pushFollow(FOLLOW_expression_in_expression_suite536);
+                    	    expression115=expression();
+
+                    	    state._fsp--;
+
+                    	    adaptor.addChild(root_0, expression115.getTree());
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop23;
+                        }
+                    } while (true);
+
+                    char_literal116=(Token)match(input,13,FOLLOW_13_in_expression_suite540); 
+                    char_literal116_tree = (CommonTree)adaptor.create(char_literal116);
+                    adaptor.addChild(root_0, char_literal116_tree);
+
+
+                    }
+                    break;
+                case 2 :
+                    // Looc.g:78:5: ( multOper )+ ( oper )*
+                    {
+                    root_0 = (CommonTree)adaptor.nil();
+
+                    // Looc.g:78:5: ( multOper )+
+                    int cnt24=0;
                     loop24:
                     do {
                         int alt24=2;
                         int LA24_0 = input.LA(1);
 
-                        if ( (LA24_0==22) ) {
+                        if ( ((LA24_0>=41 && LA24_0<=43)) ) {
                             alt24=1;
                         }
 
 
                         switch (alt24) {
                     	case 1 :
-                    	    // Looc.g:84:27: ',' expression
+                    	    // Looc.g:78:5: multOper
                     	    {
-                    	    char_literal115=(Token)match(input,22,FOLLOW_22_in_expression_suite551);
-                    	    char_literal115_tree = (CommonTree)adaptor.create(char_literal115);
-                    	    adaptor.addChild(root_0, char_literal115_tree);
-
-                    	    pushFollow(FOLLOW_expression_in_expression_suite553);
-                    	    expression116=expression();
+                    	    pushFollow(FOLLOW_multOper_in_expression_suite546);
+                    	    multOper117=multOper();
 
                     	    state._fsp--;
 
-                    	    adaptor.addChild(root_0, expression116.getTree());
+                    	    adaptor.addChild(root_0, multOper117.getTree());
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop24;
+                    	    if ( cnt24 >= 1 ) break loop24;
+                                EarlyExitException eee =
+                                    new EarlyExitException(24, input);
+                                throw eee;
                         }
+                        cnt24++;
                     } while (true);
 
-                    char_literal117=(Token)match(input,13,FOLLOW_13_in_expression_suite557);
-                    char_literal117_tree = (CommonTree)adaptor.create(char_literal117);
-                    adaptor.addChild(root_0, char_literal117_tree);
-
-
-                    }
-                    break;
-                case 2 :
-                    // Looc.g:85:5: ( multOper )+ ( oper )*
-                    {
-                    root_0 = (CommonTree)adaptor.nil();
-
-                    // Looc.g:85:5: ( multOper )+
-                    int cnt25=0;
+                    // Looc.g:78:15: ( oper )*
                     loop25:
                     do {
                         int alt25=2;
                         int LA25_0 = input.LA(1);
 
-                        if ( ((LA25_0>=41 && LA25_0<=43)) ) {
+                        if ( (LA25_0==39||LA25_0==44) ) {
                             alt25=1;
                         }
 
 
                         switch (alt25) {
                     	case 1 :
-                    	    // Looc.g:85:5: multOper
+                    	    // Looc.g:78:15: oper
                     	    {
-                    	    pushFollow(FOLLOW_multOper_in_expression_suite563);
-                    	    multOper118=multOper();
+                    	    pushFollow(FOLLOW_oper_in_expression_suite549);
+                    	    oper118=oper();
 
                     	    state._fsp--;
 
-                    	    adaptor.addChild(root_0, multOper118.getTree());
+                    	    adaptor.addChild(root_0, oper118.getTree());
 
                     	    }
                     	    break;
 
                     	default :
-                    	    if ( cnt25 >= 1 ) break loop25;
-                                EarlyExitException eee =
-                                    new EarlyExitException(25, input);
-                                throw eee;
+                    	    break loop25;
                         }
-                        cnt25++;
                     } while (true);
 
-                    // Looc.g:85:15: ( oper )*
+
+                    }
+                    break;
+                case 3 :
+                    // Looc.g:79:5: ( oper )*
+                    {
+                    root_0 = (CommonTree)adaptor.nil();
+
+                    // Looc.g:79:5: ( oper )*
                     loop26:
                     do {
                         int alt26=2;
@@ -2424,9 +2340,9 @@ public class LoocParser extends Parser {
 
                         switch (alt26) {
                     	case 1 :
-                    	    // Looc.g:85:15: oper
+                    	    // Looc.g:79:5: oper
                     	    {
-                    	    pushFollow(FOLLOW_oper_in_expression_suite566);
+                    	    pushFollow(FOLLOW_oper_in_expression_suite556);
                     	    oper119=oper();
 
                     	    state._fsp--;
@@ -2444,61 +2360,23 @@ public class LoocParser extends Parser {
 
                     }
                     break;
-                case 3 :
-                    // Looc.g:86:5: ( oper )*
-                    {
-                    root_0 = (CommonTree)adaptor.nil();
-
-                    // Looc.g:86:5: ( oper )*
-                    loop27:
-                    do {
-                        int alt27=2;
-                        int LA27_0 = input.LA(1);
-
-                        if ( (LA27_0==39||LA27_0==44) ) {
-                            alt27=1;
-                        }
-
-
-                        switch (alt27) {
-                    	case 1 :
-                    	    // Looc.g:86:5: oper
-                    	    {
-                    	    pushFollow(FOLLOW_oper_in_expression_suite573);
-                    	    oper120=oper();
-
-                    	    state._fsp--;
-
-                    	    adaptor.addChild(root_0, oper120.getTree());
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop27;
-                        }
-                    } while (true);
-
-
-                    }
-                    break;
                 case 4 :
-                    // Looc.g:87:5: comparaison expression
+                    // Looc.g:80:5: comparaison expression
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    pushFollow(FOLLOW_comparaison_in_expression_suite580);
-                    comparaison121=comparaison();
+                    pushFollow(FOLLOW_comparaison_in_expression_suite563);
+                    comparaison120=comparaison();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, comparaison121.getTree());
-                    pushFollow(FOLLOW_expression_in_expression_suite582);
-                    expression122=expression();
+                    adaptor.addChild(root_0, comparaison120.getTree());
+                    pushFollow(FOLLOW_expression_in_expression_suite565);
+                    expression121=expression();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expression122.getTree());
+                    adaptor.addChild(root_0, expression121.getTree());
 
                     }
                     break;
@@ -2528,105 +2406,105 @@ public class LoocParser extends Parser {
     };
 
     // $ANTLR start "multOper"
-    // Looc.g:90:1: multOper : ( '/' atom | '*' atom | '%' atom );
+    // Looc.g:83:1: multOper : ( '/' atom | '*' atom | '%' atom );
     public final LoocParser.multOper_return multOper() throws RecognitionException {
         LoocParser.multOper_return retval = new LoocParser.multOper_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token char_literal123=null;
-        Token char_literal125=null;
-        Token char_literal127=null;
-        LoocParser.atom_return atom124 = null;
+        Token char_literal122=null;
+        Token char_literal124=null;
+        Token char_literal126=null;
+        LoocParser.atom_return atom123 = null;
 
-        LoocParser.atom_return atom126 = null;
+        LoocParser.atom_return atom125 = null;
 
-        LoocParser.atom_return atom128 = null;
+        LoocParser.atom_return atom127 = null;
 
 
-        CommonTree char_literal123_tree=null;
-        CommonTree char_literal125_tree=null;
-        CommonTree char_literal127_tree=null;
+        CommonTree char_literal122_tree=null;
+        CommonTree char_literal124_tree=null;
+        CommonTree char_literal126_tree=null;
 
         try {
-            // Looc.g:91:2: ( '/' atom | '*' atom | '%' atom )
-            int alt29=3;
+            // Looc.g:84:2: ( '/' atom | '*' atom | '%' atom )
+            int alt28=3;
             switch ( input.LA(1) ) {
             case 41:
                 {
-                alt29=1;
+                alt28=1;
                 }
                 break;
             case 42:
                 {
-                alt29=2;
+                alt28=2;
                 }
                 break;
             case 43:
                 {
-                alt29=3;
+                alt28=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 29, 0, input);
+                    new NoViableAltException("", 28, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt29) {
+            switch (alt28) {
                 case 1 :
-                    // Looc.g:92:4: '/' atom
+                    // Looc.g:85:4: '/' atom
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal123=(Token)match(input,41,FOLLOW_41_in_multOper600);
-                    char_literal123_tree = (CommonTree)adaptor.create(char_literal123);
-                    adaptor.addChild(root_0, char_literal123_tree);
+                    char_literal122=(Token)match(input,41,FOLLOW_41_in_multOper583); 
+                    char_literal122_tree = (CommonTree)adaptor.create(char_literal122);
+                    adaptor.addChild(root_0, char_literal122_tree);
 
-                    pushFollow(FOLLOW_atom_in_multOper602);
-                    atom124=atom();
+                    pushFollow(FOLLOW_atom_in_multOper585);
+                    atom123=atom();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, atom124.getTree());
+                    adaptor.addChild(root_0, atom123.getTree());
 
                     }
                     break;
                 case 2 :
-                    // Looc.g:93:5: '*' atom
+                    // Looc.g:86:5: '*' atom
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal125=(Token)match(input,42,FOLLOW_42_in_multOper608);
-                    char_literal125_tree = (CommonTree)adaptor.create(char_literal125);
-                    adaptor.addChild(root_0, char_literal125_tree);
+                    char_literal124=(Token)match(input,42,FOLLOW_42_in_multOper591); 
+                    char_literal124_tree = (CommonTree)adaptor.create(char_literal124);
+                    adaptor.addChild(root_0, char_literal124_tree);
 
-                    pushFollow(FOLLOW_atom_in_multOper611);
-                    atom126=atom();
+                    pushFollow(FOLLOW_atom_in_multOper594);
+                    atom125=atom();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, atom126.getTree());
+                    adaptor.addChild(root_0, atom125.getTree());
 
                     }
                     break;
                 case 3 :
-                    // Looc.g:94:5: '%' atom
+                    // Looc.g:87:5: '%' atom
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal127=(Token)match(input,43,FOLLOW_43_in_multOper618);
-                    char_literal127_tree = (CommonTree)adaptor.create(char_literal127);
-                    adaptor.addChild(root_0, char_literal127_tree);
+                    char_literal126=(Token)match(input,43,FOLLOW_43_in_multOper601); 
+                    char_literal126_tree = (CommonTree)adaptor.create(char_literal126);
+                    adaptor.addChild(root_0, char_literal126_tree);
 
-                    pushFollow(FOLLOW_atom_in_multOper621);
-                    atom128=atom();
+                    pushFollow(FOLLOW_atom_in_multOper604);
+                    atom127=atom();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, atom128.getTree());
+                    adaptor.addChild(root_0, atom127.getTree());
 
                     }
                     break;
@@ -2656,61 +2534,109 @@ public class LoocParser extends Parser {
     };
 
     // $ANTLR start "oper"
-    // Looc.g:97:1: oper : ( '+' atom ( multOper )* | '-' atom ( multOper )* );
+    // Looc.g:90:1: oper : ( '+' atom ( multOper )* | '-' atom ( multOper )* );
     public final LoocParser.oper_return oper() throws RecognitionException {
         LoocParser.oper_return retval = new LoocParser.oper_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token char_literal129=null;
-        Token char_literal132=null;
-        LoocParser.atom_return atom130 = null;
+        Token char_literal128=null;
+        Token char_literal131=null;
+        LoocParser.atom_return atom129 = null;
 
-        LoocParser.multOper_return multOper131 = null;
+        LoocParser.multOper_return multOper130 = null;
 
-        LoocParser.atom_return atom133 = null;
+        LoocParser.atom_return atom132 = null;
 
-        LoocParser.multOper_return multOper134 = null;
+        LoocParser.multOper_return multOper133 = null;
 
 
-        CommonTree char_literal129_tree=null;
-        CommonTree char_literal132_tree=null;
+        CommonTree char_literal128_tree=null;
+        CommonTree char_literal131_tree=null;
 
         try {
-            // Looc.g:98:2: ( '+' atom ( multOper )* | '-' atom ( multOper )* )
-            int alt32=2;
-            int LA32_0 = input.LA(1);
+            // Looc.g:91:2: ( '+' atom ( multOper )* | '-' atom ( multOper )* )
+            int alt31=2;
+            int LA31_0 = input.LA(1);
 
-            if ( (LA32_0==44) ) {
-                alt32=1;
+            if ( (LA31_0==44) ) {
+                alt31=1;
             }
-            else if ( (LA32_0==39) ) {
-                alt32=2;
+            else if ( (LA31_0==39) ) {
+                alt31=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 32, 0, input);
+                    new NoViableAltException("", 31, 0, input);
 
                 throw nvae;
             }
-            switch (alt32) {
+            switch (alt31) {
                 case 1 :
-                    // Looc.g:98:4: '+' atom ( multOper )*
+                    // Looc.g:91:4: '+' atom ( multOper )*
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal129=(Token)match(input,44,FOLLOW_44_in_oper634);
-                    char_literal129_tree = (CommonTree)adaptor.create(char_literal129);
-                    adaptor.addChild(root_0, char_literal129_tree);
+                    char_literal128=(Token)match(input,44,FOLLOW_44_in_oper617); 
+                    char_literal128_tree = (CommonTree)adaptor.create(char_literal128);
+                    adaptor.addChild(root_0, char_literal128_tree);
 
-                    pushFollow(FOLLOW_atom_in_oper636);
-                    atom130=atom();
+                    pushFollow(FOLLOW_atom_in_oper619);
+                    atom129=atom();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, atom130.getTree());
-                    // Looc.g:98:13: ( multOper )*
+                    adaptor.addChild(root_0, atom129.getTree());
+                    // Looc.g:91:13: ( multOper )*
+                    loop29:
+                    do {
+                        int alt29=2;
+                        int LA29_0 = input.LA(1);
+
+                        if ( ((LA29_0>=41 && LA29_0<=43)) ) {
+                            alt29=1;
+                        }
+
+
+                        switch (alt29) {
+                    	case 1 :
+                    	    // Looc.g:91:13: multOper
+                    	    {
+                    	    pushFollow(FOLLOW_multOper_in_oper621);
+                    	    multOper130=multOper();
+
+                    	    state._fsp--;
+
+                    	    adaptor.addChild(root_0, multOper130.getTree());
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop29;
+                        }
+                    } while (true);
+
+
+                    }
+                    break;
+                case 2 :
+                    // Looc.g:92:4: '-' atom ( multOper )*
+                    {
+                    root_0 = (CommonTree)adaptor.nil();
+
+                    char_literal131=(Token)match(input,39,FOLLOW_39_in_oper628); 
+                    char_literal131_tree = (CommonTree)adaptor.create(char_literal131);
+                    adaptor.addChild(root_0, char_literal131_tree);
+
+                    pushFollow(FOLLOW_atom_in_oper630);
+                    atom132=atom();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, atom132.getTree());
+                    // Looc.g:92:13: ( multOper )*
                     loop30:
                     do {
                         int alt30=2;
@@ -2723,68 +2649,20 @@ public class LoocParser extends Parser {
 
                         switch (alt30) {
                     	case 1 :
-                    	    // Looc.g:98:13: multOper
+                    	    // Looc.g:92:13: multOper
                     	    {
-                    	    pushFollow(FOLLOW_multOper_in_oper638);
-                    	    multOper131=multOper();
+                    	    pushFollow(FOLLOW_multOper_in_oper632);
+                    	    multOper133=multOper();
 
                     	    state._fsp--;
 
-                    	    adaptor.addChild(root_0, multOper131.getTree());
+                    	    adaptor.addChild(root_0, multOper133.getTree());
 
                     	    }
                     	    break;
 
                     	default :
                     	    break loop30;
-                        }
-                    } while (true);
-
-
-                    }
-                    break;
-                case 2 :
-                    // Looc.g:99:4: '-' atom ( multOper )*
-                    {
-                    root_0 = (CommonTree)adaptor.nil();
-
-                    char_literal132=(Token)match(input,39,FOLLOW_39_in_oper645);
-                    char_literal132_tree = (CommonTree)adaptor.create(char_literal132);
-                    adaptor.addChild(root_0, char_literal132_tree);
-
-                    pushFollow(FOLLOW_atom_in_oper647);
-                    atom133=atom();
-
-                    state._fsp--;
-
-                    adaptor.addChild(root_0, atom133.getTree());
-                    // Looc.g:99:13: ( multOper )*
-                    loop31:
-                    do {
-                        int alt31=2;
-                        int LA31_0 = input.LA(1);
-
-                        if ( ((LA31_0>=41 && LA31_0<=43)) ) {
-                            alt31=1;
-                        }
-
-
-                        switch (alt31) {
-                    	case 1 :
-                    	    // Looc.g:99:13: multOper
-                    	    {
-                    	    pushFollow(FOLLOW_multOper_in_oper649);
-                    	    multOper134=multOper();
-
-                    	    state._fsp--;
-
-                    	    adaptor.addChild(root_0, multOper134.getTree());
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop31;
                         }
                     } while (true);
 
@@ -2817,94 +2695,94 @@ public class LoocParser extends Parser {
     };
 
     // $ANTLR start "atom"
-    // Looc.g:102:1: atom : ( CSTE_ENT | IDF | '(' expression ')' );
+    // Looc.g:95:1: atom : ( CSTE_ENT | IDF | '(' expression ')' );
     public final LoocParser.atom_return atom() throws RecognitionException {
         LoocParser.atom_return retval = new LoocParser.atom_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token CSTE_ENT135=null;
-        Token IDF136=null;
-        Token char_literal137=null;
-        Token char_literal139=null;
-        LoocParser.expression_return expression138 = null;
+        Token CSTE_ENT134=null;
+        Token IDF135=null;
+        Token char_literal136=null;
+        Token char_literal138=null;
+        LoocParser.expression_return expression137 = null;
 
 
-        CommonTree CSTE_ENT135_tree=null;
-        CommonTree IDF136_tree=null;
-        CommonTree char_literal137_tree=null;
-        CommonTree char_literal139_tree=null;
+        CommonTree CSTE_ENT134_tree=null;
+        CommonTree IDF135_tree=null;
+        CommonTree char_literal136_tree=null;
+        CommonTree char_literal138_tree=null;
 
         try {
-            // Looc.g:103:5: ( CSTE_ENT | IDF | '(' expression ')' )
-            int alt33=3;
+            // Looc.g:96:5: ( CSTE_ENT | IDF | '(' expression ')' )
+            int alt32=3;
             switch ( input.LA(1) ) {
             case CSTE_ENT:
                 {
-                alt33=1;
+                alt32=1;
                 }
                 break;
             case IDF:
                 {
-                alt33=2;
+                alt32=2;
                 }
                 break;
             case 12:
                 {
-                alt33=3;
+                alt32=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 33, 0, input);
+                    new NoViableAltException("", 32, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt33) {
+            switch (alt32) {
                 case 1 :
-                    // Looc.g:103:9: CSTE_ENT
+                    // Looc.g:96:9: CSTE_ENT
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    CSTE_ENT135=(Token)match(input,CSTE_ENT,FOLLOW_CSTE_ENT_in_atom669);
-                    CSTE_ENT135_tree = (CommonTree)adaptor.create(CSTE_ENT135);
-                    adaptor.addChild(root_0, CSTE_ENT135_tree);
+                    CSTE_ENT134=(Token)match(input,CSTE_ENT,FOLLOW_CSTE_ENT_in_atom652); 
+                    CSTE_ENT134_tree = (CommonTree)adaptor.create(CSTE_ENT134);
+                    adaptor.addChild(root_0, CSTE_ENT134_tree);
 
 
                     }
                     break;
                 case 2 :
-                    // Looc.g:104:9: IDF
+                    // Looc.g:97:9: IDF
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    IDF136=(Token)match(input,IDF,FOLLOW_IDF_in_atom680);
-                    IDF136_tree = (CommonTree)adaptor.create(IDF136);
-                    adaptor.addChild(root_0, IDF136_tree);
+                    IDF135=(Token)match(input,IDF,FOLLOW_IDF_in_atom663); 
+                    IDF135_tree = (CommonTree)adaptor.create(IDF135);
+                    adaptor.addChild(root_0, IDF135_tree);
 
 
                     }
                     break;
                 case 3 :
-                    // Looc.g:105:8: '(' expression ')'
+                    // Looc.g:98:8: '(' expression ')'
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal137=(Token)match(input,12,FOLLOW_12_in_atom689);
-                    char_literal137_tree = (CommonTree)adaptor.create(char_literal137);
-                    adaptor.addChild(root_0, char_literal137_tree);
+                    char_literal136=(Token)match(input,12,FOLLOW_12_in_atom672); 
+                    char_literal136_tree = (CommonTree)adaptor.create(char_literal136);
+                    adaptor.addChild(root_0, char_literal136_tree);
 
-                    pushFollow(FOLLOW_expression_in_atom691);
-                    expression138=expression();
+                    pushFollow(FOLLOW_expression_in_atom674);
+                    expression137=expression();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expression138.getTree());
-                    char_literal139=(Token)match(input,13,FOLLOW_13_in_atom693);
-                    char_literal139_tree = (CommonTree)adaptor.create(char_literal139);
-                    adaptor.addChild(root_0, char_literal139_tree);
+                    adaptor.addChild(root_0, expression137.getTree());
+                    char_literal138=(Token)match(input,13,FOLLOW_13_in_atom676); 
+                    char_literal138_tree = (CommonTree)adaptor.create(char_literal138);
+                    adaptor.addChild(root_0, char_literal138_tree);
 
 
                     }
@@ -2935,115 +2813,115 @@ public class LoocParser extends Parser {
     };
 
     // $ANTLR start "comparaison"
-    // Looc.g:107:1: comparaison : ( '<' strict | '>' strict | '==' | '!=' );
+    // Looc.g:100:1: comparaison : ( '<' strict | '>' strict | '==' | '!=' );
     public final LoocParser.comparaison_return comparaison() throws RecognitionException {
         LoocParser.comparaison_return retval = new LoocParser.comparaison_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token char_literal140=null;
-        Token char_literal142=null;
+        Token char_literal139=null;
+        Token char_literal141=null;
+        Token string_literal143=null;
         Token string_literal144=null;
-        Token string_literal145=null;
-        LoocParser.strict_return strict141 = null;
+        LoocParser.strict_return strict140 = null;
 
-        LoocParser.strict_return strict143 = null;
+        LoocParser.strict_return strict142 = null;
 
 
-        CommonTree char_literal140_tree=null;
-        CommonTree char_literal142_tree=null;
+        CommonTree char_literal139_tree=null;
+        CommonTree char_literal141_tree=null;
+        CommonTree string_literal143_tree=null;
         CommonTree string_literal144_tree=null;
-        CommonTree string_literal145_tree=null;
 
         try {
-            // Looc.g:107:12: ( '<' strict | '>' strict | '==' | '!=' )
-            int alt34=4;
+            // Looc.g:100:12: ( '<' strict | '>' strict | '==' | '!=' )
+            int alt33=4;
             switch ( input.LA(1) ) {
             case 45:
                 {
-                alt34=1;
+                alt33=1;
                 }
                 break;
             case 46:
                 {
-                alt34=2;
+                alt33=2;
                 }
                 break;
             case 47:
                 {
-                alt34=3;
+                alt33=3;
                 }
                 break;
             case 48:
                 {
-                alt34=4;
+                alt33=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 34, 0, input);
+                    new NoViableAltException("", 33, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt34) {
+            switch (alt33) {
                 case 1 :
-                    // Looc.g:107:14: '<' strict
+                    // Looc.g:100:14: '<' strict
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal140=(Token)match(input,45,FOLLOW_45_in_comparaison705);
-                    char_literal140_tree = (CommonTree)adaptor.create(char_literal140);
-                    adaptor.addChild(root_0, char_literal140_tree);
+                    char_literal139=(Token)match(input,45,FOLLOW_45_in_comparaison688); 
+                    char_literal139_tree = (CommonTree)adaptor.create(char_literal139);
+                    adaptor.addChild(root_0, char_literal139_tree);
 
-                    pushFollow(FOLLOW_strict_in_comparaison707);
-                    strict141=strict();
+                    pushFollow(FOLLOW_strict_in_comparaison690);
+                    strict140=strict();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, strict141.getTree());
+                    adaptor.addChild(root_0, strict140.getTree());
 
                     }
                     break;
                 case 2 :
-                    // Looc.g:108:5: '>' strict
+                    // Looc.g:101:5: '>' strict
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal142=(Token)match(input,46,FOLLOW_46_in_comparaison713);
-                    char_literal142_tree = (CommonTree)adaptor.create(char_literal142);
-                    adaptor.addChild(root_0, char_literal142_tree);
+                    char_literal141=(Token)match(input,46,FOLLOW_46_in_comparaison696); 
+                    char_literal141_tree = (CommonTree)adaptor.create(char_literal141);
+                    adaptor.addChild(root_0, char_literal141_tree);
 
-                    pushFollow(FOLLOW_strict_in_comparaison715);
-                    strict143=strict();
+                    pushFollow(FOLLOW_strict_in_comparaison698);
+                    strict142=strict();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, strict143.getTree());
+                    adaptor.addChild(root_0, strict142.getTree());
 
                     }
                     break;
                 case 3 :
-                    // Looc.g:109:5: '=='
+                    // Looc.g:102:5: '=='
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal144=(Token)match(input,47,FOLLOW_47_in_comparaison721);
-                    string_literal144_tree = (CommonTree)adaptor.create(string_literal144);
-                    adaptor.addChild(root_0, string_literal144_tree);
+                    string_literal143=(Token)match(input,47,FOLLOW_47_in_comparaison704); 
+                    string_literal143_tree = (CommonTree)adaptor.create(string_literal143);
+                    adaptor.addChild(root_0, string_literal143_tree);
 
 
                     }
                     break;
                 case 4 :
-                    // Looc.g:110:5: '!='
+                    // Looc.g:103:5: '!='
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal145=(Token)match(input,48,FOLLOW_48_in_comparaison727);
-                    string_literal145_tree = (CommonTree)adaptor.create(string_literal145);
-                    adaptor.addChild(root_0, string_literal145_tree);
+                    string_literal144=(Token)match(input,48,FOLLOW_48_in_comparaison710); 
+                    string_literal144_tree = (CommonTree)adaptor.create(string_literal144);
+                    adaptor.addChild(root_0, string_literal144_tree);
 
 
                     }
@@ -3074,49 +2952,49 @@ public class LoocParser extends Parser {
     };
 
     // $ANTLR start "strict"
-    // Looc.g:112:1: strict : ( '=' | );
+    // Looc.g:105:1: strict : ( '=' | );
     public final LoocParser.strict_return strict() throws RecognitionException {
         LoocParser.strict_return retval = new LoocParser.strict_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token char_literal146=null;
+        Token char_literal145=null;
 
-        CommonTree char_literal146_tree=null;
+        CommonTree char_literal145_tree=null;
 
         try {
-            // Looc.g:112:7: ( '=' | )
-            int alt35=2;
-            int LA35_0 = input.LA(1);
+            // Looc.g:105:7: ( '=' | )
+            int alt34=2;
+            int LA34_0 = input.LA(1);
 
-            if ( (LA35_0==11) ) {
-                alt35=1;
+            if ( (LA34_0==11) ) {
+                alt34=1;
             }
-            else if ( (LA35_0==IDF||LA35_0==CSTE_ENT||(LA35_0>=12 && LA35_0<=13)||LA35_0==16||LA35_0==22||LA35_0==25||(LA35_0>=30 && LA35_0<=31)||(LA35_0>=37 && LA35_0<=40)) ) {
-                alt35=2;
+            else if ( ((LA34_0>=IDF && LA34_0<=CSTE_CHAINE)||(LA34_0>=12 && LA34_0<=13)||LA34_0==16||LA34_0==22||LA34_0==25||(LA34_0>=30 && LA34_0<=31)||(LA34_0>=37 && LA34_0<=40)) ) {
+                alt34=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 35, 0, input);
+                    new NoViableAltException("", 34, 0, input);
 
                 throw nvae;
             }
-            switch (alt35) {
+            switch (alt34) {
                 case 1 :
-                    // Looc.g:112:10: '='
+                    // Looc.g:105:10: '='
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal146=(Token)match(input,11,FOLLOW_11_in_strict737);
-                    char_literal146_tree = (CommonTree)adaptor.create(char_literal146);
-                    adaptor.addChild(root_0, char_literal146_tree);
+                    char_literal145=(Token)match(input,11,FOLLOW_11_in_strict720); 
+                    char_literal145_tree = (CommonTree)adaptor.create(char_literal145);
+                    adaptor.addChild(root_0, char_literal145_tree);
 
 
                     }
                     break;
                 case 2 :
-                    // Looc.g:114:3:
+                    // Looc.g:107:3: 
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -3145,7 +3023,67 @@ public class LoocParser extends Parser {
     // Delegated rules
 
 
+    protected DFA22 dfa22 = new DFA22(this);
+    static final String DFA22_eotS =
+        "\12\uffff";
+    static final String DFA22_eofS =
+        "\12\uffff";
+    static final String DFA22_minS =
+        "\1\5\11\uffff";
+    static final String DFA22_maxS =
+        "\1\50\11\uffff";
+    static final String DFA22_acceptS =
+        "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11";
+    static final String DFA22_specialS =
+        "\12\uffff}>";
+    static final String[] DFA22_transitionS = {
+            "\1\2\1\6\1\10\4\uffff\1\1\1\11\2\uffff\1\11\5\uffff\1\11\2\uffff"+
+            "\1\11\4\uffff\2\11\5\uffff\1\4\1\5\1\3\1\7",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+    };
 
+    static final short[] DFA22_eot = DFA.unpackEncodedString(DFA22_eotS);
+    static final short[] DFA22_eof = DFA.unpackEncodedString(DFA22_eofS);
+    static final char[] DFA22_min = DFA.unpackEncodedStringToUnsignedChars(DFA22_minS);
+    static final char[] DFA22_max = DFA.unpackEncodedStringToUnsignedChars(DFA22_maxS);
+    static final short[] DFA22_accept = DFA.unpackEncodedString(DFA22_acceptS);
+    static final short[] DFA22_special = DFA.unpackEncodedString(DFA22_specialS);
+    static final short[][] DFA22_transition;
+
+    static {
+        int numStates = DFA22_transitionS.length;
+        DFA22_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA22_transition[i] = DFA.unpackEncodedString(DFA22_transitionS[i]);
+        }
+    }
+
+    class DFA22 extends DFA {
+
+        public DFA22(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 22;
+            this.eot = DFA22_eot;
+            this.eof = DFA22_eof;
+            this.min = DFA22_min;
+            this.max = DFA22_max;
+            this.accept = DFA22_accept;
+            this.special = DFA22_special;
+            this.transition = DFA22_transition;
+        }
+        public String getDescription() {
+            return "64:1: expression : ( '(' expression ')' expression_suite | IDF expression_suite | '-' CSTE_ENT expression_suite | 'this' expression_suite | 'super' expression_suite | CSTE_ENT expression_suite | 'new' IDF_CLASS | CSTE_CHAINE | );";
+        }
+    }
+ 
 
     public static final BitSet FOLLOW_class_decl_in_program34 = new BitSet(new long[]{0x0000001C91104220L});
     public static final BitSet FOLLOW_var_decl_in_program37 = new BitSet(new long[]{0x0000001C91104020L});
@@ -3190,10 +3128,10 @@ public class LoocParser extends Parser {
     public static final BitSet FOLLOW_15_in_method_args222 = new BitSet(new long[]{0x0000000000060010L});
     public static final BitSet FOLLOW_type_in_method_args224 = new BitSet(new long[]{0x0000000000400002L});
     public static final BitSet FOLLOW_IDF_in_instruction239 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_instruction241 = new BitSet(new long[]{0x000001E0000110A0L});
+    public static final BitSet FOLLOW_23_in_instruction241 = new BitSet(new long[]{0x000001E0000110E0L});
     public static final BitSet FOLLOW_expression_in_instruction243 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_16_in_instruction245 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_instruction251 = new BitSet(new long[]{0x000001E0020010A0L});
+    public static final BitSet FOLLOW_24_in_instruction251 = new BitSet(new long[]{0x000001E0020010E0L});
     public static final BitSet FOLLOW_expression_in_instruction253 = new BitSet(new long[]{0x0000000002000000L});
     public static final BitSet FOLLOW_25_in_instruction255 = new BitSet(new long[]{0x0000001C91104020L});
     public static final BitSet FOLLOW_instruction_in_instruction258 = new BitSet(new long[]{0x0000001C9D104020L});
@@ -3202,9 +3140,9 @@ public class LoocParser extends Parser {
     public static final BitSet FOLLOW_27_in_instruction268 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_28_in_instruction274 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_IDF_in_instruction276 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_instruction278 = new BitSet(new long[]{0x000001E0400010A0L});
+    public static final BitSet FOLLOW_29_in_instruction278 = new BitSet(new long[]{0x000001E0400010E0L});
     public static final BitSet FOLLOW_expression_in_instruction280 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_instruction282 = new BitSet(new long[]{0x000001E0800010A0L});
+    public static final BitSet FOLLOW_30_in_instruction282 = new BitSet(new long[]{0x000001E0800010E0L});
     public static final BitSet FOLLOW_expression_in_instruction284 = new BitSet(new long[]{0x0000000080000000L});
     public static final BitSet FOLLOW_31_in_instruction287 = new BitSet(new long[]{0x0000001C91104020L});
     public static final BitSet FOLLOW_instruction_in_instruction289 = new BitSet(new long[]{0x0000001D91104020L});
@@ -3217,81 +3155,80 @@ public class LoocParser extends Parser {
     public static final BitSet FOLLOW_expression_start_in_instruction318 = new BitSet(new long[]{0x0000000200000000L});
     public static final BitSet FOLLOW_33_in_instruction320 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_IDF_in_instruction322 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_instruction324 = new BitSet(new long[]{0x000001E0004030A0L});
+    public static final BitSet FOLLOW_12_in_instruction324 = new BitSet(new long[]{0x000001E0004030E0L});
     public static final BitSet FOLLOW_expression_in_instruction325 = new BitSet(new long[]{0x0000000000402000L});
-    public static final BitSet FOLLOW_22_in_instruction328 = new BitSet(new long[]{0x000001E0004030A0L});
+    public static final BitSet FOLLOW_22_in_instruction328 = new BitSet(new long[]{0x000001E0004030E0L});
     public static final BitSet FOLLOW_expression_in_instruction330 = new BitSet(new long[]{0x0000000000402000L});
     public static final BitSet FOLLOW_13_in_instruction334 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_16_in_instruction336 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_print_in_instruction343 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_read_in_instruction349 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_retour_in_instruction355 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_print372 = new BitSet(new long[]{0x000001E0000010E0L});
-    public static final BitSet FOLLOW_print_suite_in_print374 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_print376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_print_suite386 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CSTE_CHAINE_in_print_suite393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_read404 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_IDF_in_read406 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_read408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_retour420 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_retour422 = new BitSet(new long[]{0x000001E0000030A0L});
-    public static final BitSet FOLLOW_expression_in_retour424 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_retour426 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_retour428 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_print370 = new BitSet(new long[]{0x000001E0000110E0L});
+    public static final BitSet FOLLOW_expression_in_print372 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_print374 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_read385 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_IDF_in_read387 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_read389 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_retour401 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_retour403 = new BitSet(new long[]{0x000001E0000030E0L});
+    public static final BitSet FOLLOW_expression_in_retour405 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_retour407 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_retour409 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_expression_start0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_expression468 = new BitSet(new long[]{0x000001E0000030A0L});
-    public static final BitSet FOLLOW_expression_in_expression470 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_expression472 = new BitSet(new long[]{0x0001FE8200000000L});
-    public static final BitSet FOLLOW_expression_suite_in_expression474 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDF_in_expression480 = new BitSet(new long[]{0x0001FE8200000000L});
-    public static final BitSet FOLLOW_expression_suite_in_expression482 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_expression488 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_CSTE_ENT_in_expression490 = new BitSet(new long[]{0x0001FE8200000000L});
-    public static final BitSet FOLLOW_expression_suite_in_expression492 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_expression498 = new BitSet(new long[]{0x0001FE8200000000L});
-    public static final BitSet FOLLOW_expression_suite_in_expression500 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_expression506 = new BitSet(new long[]{0x0001FE8200000000L});
-    public static final BitSet FOLLOW_expression_suite_in_expression508 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CSTE_ENT_in_expression514 = new BitSet(new long[]{0x0001FE8200000000L});
-    public static final BitSet FOLLOW_expression_suite_in_expression516 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_expression522 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_IDF_CLASS_in_expression524 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_expression_suite542 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_IDF_in_expression_suite544 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_expression_suite546 = new BitSet(new long[]{0x000001E0004030A0L});
-    public static final BitSet FOLLOW_expression_in_expression_suite548 = new BitSet(new long[]{0x0000000000402000L});
-    public static final BitSet FOLLOW_22_in_expression_suite551 = new BitSet(new long[]{0x000001E0004030A0L});
-    public static final BitSet FOLLOW_expression_in_expression_suite553 = new BitSet(new long[]{0x0000000000402000L});
-    public static final BitSet FOLLOW_13_in_expression_suite557 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_multOper_in_expression_suite563 = new BitSet(new long[]{0x00001E8000000002L});
-    public static final BitSet FOLLOW_oper_in_expression_suite566 = new BitSet(new long[]{0x0000108000000002L});
-    public static final BitSet FOLLOW_oper_in_expression_suite573 = new BitSet(new long[]{0x0000108000000002L});
-    public static final BitSet FOLLOW_comparaison_in_expression_suite580 = new BitSet(new long[]{0x000001E0000010A0L});
-    public static final BitSet FOLLOW_expression_in_expression_suite582 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_multOper600 = new BitSet(new long[]{0x00000000000010A0L});
-    public static final BitSet FOLLOW_atom_in_multOper602 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_multOper608 = new BitSet(new long[]{0x00000000000010A0L});
-    public static final BitSet FOLLOW_atom_in_multOper611 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_multOper618 = new BitSet(new long[]{0x00000000000010A0L});
-    public static final BitSet FOLLOW_atom_in_multOper621 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_oper634 = new BitSet(new long[]{0x00000000000010A0L});
-    public static final BitSet FOLLOW_atom_in_oper636 = new BitSet(new long[]{0x00000E0000000002L});
-    public static final BitSet FOLLOW_multOper_in_oper638 = new BitSet(new long[]{0x00000E0000000002L});
-    public static final BitSet FOLLOW_39_in_oper645 = new BitSet(new long[]{0x00000000000010A0L});
-    public static final BitSet FOLLOW_atom_in_oper647 = new BitSet(new long[]{0x00000E0000000002L});
-    public static final BitSet FOLLOW_multOper_in_oper649 = new BitSet(new long[]{0x00000E0000000002L});
-    public static final BitSet FOLLOW_CSTE_ENT_in_atom669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IDF_in_atom680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_atom689 = new BitSet(new long[]{0x000001E0000030A0L});
-    public static final BitSet FOLLOW_expression_in_atom691 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_atom693 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_comparaison705 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_strict_in_comparaison707 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_comparaison713 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_strict_in_comparaison715 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_comparaison721 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_comparaison727 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_strict737 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_expression445 = new BitSet(new long[]{0x000001E0000030E0L});
+    public static final BitSet FOLLOW_expression_in_expression447 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_expression449 = new BitSet(new long[]{0x0001FE8200000000L});
+    public static final BitSet FOLLOW_expression_suite_in_expression451 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDF_in_expression457 = new BitSet(new long[]{0x0001FE8200000000L});
+    public static final BitSet FOLLOW_expression_suite_in_expression459 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_expression465 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_CSTE_ENT_in_expression467 = new BitSet(new long[]{0x0001FE8200000000L});
+    public static final BitSet FOLLOW_expression_suite_in_expression469 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_expression475 = new BitSet(new long[]{0x0001FE8200000000L});
+    public static final BitSet FOLLOW_expression_suite_in_expression477 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_expression483 = new BitSet(new long[]{0x0001FE8200000000L});
+    public static final BitSet FOLLOW_expression_suite_in_expression485 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CSTE_ENT_in_expression491 = new BitSet(new long[]{0x0001FE8200000000L});
+    public static final BitSet FOLLOW_expression_suite_in_expression493 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_expression499 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_IDF_CLASS_in_expression501 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CSTE_CHAINE_in_expression507 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_expression_suite525 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_IDF_in_expression_suite527 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_expression_suite529 = new BitSet(new long[]{0x000001E0004030E0L});
+    public static final BitSet FOLLOW_expression_in_expression_suite531 = new BitSet(new long[]{0x0000000000402000L});
+    public static final BitSet FOLLOW_22_in_expression_suite534 = new BitSet(new long[]{0x000001E0004030E0L});
+    public static final BitSet FOLLOW_expression_in_expression_suite536 = new BitSet(new long[]{0x0000000000402000L});
+    public static final BitSet FOLLOW_13_in_expression_suite540 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_multOper_in_expression_suite546 = new BitSet(new long[]{0x00001E8000000002L});
+    public static final BitSet FOLLOW_oper_in_expression_suite549 = new BitSet(new long[]{0x0000108000000002L});
+    public static final BitSet FOLLOW_oper_in_expression_suite556 = new BitSet(new long[]{0x0000108000000002L});
+    public static final BitSet FOLLOW_comparaison_in_expression_suite563 = new BitSet(new long[]{0x000001E0000010E0L});
+    public static final BitSet FOLLOW_expression_in_expression_suite565 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_multOper583 = new BitSet(new long[]{0x0000000000001060L});
+    public static final BitSet FOLLOW_atom_in_multOper585 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_multOper591 = new BitSet(new long[]{0x0000000000001060L});
+    public static final BitSet FOLLOW_atom_in_multOper594 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_multOper601 = new BitSet(new long[]{0x0000000000001060L});
+    public static final BitSet FOLLOW_atom_in_multOper604 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_oper617 = new BitSet(new long[]{0x0000000000001060L});
+    public static final BitSet FOLLOW_atom_in_oper619 = new BitSet(new long[]{0x00000E0000000002L});
+    public static final BitSet FOLLOW_multOper_in_oper621 = new BitSet(new long[]{0x00000E0000000002L});
+    public static final BitSet FOLLOW_39_in_oper628 = new BitSet(new long[]{0x0000000000001060L});
+    public static final BitSet FOLLOW_atom_in_oper630 = new BitSet(new long[]{0x00000E0000000002L});
+    public static final BitSet FOLLOW_multOper_in_oper632 = new BitSet(new long[]{0x00000E0000000002L});
+    public static final BitSet FOLLOW_CSTE_ENT_in_atom652 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IDF_in_atom663 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_atom672 = new BitSet(new long[]{0x000001E0000030E0L});
+    public static final BitSet FOLLOW_expression_in_atom674 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_atom676 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_comparaison688 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_strict_in_comparaison690 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_comparaison696 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_strict_in_comparaison698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_comparaison704 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_comparaison710 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_11_in_strict720 = new BitSet(new long[]{0x0000000000000002L});
 
 }

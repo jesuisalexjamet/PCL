@@ -1,5 +1,4 @@
-// $ANTLR 3.3 Nov 30, 2010 12:50:56 Looc.g 2017-02-13 10:10:07
-package main.antlr;
+// $ANTLR 3.3 Nov 30, 2010 12:50:56 Looc.g 2017-02-13 11:28:27
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -50,14 +49,14 @@ public class LoocLexer extends Lexer {
     public static final int T__48=48;
     public static final int IDF_CLASS=4;
     public static final int IDF=5;
-    public static final int CSTE_CHAINE=6;
-    public static final int CSTE_ENT=7;
+    public static final int CSTE_ENT=6;
+    public static final int CSTE_CHAINE=7;
     public static final int WS=8;
 
     // delegates
     // delegators
 
-    public LoocLexer() {;}
+    public LoocLexer() {;} 
     public LoocLexer(CharStream input) {
         this(input, new RecognizerSharedState());
     }
@@ -75,7 +74,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:3:6: ( 'class' )
             // Looc.g:3:8: 'class'
             {
-            match("class");
+            match("class"); 
 
 
             }
@@ -96,7 +95,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:4:7: ( 'inherit' )
             // Looc.g:4:9: 'inherit'
             {
-            match("inherit");
+            match("inherit"); 
 
 
             }
@@ -117,7 +116,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:5:7: ( '=' )
             // Looc.g:5:9: '='
             {
-            match('=');
+            match('='); 
 
             }
 
@@ -137,7 +136,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:6:7: ( '(' )
             // Looc.g:6:9: '('
             {
-            match('(');
+            match('('); 
 
             }
 
@@ -157,7 +156,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:7:7: ( ')' )
             // Looc.g:7:9: ')'
             {
-            match(')');
+            match(')'); 
 
             }
 
@@ -177,7 +176,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:8:7: ( 'var' )
             // Looc.g:8:9: 'var'
             {
-            match("var");
+            match("var"); 
 
 
             }
@@ -198,7 +197,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:9:7: ( ':' )
             // Looc.g:9:9: ':'
             {
-            match(':');
+            match(':'); 
 
             }
 
@@ -218,7 +217,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:10:7: ( ';' )
             // Looc.g:10:9: ';'
             {
-            match(';');
+            match(';'); 
 
             }
 
@@ -238,7 +237,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:11:7: ( 'int' )
             // Looc.g:11:9: 'int'
             {
-            match("int");
+            match("int"); 
 
 
             }
@@ -259,7 +258,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:12:7: ( 'string' )
             // Looc.g:12:9: 'string'
             {
-            match("string");
+            match("string"); 
 
 
             }
@@ -280,7 +279,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:13:7: ( 'method' )
             // Looc.g:13:9: 'method'
             {
-            match("method");
+            match("method"); 
 
 
             }
@@ -301,7 +300,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:14:7: ( '{' )
             // Looc.g:14:9: '{'
             {
-            match('{');
+            match('{'); 
 
             }
 
@@ -321,7 +320,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:15:7: ( '}' )
             // Looc.g:15:9: '}'
             {
-            match('}');
+            match('}'); 
 
             }
 
@@ -341,7 +340,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:16:7: ( ',' )
             // Looc.g:16:9: ','
             {
-            match(',');
+            match(','); 
 
             }
 
@@ -361,7 +360,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:17:7: ( ':=' )
             // Looc.g:17:9: ':='
             {
-            match(":=");
+            match(":="); 
 
 
             }
@@ -382,7 +381,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:18:7: ( 'if' )
             // Looc.g:18:9: 'if'
             {
-            match("if");
+            match("if"); 
 
 
             }
@@ -403,7 +402,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:19:7: ( 'then' )
             // Looc.g:19:9: 'then'
             {
-            match("then");
+            match("then"); 
 
 
             }
@@ -424,7 +423,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:20:7: ( 'else' )
             // Looc.g:20:9: 'else'
             {
-            match("else");
+            match("else"); 
 
 
             }
@@ -445,7 +444,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:21:7: ( 'fi' )
             // Looc.g:21:9: 'fi'
             {
-            match("fi");
+            match("fi"); 
 
 
             }
@@ -466,7 +465,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:22:7: ( 'for' )
             // Looc.g:22:9: 'for'
             {
-            match("for");
+            match("for"); 
 
 
             }
@@ -487,7 +486,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:23:7: ( 'in' )
             // Looc.g:23:9: 'in'
             {
-            match("in");
+            match("in"); 
 
 
             }
@@ -508,7 +507,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:24:7: ( '..' )
             // Looc.g:24:9: '..'
             {
-            match("..");
+            match(".."); 
 
 
             }
@@ -529,7 +528,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:25:7: ( 'do' )
             // Looc.g:25:9: 'do'
             {
-            match("do");
+            match("do"); 
 
 
             }
@@ -550,7 +549,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:26:7: ( 'end' )
             // Looc.g:26:9: 'end'
             {
-            match("end");
+            match("end"); 
 
 
             }
@@ -571,7 +570,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:27:7: ( '.' )
             // Looc.g:27:9: '.'
             {
-            match('.');
+            match('.'); 
 
             }
 
@@ -591,7 +590,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:28:7: ( 'write' )
             // Looc.g:28:9: 'write'
             {
-            match("write");
+            match("write"); 
 
 
             }
@@ -612,7 +611,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:29:7: ( 'read' )
             // Looc.g:29:9: 'read'
             {
-            match("read");
+            match("read"); 
 
 
             }
@@ -633,7 +632,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:30:7: ( 'return' )
             // Looc.g:30:9: 'return'
             {
-            match("return");
+            match("return"); 
 
 
             }
@@ -654,7 +653,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:31:7: ( 'this' )
             // Looc.g:31:9: 'this'
             {
-            match("this");
+            match("this"); 
 
 
             }
@@ -675,7 +674,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:32:7: ( 'super' )
             // Looc.g:32:9: 'super'
             {
-            match("super");
+            match("super"); 
 
 
             }
@@ -696,7 +695,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:33:7: ( '-' )
             // Looc.g:33:9: '-'
             {
-            match('-');
+            match('-'); 
 
             }
 
@@ -716,7 +715,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:34:7: ( 'new' )
             // Looc.g:34:9: 'new'
             {
-            match("new");
+            match("new"); 
 
 
             }
@@ -737,7 +736,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:35:7: ( '/' )
             // Looc.g:35:9: '/'
             {
-            match('/');
+            match('/'); 
 
             }
 
@@ -757,7 +756,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:36:7: ( '*' )
             // Looc.g:36:9: '*'
             {
-            match('*');
+            match('*'); 
 
             }
 
@@ -777,7 +776,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:37:7: ( '%' )
             // Looc.g:37:9: '%'
             {
-            match('%');
+            match('%'); 
 
             }
 
@@ -797,7 +796,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:38:7: ( '+' )
             // Looc.g:38:9: '+'
             {
-            match('+');
+            match('+'); 
 
             }
 
@@ -817,7 +816,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:39:7: ( '<' )
             // Looc.g:39:9: '<'
             {
-            match('<');
+            match('<'); 
 
             }
 
@@ -837,7 +836,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:40:7: ( '>' )
             // Looc.g:40:9: '>'
             {
-            match('>');
+            match('>'); 
 
             }
 
@@ -857,7 +856,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:41:7: ( '==' )
             // Looc.g:41:9: '=='
             {
-            match("==");
+            match("=="); 
 
 
             }
@@ -878,7 +877,7 @@ public class LoocLexer extends Lexer {
             // Looc.g:42:7: ( '!=' )
             // Looc.g:42:9: '!='
             {
-            match("!=");
+            match("!="); 
 
 
             }
@@ -896,17 +895,17 @@ public class LoocLexer extends Lexer {
         try {
             int _type = IDF_CLASS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Looc.g:115:11: ( ( 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // Looc.g:115:13: ( 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // Looc.g:108:11: ( ( 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // Looc.g:108:13: ( 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
-            // Looc.g:115:13: ( 'A' .. 'Z' )
-            // Looc.g:115:14: 'A' .. 'Z'
+            // Looc.g:108:13: ( 'A' .. 'Z' )
+            // Looc.g:108:14: 'A' .. 'Z'
             {
-            matchRange('A','Z');
+            matchRange('A','Z'); 
 
             }
 
-            // Looc.g:115:23: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // Looc.g:108:23: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop1:
             do {
                 int alt1=2;
@@ -955,8 +954,8 @@ public class LoocLexer extends Lexer {
         try {
             int _type = IDF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Looc.g:116:5: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // Looc.g:116:7: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // Looc.g:109:5: ( ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // Looc.g:109:7: ( 'a' .. 'z' | 'A' .. 'Z' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -967,7 +966,7 @@ public class LoocLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // Looc.g:116:26: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // Looc.g:109:26: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop2:
             do {
                 int alt2=2;
@@ -1016,10 +1015,10 @@ public class LoocLexer extends Lexer {
         try {
             int _type = CSTE_ENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Looc.g:117:10: ( ( '0' .. '9' )+ )
-            // Looc.g:117:14: ( '0' .. '9' )+
+            // Looc.g:110:10: ( ( '0' .. '9' )+ )
+            // Looc.g:110:14: ( '0' .. '9' )+
             {
-            // Looc.g:117:14: ( '0' .. '9' )+
+            // Looc.g:110:14: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -1033,9 +1032,9 @@ public class LoocLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // Looc.g:117:15: '0' .. '9'
+            	    // Looc.g:110:15: '0' .. '9'
             	    {
-            	    matchRange('0','9');
+            	    matchRange('0','9'); 
 
             	    }
             	    break;
@@ -1065,11 +1064,11 @@ public class LoocLexer extends Lexer {
         try {
             int _type = CSTE_CHAINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Looc.g:118:13: ( '\"' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | ';' | ':' | '/' | ',' | '?' | '!' | '%' | '@' | '#' | '~' | '&' | '\\\\' | '-' | '_' | '|' | '(' | ')' | '{' | '}' | '[' | ']' | '=' | ' ' )+ '\"' )
-            // Looc.g:118:15: '\"' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | ';' | ':' | '/' | ',' | '?' | '!' | '%' | '@' | '#' | '~' | '&' | '\\\\' | '-' | '_' | '|' | '(' | ')' | '{' | '}' | '[' | ']' | '=' | ' ' )+ '\"'
+            // Looc.g:111:13: ( '\"' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | ';' | ':' | '/' | ',' | '?' | '!' | '%' | '@' | '#' | '~' | '&' | '\\\\' | '-' | '_' | '|' | '(' | ')' | '{' | '}' | '[' | ']' | '=' | ' ' )+ '\"' )
+            // Looc.g:111:15: '\"' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | ';' | ':' | '/' | ',' | '?' | '!' | '%' | '@' | '#' | '~' | '&' | '\\\\' | '-' | '_' | '|' | '(' | ')' | '{' | '}' | '[' | ']' | '=' | ' ' )+ '\"'
             {
-            match('\"');
-            // Looc.g:118:19: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | ';' | ':' | '/' | ',' | '?' | '!' | '%' | '@' | '#' | '~' | '&' | '\\\\' | '-' | '_' | '|' | '(' | ')' | '{' | '}' | '[' | ']' | '=' | ' ' )+
+            match('\"'); 
+            // Looc.g:111:19: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | ';' | ':' | '/' | ',' | '?' | '!' | '%' | '@' | '#' | '~' | '&' | '\\\\' | '-' | '_' | '|' | '(' | ')' | '{' | '}' | '[' | ']' | '=' | ' ' )+
             int cnt4=0;
             loop4:
             do {
@@ -1107,7 +1106,7 @@ public class LoocLexer extends Lexer {
                 cnt4++;
             } while (true);
 
-            match('\"');
+            match('\"'); 
 
             }
 
@@ -1124,8 +1123,8 @@ public class LoocLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Looc.g:119:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-            // Looc.g:119:9: ( ' ' | '\\t' | '\\r' | '\\n' )
+            // Looc.g:112:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+            // Looc.g:112:9: ( ' ' | '\\t' | '\\r' | '\\n' )
             {
             if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1156,315 +1155,315 @@ public class LoocLexer extends Lexer {
             case 1 :
                 // Looc.g:1:10: T__9
                 {
-                mT__9();
+                mT__9(); 
 
                 }
                 break;
             case 2 :
                 // Looc.g:1:15: T__10
                 {
-                mT__10();
+                mT__10(); 
 
                 }
                 break;
             case 3 :
                 // Looc.g:1:21: T__11
                 {
-                mT__11();
+                mT__11(); 
 
                 }
                 break;
             case 4 :
                 // Looc.g:1:27: T__12
                 {
-                mT__12();
+                mT__12(); 
 
                 }
                 break;
             case 5 :
                 // Looc.g:1:33: T__13
                 {
-                mT__13();
+                mT__13(); 
 
                 }
                 break;
             case 6 :
                 // Looc.g:1:39: T__14
                 {
-                mT__14();
+                mT__14(); 
 
                 }
                 break;
             case 7 :
                 // Looc.g:1:45: T__15
                 {
-                mT__15();
+                mT__15(); 
 
                 }
                 break;
             case 8 :
                 // Looc.g:1:51: T__16
                 {
-                mT__16();
+                mT__16(); 
 
                 }
                 break;
             case 9 :
                 // Looc.g:1:57: T__17
                 {
-                mT__17();
+                mT__17(); 
 
                 }
                 break;
             case 10 :
                 // Looc.g:1:63: T__18
                 {
-                mT__18();
+                mT__18(); 
 
                 }
                 break;
             case 11 :
                 // Looc.g:1:69: T__19
                 {
-                mT__19();
+                mT__19(); 
 
                 }
                 break;
             case 12 :
                 // Looc.g:1:75: T__20
                 {
-                mT__20();
+                mT__20(); 
 
                 }
                 break;
             case 13 :
                 // Looc.g:1:81: T__21
                 {
-                mT__21();
+                mT__21(); 
 
                 }
                 break;
             case 14 :
                 // Looc.g:1:87: T__22
                 {
-                mT__22();
+                mT__22(); 
 
                 }
                 break;
             case 15 :
                 // Looc.g:1:93: T__23
                 {
-                mT__23();
+                mT__23(); 
 
                 }
                 break;
             case 16 :
                 // Looc.g:1:99: T__24
                 {
-                mT__24();
+                mT__24(); 
 
                 }
                 break;
             case 17 :
                 // Looc.g:1:105: T__25
                 {
-                mT__25();
+                mT__25(); 
 
                 }
                 break;
             case 18 :
                 // Looc.g:1:111: T__26
                 {
-                mT__26();
+                mT__26(); 
 
                 }
                 break;
             case 19 :
                 // Looc.g:1:117: T__27
                 {
-                mT__27();
+                mT__27(); 
 
                 }
                 break;
             case 20 :
                 // Looc.g:1:123: T__28
                 {
-                mT__28();
+                mT__28(); 
 
                 }
                 break;
             case 21 :
                 // Looc.g:1:129: T__29
                 {
-                mT__29();
+                mT__29(); 
 
                 }
                 break;
             case 22 :
                 // Looc.g:1:135: T__30
                 {
-                mT__30();
+                mT__30(); 
 
                 }
                 break;
             case 23 :
                 // Looc.g:1:141: T__31
                 {
-                mT__31();
+                mT__31(); 
 
                 }
                 break;
             case 24 :
                 // Looc.g:1:147: T__32
                 {
-                mT__32();
+                mT__32(); 
 
                 }
                 break;
             case 25 :
                 // Looc.g:1:153: T__33
                 {
-                mT__33();
+                mT__33(); 
 
                 }
                 break;
             case 26 :
                 // Looc.g:1:159: T__34
                 {
-                mT__34();
+                mT__34(); 
 
                 }
                 break;
             case 27 :
                 // Looc.g:1:165: T__35
                 {
-                mT__35();
+                mT__35(); 
 
                 }
                 break;
             case 28 :
                 // Looc.g:1:171: T__36
                 {
-                mT__36();
+                mT__36(); 
 
                 }
                 break;
             case 29 :
                 // Looc.g:1:177: T__37
                 {
-                mT__37();
+                mT__37(); 
 
                 }
                 break;
             case 30 :
                 // Looc.g:1:183: T__38
                 {
-                mT__38();
+                mT__38(); 
 
                 }
                 break;
             case 31 :
                 // Looc.g:1:189: T__39
                 {
-                mT__39();
+                mT__39(); 
 
                 }
                 break;
             case 32 :
                 // Looc.g:1:195: T__40
                 {
-                mT__40();
+                mT__40(); 
 
                 }
                 break;
             case 33 :
                 // Looc.g:1:201: T__41
                 {
-                mT__41();
+                mT__41(); 
 
                 }
                 break;
             case 34 :
                 // Looc.g:1:207: T__42
                 {
-                mT__42();
+                mT__42(); 
 
                 }
                 break;
             case 35 :
                 // Looc.g:1:213: T__43
                 {
-                mT__43();
+                mT__43(); 
 
                 }
                 break;
             case 36 :
                 // Looc.g:1:219: T__44
                 {
-                mT__44();
+                mT__44(); 
 
                 }
                 break;
             case 37 :
                 // Looc.g:1:225: T__45
                 {
-                mT__45();
+                mT__45(); 
 
                 }
                 break;
             case 38 :
                 // Looc.g:1:231: T__46
                 {
-                mT__46();
+                mT__46(); 
 
                 }
                 break;
             case 39 :
                 // Looc.g:1:237: T__47
                 {
-                mT__47();
+                mT__47(); 
 
                 }
                 break;
             case 40 :
                 // Looc.g:1:243: T__48
                 {
-                mT__48();
+                mT__48(); 
 
                 }
                 break;
             case 41 :
                 // Looc.g:1:249: IDF_CLASS
                 {
-                mIDF_CLASS();
+                mIDF_CLASS(); 
 
                 }
                 break;
             case 42 :
                 // Looc.g:1:259: IDF
                 {
-                mIDF();
+                mIDF(); 
 
                 }
                 break;
             case 43 :
                 // Looc.g:1:263: CSTE_ENT
                 {
-                mCSTE_ENT();
+                mCSTE_ENT(); 
 
                 }
                 break;
             case 44 :
                 // Looc.g:1:272: CSTE_CHAINE
                 {
-                mCSTE_CHAINE();
+                mCSTE_CHAINE(); 
 
                 }
                 break;
             case 45 :
                 // Looc.g:1:284: WS
                 {
-                mWS();
+                mWS(); 
 
                 }
                 break;
@@ -1675,6 +1674,6 @@ public class LoocLexer extends Lexer {
             return "1:1: Tokens : ( T__9 | T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | IDF_CLASS | IDF | CSTE_ENT | CSTE_CHAINE | WS );";
         }
     }
-
+ 
 
 }
