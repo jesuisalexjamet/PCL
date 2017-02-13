@@ -1,4 +1,5 @@
 // $ANTLR 3.3 Nov 30, 2010 12:50:56 Looc.g 2017-02-13 11:28:27
+package main.antlr;
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -68,9 +69,9 @@ public class LoocParser extends Parser {
         }
         public LoocParser(TokenStream input, RecognizerSharedState state) {
             super(input, state);
-             
+
         }
-        
+
     protected TreeAdaptor adaptor = new CommonTreeAdaptor();
 
     public void setTreeAdaptor(TreeAdaptor adaptor) {
@@ -264,11 +265,11 @@ public class LoocParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal4=(Token)match(input,9,FOLLOW_9_in_class_decl53); 
+            string_literal4=(Token)match(input,9,FOLLOW_9_in_class_decl53);
             string_literal4_tree = (CommonTree)adaptor.create(string_literal4);
             adaptor.addChild(root_0, string_literal4_tree);
 
-            IDF_CLASS5=(Token)match(input,IDF_CLASS,FOLLOW_IDF_CLASS_in_class_decl55); 
+            IDF_CLASS5=(Token)match(input,IDF_CLASS,FOLLOW_IDF_CLASS_in_class_decl55);
             IDF_CLASS5_tree = (CommonTree)adaptor.create(IDF_CLASS5);
             adaptor.addChild(root_0, IDF_CLASS5_tree);
 
@@ -283,11 +284,11 @@ public class LoocParser extends Parser {
                 case 1 :
                     // Looc.g:12:33: 'inherit' IDF_CLASS
                     {
-                    string_literal6=(Token)match(input,10,FOLLOW_10_in_class_decl58); 
+                    string_literal6=(Token)match(input,10,FOLLOW_10_in_class_decl58);
                     string_literal6_tree = (CommonTree)adaptor.create(string_literal6);
                     adaptor.addChild(root_0, string_literal6_tree);
 
-                    IDF_CLASS7=(Token)match(input,IDF_CLASS,FOLLOW_IDF_CLASS_in_class_decl60); 
+                    IDF_CLASS7=(Token)match(input,IDF_CLASS,FOLLOW_IDF_CLASS_in_class_decl60);
                     IDF_CLASS7_tree = (CommonTree)adaptor.create(IDF_CLASS7);
                     adaptor.addChild(root_0, IDF_CLASS7_tree);
 
@@ -297,11 +298,11 @@ public class LoocParser extends Parser {
 
             }
 
-            char_literal8=(Token)match(input,11,FOLLOW_11_in_class_decl64); 
+            char_literal8=(Token)match(input,11,FOLLOW_11_in_class_decl64);
             char_literal8_tree = (CommonTree)adaptor.create(char_literal8);
             adaptor.addChild(root_0, char_literal8_tree);
 
-            char_literal9=(Token)match(input,12,FOLLOW_12_in_class_decl66); 
+            char_literal9=(Token)match(input,12,FOLLOW_12_in_class_decl66);
             char_literal9_tree = (CommonTree)adaptor.create(char_literal9);
             adaptor.addChild(root_0, char_literal9_tree);
 
@@ -311,7 +312,7 @@ public class LoocParser extends Parser {
             state._fsp--;
 
             adaptor.addChild(root_0, class_item_decl10.getTree());
-            char_literal11=(Token)match(input,13,FOLLOW_13_in_class_decl70); 
+            char_literal11=(Token)match(input,13,FOLLOW_13_in_class_decl70);
             char_literal11_tree = (CommonTree)adaptor.create(char_literal11);
             adaptor.addChild(root_0, char_literal11_tree);
 
@@ -473,15 +474,15 @@ public class LoocParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal14=(Token)match(input,14,FOLLOW_14_in_var_decl102); 
+            string_literal14=(Token)match(input,14,FOLLOW_14_in_var_decl102);
             string_literal14_tree = (CommonTree)adaptor.create(string_literal14);
             adaptor.addChild(root_0, string_literal14_tree);
 
-            IDF15=(Token)match(input,IDF,FOLLOW_IDF_in_var_decl104); 
+            IDF15=(Token)match(input,IDF,FOLLOW_IDF_in_var_decl104);
             IDF15_tree = (CommonTree)adaptor.create(IDF15);
             adaptor.addChild(root_0, IDF15_tree);
 
-            char_literal16=(Token)match(input,15,FOLLOW_15_in_var_decl106); 
+            char_literal16=(Token)match(input,15,FOLLOW_15_in_var_decl106);
             char_literal16_tree = (CommonTree)adaptor.create(char_literal16);
             adaptor.addChild(root_0, char_literal16_tree);
 
@@ -491,7 +492,7 @@ public class LoocParser extends Parser {
             state._fsp--;
 
             adaptor.addChild(root_0, type17.getTree());
-            char_literal18=(Token)match(input,16,FOLLOW_16_in_var_decl110); 
+            char_literal18=(Token)match(input,16,FOLLOW_16_in_var_decl110);
             char_literal18_tree = (CommonTree)adaptor.create(char_literal18);
             adaptor.addChild(root_0, char_literal18_tree);
 
@@ -604,15 +605,15 @@ public class LoocParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal20=(Token)match(input,19,FOLLOW_19_in_method_decl144); 
+            string_literal20=(Token)match(input,19,FOLLOW_19_in_method_decl144);
             string_literal20_tree = (CommonTree)adaptor.create(string_literal20);
             adaptor.addChild(root_0, string_literal20_tree);
 
-            IDF21=(Token)match(input,IDF,FOLLOW_IDF_in_method_decl146); 
+            IDF21=(Token)match(input,IDF,FOLLOW_IDF_in_method_decl146);
             IDF21_tree = (CommonTree)adaptor.create(IDF21);
             adaptor.addChild(root_0, IDF21_tree);
 
-            char_literal22=(Token)match(input,12,FOLLOW_12_in_method_decl148); 
+            char_literal22=(Token)match(input,12,FOLLOW_12_in_method_decl148);
             char_literal22_tree = (CommonTree)adaptor.create(char_literal22);
             adaptor.addChild(root_0, char_literal22_tree);
 
@@ -646,7 +647,7 @@ public class LoocParser extends Parser {
                 }
             } while (true);
 
-            char_literal24=(Token)match(input,13,FOLLOW_13_in_method_decl153); 
+            char_literal24=(Token)match(input,13,FOLLOW_13_in_method_decl153);
             char_literal24_tree = (CommonTree)adaptor.create(char_literal24);
             adaptor.addChild(root_0, char_literal24_tree);
 
@@ -735,7 +736,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal26=(Token)match(input,20,FOLLOW_20_in_method_decl_suite169); 
+                    char_literal26=(Token)match(input,20,FOLLOW_20_in_method_decl_suite169);
                     char_literal26_tree = (CommonTree)adaptor.create(char_literal26);
                     adaptor.addChild(root_0, char_literal26_tree);
 
@@ -804,7 +805,7 @@ public class LoocParser extends Parser {
                         cnt9++;
                     } while (true);
 
-                    char_literal29=(Token)match(input,21,FOLLOW_21_in_method_decl_suite177); 
+                    char_literal29=(Token)match(input,21,FOLLOW_21_in_method_decl_suite177);
                     char_literal29_tree = (CommonTree)adaptor.create(char_literal29);
                     adaptor.addChild(root_0, char_literal29_tree);
 
@@ -816,7 +817,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal30=(Token)match(input,15,FOLLOW_15_in_method_decl_suite186); 
+                    char_literal30=(Token)match(input,15,FOLLOW_15_in_method_decl_suite186);
                     char_literal30_tree = (CommonTree)adaptor.create(char_literal30);
                     adaptor.addChild(root_0, char_literal30_tree);
 
@@ -826,7 +827,7 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, type31.getTree());
-                    char_literal32=(Token)match(input,20,FOLLOW_20_in_method_decl_suite190); 
+                    char_literal32=(Token)match(input,20,FOLLOW_20_in_method_decl_suite190);
                     char_literal32_tree = (CommonTree)adaptor.create(char_literal32);
                     adaptor.addChild(root_0, char_literal32_tree);
 
@@ -895,7 +896,7 @@ public class LoocParser extends Parser {
                         cnt11++;
                     } while (true);
 
-                    char_literal35=(Token)match(input,21,FOLLOW_21_in_method_decl_suite198); 
+                    char_literal35=(Token)match(input,21,FOLLOW_21_in_method_decl_suite198);
                     char_literal35_tree = (CommonTree)adaptor.create(char_literal35);
                     adaptor.addChild(root_0, char_literal35_tree);
 
@@ -957,11 +958,11 @@ public class LoocParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            IDF36=(Token)match(input,IDF,FOLLOW_IDF_in_method_args211); 
+            IDF36=(Token)match(input,IDF,FOLLOW_IDF_in_method_args211);
             IDF36_tree = (CommonTree)adaptor.create(IDF36);
             adaptor.addChild(root_0, IDF36_tree);
 
-            char_literal37=(Token)match(input,15,FOLLOW_15_in_method_args213); 
+            char_literal37=(Token)match(input,15,FOLLOW_15_in_method_args213);
             char_literal37_tree = (CommonTree)adaptor.create(char_literal37);
             adaptor.addChild(root_0, char_literal37_tree);
 
@@ -986,15 +987,15 @@ public class LoocParser extends Parser {
             	case 1 :
             	    // Looc.g:33:28: ',' IDF ':' type
             	    {
-            	    char_literal39=(Token)match(input,22,FOLLOW_22_in_method_args218); 
+            	    char_literal39=(Token)match(input,22,FOLLOW_22_in_method_args218);
             	    char_literal39_tree = (CommonTree)adaptor.create(char_literal39);
             	    adaptor.addChild(root_0, char_literal39_tree);
 
-            	    IDF40=(Token)match(input,IDF,FOLLOW_IDF_in_method_args220); 
+            	    IDF40=(Token)match(input,IDF,FOLLOW_IDF_in_method_args220);
             	    IDF40_tree = (CommonTree)adaptor.create(IDF40);
             	    adaptor.addChild(root_0, IDF40_tree);
 
-            	    char_literal41=(Token)match(input,15,FOLLOW_15_in_method_args222); 
+            	    char_literal41=(Token)match(input,15,FOLLOW_15_in_method_args222);
             	    char_literal41_tree = (CommonTree)adaptor.create(char_literal41);
             	    adaptor.addChild(root_0, char_literal41_tree);
 
@@ -1180,11 +1181,11 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    IDF43=(Token)match(input,IDF,FOLLOW_IDF_in_instruction239); 
+                    IDF43=(Token)match(input,IDF,FOLLOW_IDF_in_instruction239);
                     IDF43_tree = (CommonTree)adaptor.create(IDF43);
                     adaptor.addChild(root_0, IDF43_tree);
 
-                    string_literal44=(Token)match(input,23,FOLLOW_23_in_instruction241); 
+                    string_literal44=(Token)match(input,23,FOLLOW_23_in_instruction241);
                     string_literal44_tree = (CommonTree)adaptor.create(string_literal44);
                     adaptor.addChild(root_0, string_literal44_tree);
 
@@ -1194,7 +1195,7 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, expression45.getTree());
-                    char_literal46=(Token)match(input,16,FOLLOW_16_in_instruction245); 
+                    char_literal46=(Token)match(input,16,FOLLOW_16_in_instruction245);
                     char_literal46_tree = (CommonTree)adaptor.create(char_literal46);
                     adaptor.addChild(root_0, char_literal46_tree);
 
@@ -1206,7 +1207,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal47=(Token)match(input,24,FOLLOW_24_in_instruction251); 
+                    string_literal47=(Token)match(input,24,FOLLOW_24_in_instruction251);
                     string_literal47_tree = (CommonTree)adaptor.create(string_literal47);
                     adaptor.addChild(root_0, string_literal47_tree);
 
@@ -1216,7 +1217,7 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, expression48.getTree());
-                    string_literal49=(Token)match(input,25,FOLLOW_25_in_instruction255); 
+                    string_literal49=(Token)match(input,25,FOLLOW_25_in_instruction255);
                     string_literal49_tree = (CommonTree)adaptor.create(string_literal49);
                     adaptor.addChild(root_0, string_literal49_tree);
 
@@ -1266,7 +1267,7 @@ public class LoocParser extends Parser {
                         case 1 :
                             // Looc.g:37:43: 'else' ( instruction )+
                             {
-                            string_literal51=(Token)match(input,26,FOLLOW_26_in_instruction262); 
+                            string_literal51=(Token)match(input,26,FOLLOW_26_in_instruction262);
                             string_literal51_tree = (CommonTree)adaptor.create(string_literal51);
                             adaptor.addChild(root_0, string_literal51_tree);
 
@@ -1311,7 +1312,7 @@ public class LoocParser extends Parser {
 
                     }
 
-                    string_literal53=(Token)match(input,27,FOLLOW_27_in_instruction268); 
+                    string_literal53=(Token)match(input,27,FOLLOW_27_in_instruction268);
                     string_literal53_tree = (CommonTree)adaptor.create(string_literal53);
                     adaptor.addChild(root_0, string_literal53_tree);
 
@@ -1323,15 +1324,15 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal54=(Token)match(input,28,FOLLOW_28_in_instruction274); 
+                    string_literal54=(Token)match(input,28,FOLLOW_28_in_instruction274);
                     string_literal54_tree = (CommonTree)adaptor.create(string_literal54);
                     adaptor.addChild(root_0, string_literal54_tree);
 
-                    IDF55=(Token)match(input,IDF,FOLLOW_IDF_in_instruction276); 
+                    IDF55=(Token)match(input,IDF,FOLLOW_IDF_in_instruction276);
                     IDF55_tree = (CommonTree)adaptor.create(IDF55);
                     adaptor.addChild(root_0, IDF55_tree);
 
-                    string_literal56=(Token)match(input,29,FOLLOW_29_in_instruction278); 
+                    string_literal56=(Token)match(input,29,FOLLOW_29_in_instruction278);
                     string_literal56_tree = (CommonTree)adaptor.create(string_literal56);
                     adaptor.addChild(root_0, string_literal56_tree);
 
@@ -1341,7 +1342,7 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, expression57.getTree());
-                    string_literal58=(Token)match(input,30,FOLLOW_30_in_instruction282); 
+                    string_literal58=(Token)match(input,30,FOLLOW_30_in_instruction282);
                     string_literal58_tree = (CommonTree)adaptor.create(string_literal58);
                     adaptor.addChild(root_0, string_literal58_tree);
 
@@ -1351,7 +1352,7 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, expression59.getTree());
-                    string_literal60=(Token)match(input,31,FOLLOW_31_in_instruction287); 
+                    string_literal60=(Token)match(input,31,FOLLOW_31_in_instruction287);
                     string_literal60_tree = (CommonTree)adaptor.create(string_literal60);
                     adaptor.addChild(root_0, string_literal60_tree);
 
@@ -1390,7 +1391,7 @@ public class LoocParser extends Parser {
                         cnt17++;
                     } while (true);
 
-                    string_literal62=(Token)match(input,32,FOLLOW_32_in_instruction292); 
+                    string_literal62=(Token)match(input,32,FOLLOW_32_in_instruction292);
                     string_literal62_tree = (CommonTree)adaptor.create(string_literal62);
                     adaptor.addChild(root_0, string_literal62_tree);
 
@@ -1402,7 +1403,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal63=(Token)match(input,20,FOLLOW_20_in_instruction299); 
+                    char_literal63=(Token)match(input,20,FOLLOW_20_in_instruction299);
                     char_literal63_tree = (CommonTree)adaptor.create(char_literal63);
                     adaptor.addChild(root_0, char_literal63_tree);
 
@@ -1471,7 +1472,7 @@ public class LoocParser extends Parser {
                         cnt19++;
                     } while (true);
 
-                    char_literal66=(Token)match(input,21,FOLLOW_21_in_instruction309); 
+                    char_literal66=(Token)match(input,21,FOLLOW_21_in_instruction309);
                     char_literal66_tree = (CommonTree)adaptor.create(char_literal66);
                     adaptor.addChild(root_0, char_literal66_tree);
 
@@ -1483,7 +1484,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal67=(Token)match(input,31,FOLLOW_31_in_instruction316); 
+                    string_literal67=(Token)match(input,31,FOLLOW_31_in_instruction316);
                     string_literal67_tree = (CommonTree)adaptor.create(string_literal67);
                     adaptor.addChild(root_0, string_literal67_tree);
 
@@ -1493,15 +1494,15 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, expression_start68.getTree());
-                    char_literal69=(Token)match(input,33,FOLLOW_33_in_instruction320); 
+                    char_literal69=(Token)match(input,33,FOLLOW_33_in_instruction320);
                     char_literal69_tree = (CommonTree)adaptor.create(char_literal69);
                     adaptor.addChild(root_0, char_literal69_tree);
 
-                    IDF70=(Token)match(input,IDF,FOLLOW_IDF_in_instruction322); 
+                    IDF70=(Token)match(input,IDF,FOLLOW_IDF_in_instruction322);
                     IDF70_tree = (CommonTree)adaptor.create(IDF70);
                     adaptor.addChild(root_0, IDF70_tree);
 
-                    char_literal71=(Token)match(input,12,FOLLOW_12_in_instruction324); 
+                    char_literal71=(Token)match(input,12,FOLLOW_12_in_instruction324);
                     char_literal71_tree = (CommonTree)adaptor.create(char_literal71);
                     adaptor.addChild(root_0, char_literal71_tree);
 
@@ -1526,7 +1527,7 @@ public class LoocParser extends Parser {
                     	case 1 :
                     	    // Looc.g:40:50: ',' expression
                     	    {
-                    	    char_literal73=(Token)match(input,22,FOLLOW_22_in_instruction328); 
+                    	    char_literal73=(Token)match(input,22,FOLLOW_22_in_instruction328);
                     	    char_literal73_tree = (CommonTree)adaptor.create(char_literal73);
                     	    adaptor.addChild(root_0, char_literal73_tree);
 
@@ -1545,11 +1546,11 @@ public class LoocParser extends Parser {
                         }
                     } while (true);
 
-                    char_literal75=(Token)match(input,13,FOLLOW_13_in_instruction334); 
+                    char_literal75=(Token)match(input,13,FOLLOW_13_in_instruction334);
                     char_literal75_tree = (CommonTree)adaptor.create(char_literal75);
                     adaptor.addChild(root_0, char_literal75_tree);
 
-                    char_literal76=(Token)match(input,16,FOLLOW_16_in_instruction336); 
+                    char_literal76=(Token)match(input,16,FOLLOW_16_in_instruction336);
                     char_literal76_tree = (CommonTree)adaptor.create(char_literal76);
                     adaptor.addChild(root_0, char_literal76_tree);
 
@@ -1645,7 +1646,7 @@ public class LoocParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal80=(Token)match(input,34,FOLLOW_34_in_print370); 
+            string_literal80=(Token)match(input,34,FOLLOW_34_in_print370);
             string_literal80_tree = (CommonTree)adaptor.create(string_literal80);
             adaptor.addChild(root_0, string_literal80_tree);
 
@@ -1655,7 +1656,7 @@ public class LoocParser extends Parser {
             state._fsp--;
 
             adaptor.addChild(root_0, expression81.getTree());
-            char_literal82=(Token)match(input,16,FOLLOW_16_in_print374); 
+            char_literal82=(Token)match(input,16,FOLLOW_16_in_print374);
             char_literal82_tree = (CommonTree)adaptor.create(char_literal82);
             adaptor.addChild(root_0, char_literal82_tree);
 
@@ -1707,15 +1708,15 @@ public class LoocParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal83=(Token)match(input,35,FOLLOW_35_in_read385); 
+            string_literal83=(Token)match(input,35,FOLLOW_35_in_read385);
             string_literal83_tree = (CommonTree)adaptor.create(string_literal83);
             adaptor.addChild(root_0, string_literal83_tree);
 
-            IDF84=(Token)match(input,IDF,FOLLOW_IDF_in_read387); 
+            IDF84=(Token)match(input,IDF,FOLLOW_IDF_in_read387);
             IDF84_tree = (CommonTree)adaptor.create(IDF84);
             adaptor.addChild(root_0, IDF84_tree);
 
-            char_literal85=(Token)match(input,16,FOLLOW_16_in_read389); 
+            char_literal85=(Token)match(input,16,FOLLOW_16_in_read389);
             char_literal85_tree = (CommonTree)adaptor.create(char_literal85);
             adaptor.addChild(root_0, char_literal85_tree);
 
@@ -1771,11 +1772,11 @@ public class LoocParser extends Parser {
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            string_literal86=(Token)match(input,36,FOLLOW_36_in_retour401); 
+            string_literal86=(Token)match(input,36,FOLLOW_36_in_retour401);
             string_literal86_tree = (CommonTree)adaptor.create(string_literal86);
             adaptor.addChild(root_0, string_literal86_tree);
 
-            char_literal87=(Token)match(input,12,FOLLOW_12_in_retour403); 
+            char_literal87=(Token)match(input,12,FOLLOW_12_in_retour403);
             char_literal87_tree = (CommonTree)adaptor.create(char_literal87);
             adaptor.addChild(root_0, char_literal87_tree);
 
@@ -1785,11 +1786,11 @@ public class LoocParser extends Parser {
             state._fsp--;
 
             adaptor.addChild(root_0, expression88.getTree());
-            char_literal89=(Token)match(input,13,FOLLOW_13_in_retour407); 
+            char_literal89=(Token)match(input,13,FOLLOW_13_in_retour407);
             char_literal89_tree = (CommonTree)adaptor.create(char_literal89);
             adaptor.addChild(root_0, char_literal89_tree);
 
-            char_literal90=(Token)match(input,16,FOLLOW_16_in_retour409); 
+            char_literal90=(Token)match(input,16,FOLLOW_16_in_retour409);
             char_literal90_tree = (CommonTree)adaptor.create(char_literal90);
             adaptor.addChild(root_0, char_literal90_tree);
 
@@ -1930,7 +1931,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal92=(Token)match(input,12,FOLLOW_12_in_expression445); 
+                    char_literal92=(Token)match(input,12,FOLLOW_12_in_expression445);
                     char_literal92_tree = (CommonTree)adaptor.create(char_literal92);
                     adaptor.addChild(root_0, char_literal92_tree);
 
@@ -1940,7 +1941,7 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, expression93.getTree());
-                    char_literal94=(Token)match(input,13,FOLLOW_13_in_expression449); 
+                    char_literal94=(Token)match(input,13,FOLLOW_13_in_expression449);
                     char_literal94_tree = (CommonTree)adaptor.create(char_literal94);
                     adaptor.addChild(root_0, char_literal94_tree);
 
@@ -1958,7 +1959,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    IDF96=(Token)match(input,IDF,FOLLOW_IDF_in_expression457); 
+                    IDF96=(Token)match(input,IDF,FOLLOW_IDF_in_expression457);
                     IDF96_tree = (CommonTree)adaptor.create(IDF96);
                     adaptor.addChild(root_0, IDF96_tree);
 
@@ -1976,11 +1977,11 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal98=(Token)match(input,39,FOLLOW_39_in_expression465); 
+                    char_literal98=(Token)match(input,39,FOLLOW_39_in_expression465);
                     char_literal98_tree = (CommonTree)adaptor.create(char_literal98);
                     adaptor.addChild(root_0, char_literal98_tree);
 
-                    CSTE_ENT99=(Token)match(input,CSTE_ENT,FOLLOW_CSTE_ENT_in_expression467); 
+                    CSTE_ENT99=(Token)match(input,CSTE_ENT,FOLLOW_CSTE_ENT_in_expression467);
                     CSTE_ENT99_tree = (CommonTree)adaptor.create(CSTE_ENT99);
                     adaptor.addChild(root_0, CSTE_ENT99_tree);
 
@@ -1998,7 +1999,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal101=(Token)match(input,37,FOLLOW_37_in_expression475); 
+                    string_literal101=(Token)match(input,37,FOLLOW_37_in_expression475);
                     string_literal101_tree = (CommonTree)adaptor.create(string_literal101);
                     adaptor.addChild(root_0, string_literal101_tree);
 
@@ -2016,7 +2017,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal103=(Token)match(input,38,FOLLOW_38_in_expression483); 
+                    string_literal103=(Token)match(input,38,FOLLOW_38_in_expression483);
                     string_literal103_tree = (CommonTree)adaptor.create(string_literal103);
                     adaptor.addChild(root_0, string_literal103_tree);
 
@@ -2034,7 +2035,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    CSTE_ENT105=(Token)match(input,CSTE_ENT,FOLLOW_CSTE_ENT_in_expression491); 
+                    CSTE_ENT105=(Token)match(input,CSTE_ENT,FOLLOW_CSTE_ENT_in_expression491);
                     CSTE_ENT105_tree = (CommonTree)adaptor.create(CSTE_ENT105);
                     adaptor.addChild(root_0, CSTE_ENT105_tree);
 
@@ -2052,11 +2053,11 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal107=(Token)match(input,40,FOLLOW_40_in_expression499); 
+                    string_literal107=(Token)match(input,40,FOLLOW_40_in_expression499);
                     string_literal107_tree = (CommonTree)adaptor.create(string_literal107);
                     adaptor.addChild(root_0, string_literal107_tree);
 
-                    IDF_CLASS108=(Token)match(input,IDF_CLASS,FOLLOW_IDF_CLASS_in_expression501); 
+                    IDF_CLASS108=(Token)match(input,IDF_CLASS,FOLLOW_IDF_CLASS_in_expression501);
                     IDF_CLASS108_tree = (CommonTree)adaptor.create(IDF_CLASS108);
                     adaptor.addChild(root_0, IDF_CLASS108_tree);
 
@@ -2068,7 +2069,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    CSTE_CHAINE109=(Token)match(input,CSTE_CHAINE,FOLLOW_CSTE_CHAINE_in_expression507); 
+                    CSTE_CHAINE109=(Token)match(input,CSTE_CHAINE,FOLLOW_CSTE_CHAINE_in_expression507);
                     CSTE_CHAINE109_tree = (CommonTree)adaptor.create(CSTE_CHAINE109);
                     adaptor.addChild(root_0, CSTE_CHAINE109_tree);
 
@@ -2076,7 +2077,7 @@ public class LoocParser extends Parser {
                     }
                     break;
                 case 9 :
-                    // Looc.g:74:3: 
+                    // Looc.g:74:3:
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -2190,15 +2191,15 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal110=(Token)match(input,33,FOLLOW_33_in_expression_suite525); 
+                    char_literal110=(Token)match(input,33,FOLLOW_33_in_expression_suite525);
                     char_literal110_tree = (CommonTree)adaptor.create(char_literal110);
                     adaptor.addChild(root_0, char_literal110_tree);
 
-                    IDF111=(Token)match(input,IDF,FOLLOW_IDF_in_expression_suite527); 
+                    IDF111=(Token)match(input,IDF,FOLLOW_IDF_in_expression_suite527);
                     IDF111_tree = (CommonTree)adaptor.create(IDF111);
                     adaptor.addChild(root_0, IDF111_tree);
 
-                    char_literal112=(Token)match(input,12,FOLLOW_12_in_expression_suite529); 
+                    char_literal112=(Token)match(input,12,FOLLOW_12_in_expression_suite529);
                     char_literal112_tree = (CommonTree)adaptor.create(char_literal112);
                     adaptor.addChild(root_0, char_literal112_tree);
 
@@ -2223,7 +2224,7 @@ public class LoocParser extends Parser {
                     	case 1 :
                     	    // Looc.g:77:27: ',' expression
                     	    {
-                    	    char_literal114=(Token)match(input,22,FOLLOW_22_in_expression_suite534); 
+                    	    char_literal114=(Token)match(input,22,FOLLOW_22_in_expression_suite534);
                     	    char_literal114_tree = (CommonTree)adaptor.create(char_literal114);
                     	    adaptor.addChild(root_0, char_literal114_tree);
 
@@ -2242,7 +2243,7 @@ public class LoocParser extends Parser {
                         }
                     } while (true);
 
-                    char_literal116=(Token)match(input,13,FOLLOW_13_in_expression_suite540); 
+                    char_literal116=(Token)match(input,13,FOLLOW_13_in_expression_suite540);
                     char_literal116_tree = (CommonTree)adaptor.create(char_literal116);
                     adaptor.addChild(root_0, char_literal116_tree);
 
@@ -2459,7 +2460,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal122=(Token)match(input,41,FOLLOW_41_in_multOper583); 
+                    char_literal122=(Token)match(input,41,FOLLOW_41_in_multOper583);
                     char_literal122_tree = (CommonTree)adaptor.create(char_literal122);
                     adaptor.addChild(root_0, char_literal122_tree);
 
@@ -2477,7 +2478,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal124=(Token)match(input,42,FOLLOW_42_in_multOper591); 
+                    char_literal124=(Token)match(input,42,FOLLOW_42_in_multOper591);
                     char_literal124_tree = (CommonTree)adaptor.create(char_literal124);
                     adaptor.addChild(root_0, char_literal124_tree);
 
@@ -2495,7 +2496,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal126=(Token)match(input,43,FOLLOW_43_in_multOper601); 
+                    char_literal126=(Token)match(input,43,FOLLOW_43_in_multOper601);
                     char_literal126_tree = (CommonTree)adaptor.create(char_literal126);
                     adaptor.addChild(root_0, char_literal126_tree);
 
@@ -2578,7 +2579,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal128=(Token)match(input,44,FOLLOW_44_in_oper617); 
+                    char_literal128=(Token)match(input,44,FOLLOW_44_in_oper617);
                     char_literal128_tree = (CommonTree)adaptor.create(char_literal128);
                     adaptor.addChild(root_0, char_literal128_tree);
 
@@ -2626,7 +2627,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal131=(Token)match(input,39,FOLLOW_39_in_oper628); 
+                    char_literal131=(Token)match(input,39,FOLLOW_39_in_oper628);
                     char_literal131_tree = (CommonTree)adaptor.create(char_literal131);
                     adaptor.addChild(root_0, char_literal131_tree);
 
@@ -2746,7 +2747,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    CSTE_ENT134=(Token)match(input,CSTE_ENT,FOLLOW_CSTE_ENT_in_atom652); 
+                    CSTE_ENT134=(Token)match(input,CSTE_ENT,FOLLOW_CSTE_ENT_in_atom652);
                     CSTE_ENT134_tree = (CommonTree)adaptor.create(CSTE_ENT134);
                     adaptor.addChild(root_0, CSTE_ENT134_tree);
 
@@ -2758,7 +2759,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    IDF135=(Token)match(input,IDF,FOLLOW_IDF_in_atom663); 
+                    IDF135=(Token)match(input,IDF,FOLLOW_IDF_in_atom663);
                     IDF135_tree = (CommonTree)adaptor.create(IDF135);
                     adaptor.addChild(root_0, IDF135_tree);
 
@@ -2770,7 +2771,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal136=(Token)match(input,12,FOLLOW_12_in_atom672); 
+                    char_literal136=(Token)match(input,12,FOLLOW_12_in_atom672);
                     char_literal136_tree = (CommonTree)adaptor.create(char_literal136);
                     adaptor.addChild(root_0, char_literal136_tree);
 
@@ -2780,7 +2781,7 @@ public class LoocParser extends Parser {
                     state._fsp--;
 
                     adaptor.addChild(root_0, expression137.getTree());
-                    char_literal138=(Token)match(input,13,FOLLOW_13_in_atom676); 
+                    char_literal138=(Token)match(input,13,FOLLOW_13_in_atom676);
                     char_literal138_tree = (CommonTree)adaptor.create(char_literal138);
                     adaptor.addChild(root_0, char_literal138_tree);
 
@@ -2871,7 +2872,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal139=(Token)match(input,45,FOLLOW_45_in_comparaison688); 
+                    char_literal139=(Token)match(input,45,FOLLOW_45_in_comparaison688);
                     char_literal139_tree = (CommonTree)adaptor.create(char_literal139);
                     adaptor.addChild(root_0, char_literal139_tree);
 
@@ -2889,7 +2890,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal141=(Token)match(input,46,FOLLOW_46_in_comparaison696); 
+                    char_literal141=(Token)match(input,46,FOLLOW_46_in_comparaison696);
                     char_literal141_tree = (CommonTree)adaptor.create(char_literal141);
                     adaptor.addChild(root_0, char_literal141_tree);
 
@@ -2907,7 +2908,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal143=(Token)match(input,47,FOLLOW_47_in_comparaison704); 
+                    string_literal143=(Token)match(input,47,FOLLOW_47_in_comparaison704);
                     string_literal143_tree = (CommonTree)adaptor.create(string_literal143);
                     adaptor.addChild(root_0, string_literal143_tree);
 
@@ -2919,7 +2920,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    string_literal144=(Token)match(input,48,FOLLOW_48_in_comparaison710); 
+                    string_literal144=(Token)match(input,48,FOLLOW_48_in_comparaison710);
                     string_literal144_tree = (CommonTree)adaptor.create(string_literal144);
                     adaptor.addChild(root_0, string_literal144_tree);
 
@@ -2986,7 +2987,7 @@ public class LoocParser extends Parser {
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    char_literal145=(Token)match(input,11,FOLLOW_11_in_strict720); 
+                    char_literal145=(Token)match(input,11,FOLLOW_11_in_strict720);
                     char_literal145_tree = (CommonTree)adaptor.create(char_literal145);
                     adaptor.addChild(root_0, char_literal145_tree);
 
@@ -2994,7 +2995,7 @@ public class LoocParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Looc.g:107:3: 
+                    // Looc.g:107:3:
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
@@ -3083,7 +3084,7 @@ public class LoocParser extends Parser {
             return "64:1: expression : ( '(' expression ')' expression_suite | IDF expression_suite | '-' CSTE_ENT expression_suite | 'this' expression_suite | 'super' expression_suite | CSTE_ENT expression_suite | 'new' IDF_CLASS | CSTE_CHAINE | );";
         }
     }
- 
+
 
     public static final BitSet FOLLOW_class_decl_in_program34 = new BitSet(new long[]{0x0000001C91104220L});
     public static final BitSet FOLLOW_var_decl_in_program37 = new BitSet(new long[]{0x0000001C91104020L});
