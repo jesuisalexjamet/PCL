@@ -5,8 +5,8 @@ var n : int;
 somme := 5;
 n := 10;
 
-for boucle in 0 . n
-do
+for boucle in 0  n
+doa
 	somme := somme + boucle;
 end
 

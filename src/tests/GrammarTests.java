@@ -99,4 +99,59 @@ public class GrammarTests {
 			fail("Une erreur a été détectée.");
 		}
 	}
+	
+	@Test
+	public void testFullExample() throws Exception {
+		initTest("tests/full_example.looc");
+		
+		parser.program();
+		
+		if (parser.getNumberOfSyntaxErrors() > 0) {
+			fail("Une erreur a été détectée.");
+		}
+	}
+	
+	@Test
+	public void testFauxPointVirgule() throws Exception {
+		initTest("tests/;_f.looc");
+		
+		parser.program();
+		
+		if (!(parser.getNumberOfSyntaxErrors() > 0)) {
+			fail("Une erreur a été détectée.");
+		}
+	}
+	
+	@Test
+	public void testFauxClass() throws Exception {
+		initTest("tests/class_f.looc");
+		
+		parser.program();
+		
+		if (!(parser.getNumberOfSyntaxErrors() > 0)) {
+			fail("Une erreur a été détectée.");
+		}
+	}
+	
+	@Test
+	public void testFauxFor() throws Exception {
+		initTest("tests/for_f.looc");
+		
+		parser.program();
+		
+		if (!(parser.getNumberOfSyntaxErrors() > 0)) {
+			fail("Une erreur a été détectée.");
+		}
+	}
+	
+	@Test
+	public void testFauxIf() throws Exception {
+		initTest("tests/if_f.looc");
+		
+		parser.program();
+		
+		if (!(parser.getNumberOfSyntaxErrors() > 0)) {
+			fail("Une erreur a été détectée.");
+		}
+	}
 }
