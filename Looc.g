@@ -77,6 +77,7 @@ expression
 		| 'super' expression_suite
 		| CSTE_ENT expression_suite
 		| 'new' IDF_CLASS
+		| CSTE_CHAINE
 		|
 		;
 		
