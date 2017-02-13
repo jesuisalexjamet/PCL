@@ -34,6 +34,18 @@ public class AST {
 	}
 	
 	private void getAST() throws RecognitionException, IOException {
+		CommonTree tree = (CommonTree)parser.program().getTree();
+		DOTTreeGenerator gen = new DOTTreeGenerator();
+		StringTemplate st=gen.toDOT(tree);
+		out=new File("AST.dot");
+		fileWriter = new FileWriter(out);
+		printWriter=new PrintWriter(fileWriter);
+		printWriter.print(st);
+		fileWriter.flush();
+		fileWriter.close();
+		System.out.println("Should be OK");		
+	}
+	private void getASTBis() throws RecognitionException, IOException {
 		program_return result=parser.program();
 		CommonTree t =(CommonTree)result.getTree();
 		out=new File("AST.dot");
