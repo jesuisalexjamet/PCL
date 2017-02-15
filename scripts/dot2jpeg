@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+
+import glob, os
+from subprocess import call
+
+def dot2jpeg():
+    os.chdir('AST/')
+    # Pour tout les fichiers DOT
+    for file in glob.glob('*.dot'):
+        print(file.split(".")[0] + ".jpg")
+        call(['dot', '-Tps', file, '-o', file.split('.')[0] + '.jpg'])
+
+if __name__ == '__main__':
+    dot2jpeg()
