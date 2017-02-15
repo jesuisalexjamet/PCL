@@ -10,9 +10,11 @@ os=`uname`
 if [[ $os == "Darwin" ]]; then
     pushd lib
     curl -O http://www.antlr3.org/download/antlr-3.3-complete.jar
+    curl -O http://www.antlr3.org/download/antlrworks-1.5.jar
     popd
 elif [[ $os == "Linux" ]]; then
     pushd lib
     wget http://www.antlr3.org/download/antlr-3.3-complete.jar
+    wget http://www.antlr3.org/download/antlrworks-1.5.jar
     popd
 fi
