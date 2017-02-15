@@ -154,4 +154,15 @@ public class GrammarTests {
 			fail("Une erreur a été détectée.");
 		}
 	}
+	
+	@Test
+	public void testInheritance() throws Exception {
+		initTest("tests/inheritance.looc");
+		
+		parser.program();
+		
+		if (parser.getNumberOfSyntaxErrors() > 0) {
+			fail("Une erreur a été détectée.");
+		}
+	}
 }
