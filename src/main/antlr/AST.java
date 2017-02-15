@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -25,6 +27,21 @@ public class AST {
 	private File out;
 	private FileWriter fileWriter;
 	private PrintWriter printWriter;
+	private List<String> tab=new ArrayList<String>();
+	
+
+	private void setTab() {
+		tab.add("class");
+		tab.add("read");
+		tab.add("prio");
+		tab.add("if");
+		tab.add("class");
+		tab.add("fonction");
+		tab.add("for");
+		tab.add("full_example");
+		tab.add("inheritance");
+	}
+	
 	
 	private void init(String filepath) throws Exception {
 		input = new ANTLRFileStream(filepath);
@@ -33,39 +50,34 @@ public class AST {
 		parser = new LoocParser(tokens);
 	}
 	
-	private void getAST() throws RecognitionException, IOException {
-		CommonTree tree = (CommonTree)parser.program().getTree();
-		DOTTreeGenerator gen = new DOTTreeGenerator();
-		StringTemplate st=gen.toDOT(tree);
-		out=new File("AST.dot");
-		fileWriter = new FileWriter(out);
-		printWriter=new PrintWriter(fileWriter);
-		printWriter.print(st);
-		fileWriter.flush();
-		fileWriter.close();
-		System.out.println("Should be OK");		
+	private void getAST() throws Exception {
+		if(!new File("AST").exists()) {
+			new File("AST").mkdirs();
+ 
+		}
+		for(int i=0;i<this.tab.size();i++){
+			this.init("tests/"+tab.get(i)+".looc");
+			CommonTree tree = (CommonTree)parser.program().getTree();
+			DOTTreeGenerator gen = new DOTTreeGenerator();
+			StringTemplate st=gen.toDOT(tree);
+			out=new File("AST/AST_"+tab.get(i)+".dot");
+			fileWriter = new FileWriter(out);
+			printWriter=new PrintWriter(fileWriter);
+			printWriter.print(st);
+			fileWriter.flush();
+			fileWriter.close();
+			System.out.println("Should be OK for "+"AST_"+tab.get(i));
+		}
 	}
-	private void getASTBis() throws RecognitionException, IOException {
-		program_return result=parser.program();
-		CommonTree t =(CommonTree)result.getTree();
-		out=new File("AST.dot");
-		fileWriter = new FileWriter(out);
-		printWriter=new PrintWriter(fileWriter);
-		printWriter.print(t.toStringTree());
-		fileWriter.flush();
-		fileWriter.close();
-		System.out.println("Should be OK");
-		System.out.println(t.toStringTree());
-	}
+
 	
 	
 	
 	public static void main(String[] args) throws Exception {
 		AST ast=new AST();
-		ast.init("tests/if.looc");
+		ast.setTab();
 		ast.getAST();
 
-		
 	}
 
 }
