@@ -6,8 +6,8 @@ class Voiture =
 	
 	method init() 
 	{
-		brand := "?";
-		model := "?";
+		brand := "";
+		model := "";
 		maxspeed := 0;
 	}
 
