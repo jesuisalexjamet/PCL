@@ -7,8 +7,8 @@ def dot2jpeg():
     os.chdir('AST/')
     # Pour tout les fichiers DOT
     for file in glob.glob('*.dot'):
-        print(file.split(".")[0] + ".jpg")
-        call(['dot', '-Tps', file, '-o', file.split('.')[0] + '.jpg'])
+        print("{0}.dot --> {0}.jpeg".format(file.split(".")[0]))
+        call(['dot', '-Tjpeg', file, '-o', file.split('.')[0] + '.jpeg'])
 
 if __name__ == '__main__':
     dot2jpeg()
