@@ -10,7 +10,7 @@ tokens {
     ROOT;
     DECL_CLASS;
     DECL_VAR;
-    DECL_METH;
+    DECL_METHOD;
     METHOD_ARGS;
     COND;
     FOR;
@@ -44,9 +44,8 @@ type
     ;
 
 method_decl
-    :   'method' IDF '(' method_args* ')'  (':' type)? '{'var_decl* instruction+ '}' -> ^(DECL_METH IDF method_args* type? var_decl* instruction)
+    :   'method' IDF '(' method_args* ')'  (':' type)? '{'var_decl* instruction+ '}' -> ^(DECL_METHOD IDF method_args* type? var_decl* instruction)
     ;
-
 
 method_args
     :   IDF ':' type (',' IDF ':' type )* -> ^(METHOD_ARGS IDF type)
@@ -63,12 +62,9 @@ instruction
     |   retour
     ;
 
-
-
 print
     :   'write' expression ';' -> ^(WRITE expression)
     ;
-
 
 read
     :   'read' IDF ';'
@@ -85,54 +81,49 @@ expression_start
     ;
 
 expression
-    :   '(' expression ')' expression_suite -> expression expression_suite
-    |   IDF ^expression_suite
-    |   '-' CSTE_ENT ^expression_suite
+    :   '-' CSTE_ENT ^expression_suite
+    |   '('expression')'expression_suite?
     |   'this' ^expression_suite
     |   'super' ^expression_suite
-    |   CSTE_ENT ^expression_suite
+    |   oper* expression_suite?
     |   'new'! IDF_CLASS
     |   CSTE_CHAINE
-    |
     ;
 
 expression_suite
-    :   '.' IDF '(' expression (',' expression)* ')' -> IDF expression*
-    |   multOper+ oper* -> multOper+ oper*
-    |   oper* -> oper*
-    |   comparaison expression -> comparaison expression
+    :   '.' IDF '(' expression (',' expression)* ')' //-> IDF expression*
+    |   comparaison expression //-> comparaison expression
     ;
 
 multOper
-    :   '/' ^atom
-    |   '*'  ^atom
-    |   '%'  ^atom
+    :    /*e=atom {$value = $e.value;}*/
+        atom  (('/'|'*'|'%') ^atom)*
     ;
 
 oper
-    :   '+' ^atom multOper*
-    |   '-' ^atom multOper*
+    :   multOper (('+'|'-') ^multOper)*//{$value += $e.value;}
     ;
 
 atom
     :   CSTE_ENT
     |   IDF
-    |  '(' expression ')'-> expression
+    //|  '(' expression ')'-> expression //{$value = $expression.value;}
     ;
+
 comparaison
     :   '<' strict
     |   '>' strict
     |   '=='
-    | '!='
+    |   '!='
     ;
 
 strict
-    : '='
+    :   '='
     |
     ;
 
-IDF_CLASS : ('A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
-IDF : ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
-CSTE_ENT :   ('0'..'9')+ ;
-CSTE_CHAINE :    '"' ('a'..'z'|'A'..'Z'|'0'..'9'|';'|':'|'/'|','|'?'|'!'|'%'|'@'|'#'|'~'|'&'|'\\'|'-'|'_'|'|'|'('|')'|'{'|'}'|'['|']'|'='|' ')* '"';
-WS  :   (' '|'\t'|'\r'| '\n') {$channel=HIDDEN;} ;
+IDF_CLASS:      ('A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
+IDF:            ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
+CSTE_ENT:       ('0'..'9')+ ;
+CSTE_CHAINE:    '"' ('a'..'z'|'A'..'Z'|'0'..'9'|';'|':'|'/'|','|'?'|'!'|'%'|'@'|'#'|'~'|'&'|'\\'|'-'|'_'|'|'|'('|')'|'{'|'}'|'['|']'|'='|' ')* '"';
+WS:             (' '|'\t'|'\r'| '\n') {$channel=HIDDEN;} ;
