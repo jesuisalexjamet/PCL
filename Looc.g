@@ -8,10 +8,10 @@ options {
 
 tokens {
     ROOT;
-    DECCLASS;
-    DECVAR;
-    DECMETH;
-    METHARGS;
+    DECL_CLASS;
+    DECL_VAR;
+    DECL_METH;
+    METHOD_ARGS;
     COND;
     FOR;
     DO;
@@ -26,7 +26,7 @@ program
     ;
 
 class_decl
-    :   'class' IDF_CLASS ('inherit' IDF_CLASS)? '=' '(' class_item_decl ')' -> ^(DECCLASS IDF_CLASS (IDF_CLASS)? class_item_decl)
+    :   'class' IDF_CLASS ('inherit' IDF_CLASS)? '=' '(' class_item_decl ')' -> ^(DECL_CLASS IDF_CLASS (IDF_CLASS)? class_item_decl)
     ;
 
 class_item_decl
@@ -34,7 +34,7 @@ class_item_decl
     ;
 
 var_decl
-    :   'var' IDF ':' type ';' -> ^(DECVAR IDF type)
+    :   'var' IDF ':' type ';' -> ^(DECL_VAR IDF type)
     ;
 
 type
@@ -44,12 +44,12 @@ type
     ;
 
 method_decl
-    :   'method' IDF '(' method_args* ')'  (':' type)? '{'var_decl* instruction+ '}' -> ^(DECMETH IDF method_args* type? var_decl* instruction)
+    :   'method' IDF '(' method_args* ')'  (':' type)? '{'var_decl* instruction+ '}' -> ^(DECL_METH IDF method_args* type? var_decl* instruction)
     ;
 
 
 method_args
-    :   IDF ':' type (',' IDF ':' type )* -> ^(METHARGS IDF type)
+    :   IDF ':' type (',' IDF ':' type )* -> ^(METHOD_ARGS IDF type)
     ;
 
 instruction
