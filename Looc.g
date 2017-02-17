@@ -81,18 +81,12 @@ expression_start
     ;
 
 expression
-    :   '-' CSTE_ENT ^expression_suite
-        //| '('expression')'expression_suite?
-    |   'this' ^expression_suite?
-    |   'super' ^expression_suite?
-    |   oper* expression_suite?
+    :   '-' (IDF|CSTE_ENT)  ('.' IDF '(' expression (',' expression)* ')'|comparaison expression)?
+    |   'this' ( '.' IDF '(' expression (',' expression)* ')')?
+    |   'super' ( '.' IDF '(' expression (',' expression)* ')')?
+    |   oper* ( '.'! IDF ^'('! expression (','! expression)* ')'!|comparaison ^expression)?
     |   'new'! IDF_CLASS
     |   CSTE_CHAINE
-    ;
-
-expression_suite
-    :   '.' IDF '(' expression (',' expression)* ')' -> IDF expression*
-    |   comparaison expression
     ;
 
 multOper
