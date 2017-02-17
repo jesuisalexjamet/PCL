@@ -19,6 +19,7 @@ tokens {
     WRITE;
     RETURN;
     OPER;
+    READ;
 }
 
 program
@@ -66,9 +67,8 @@ print
     :   'write' expression ';' -> ^(WRITE expression)
     ;
 
-read
-    :   'read' IDF ';'
-    ;
+read:    'read' IDF ';' -> ^(READ IDF)
+        ;
 
 retour
     :   'return' '(' expression ')' ';' -> ^(RETURN expression)
@@ -82,17 +82,17 @@ expression_start
 
 expression
     :   '-' CSTE_ENT ^expression_suite
-    |   '('expression')'expression_suite?
-    |   'this' ^expression_suite
-    |   'super' ^expression_suite
+        //| '('expression')'expression_suite?
+    |   'this' ^expression_suite?
+    |   'super' ^expression_suite?
     |   oper* expression_suite?
     |   'new'! IDF_CLASS
     |   CSTE_CHAINE
     ;
 
 expression_suite
-    :   '.' IDF '(' expression (',' expression)* ')' //-> IDF expression*
-    |   comparaison expression //-> comparaison expression
+    :   '.' IDF '(' expression (',' expression)* ')' -> IDF expression*
+    |   comparaison expression
     ;
 
 multOper
@@ -107,7 +107,7 @@ oper
 atom
     :   CSTE_ENT
     |   IDF
-    //|  '(' expression ')'-> expression //{$value = $expression.value;}
+    |  '(' expression ')'-> expression //{$value = $expression.value;}
     ;
 
 comparaison
