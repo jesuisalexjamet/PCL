@@ -22,6 +22,14 @@ tokens {
     READ;
 }
 
+@header {
+    package main.antlr;
+}
+
+@lexer::header {
+    package main.antlr;
+}
+
 program
     :   class_decl* var_decl* instruction+ -> ^(ROOT class_decl* var_decl* instruction+)
     ;
