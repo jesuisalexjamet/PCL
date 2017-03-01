@@ -53,11 +53,11 @@ type
     ;
 
 method_decl
-    :   'method' IDF '(' method_args* ')'  (':' type)? '{'var_decl* instruction+ '}' -> ^(DECL_METHOD IDF method_args* type? var_decl* instruction)
+    :   'method' IDF '(' method_args? (',' e=method_args)* ')'  (':' type)? '{'var_decl* instruction+ '}' -> ^(DECL_METHOD IDF method_args? ($e)* type? var_decl* instruction)
     ;
 
 method_args
-    :   IDF ':' type (',' IDF ':' type )* -> ^(METHOD_ARGS IDF type)
+    :   IDF ':' type  -> ^(METHOD_ARGS IDF type)
     ;
 
 instruction
