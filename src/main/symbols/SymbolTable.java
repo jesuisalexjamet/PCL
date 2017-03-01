@@ -37,7 +37,13 @@ public class SymbolTable extends ArrayList<Symbol> {
 		System.out.println("Error : "+symbolName+" doesn't exist");
 		return null;
 	}*/
-	public Symbol getSymbol(String symbolName) {		
+	public Symbol getSymbol(String symbolName) {
+		if (symbolName == "WRITE"){
+			System.out.println("write:"+this.name);
+		}
+		if (symbolName == null){
+			return null;
+		}
 		for (Symbol symbol: this) {
 			if (symbol.getName().equals(symbolName)) {
 				return symbol;
@@ -49,6 +55,18 @@ public class SymbolTable extends ArrayList<Symbol> {
 		}
 		System.out.println("Error : "+symbolName+" doesn't exist");
 		return null;
+	}
+	public boolean checkType(String symbolName) {
+		for (Symbol symbol: this) {
+			if (symbol.getName().equals(symbolName)) {
+				return true;
+				
+			}
+		}
+		if (this.parent != null) {
+			return this.parent.checkType(symbolName);
+		}
+		return false;
 	}
 	
 	public void info() {
