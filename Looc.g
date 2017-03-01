@@ -35,7 +35,11 @@ program
     ;
 
 class_decl
-    :   'class' IDF_CLASS ('inherit' IDF_CLASS)? '=' '(' class_item_decl ')' -> ^(DECL_CLASS IDF_CLASS (IDF_CLASS)? class_item_decl)
+    :   'class' IDF_CLASS ('inherit' IDF_CLASS)? '=' '(' class_item_decl ')'
+    	{
+    		cls = new ClassSymbol($IDF_CLASS.text,"class",root);
+    	}
+    	-> ^(DECL_CLASS IDF_CLASS (IDF_CLASS)? class_item_decl)
     ;
 
 class_item_decl

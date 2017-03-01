@@ -18,6 +18,7 @@ import org.antlr.stringtemplate.StringTemplate;
 
 import main.antlr.LoocParser.program_return;
 import sun.reflect.generics.tree.Tree;
+import main.symbols.*;
 
 public class AST {
 	private CommonTree tree;
@@ -61,14 +62,14 @@ public class AST {
 
 	private static void fillExampleList() {
 		exampleList.add("class");
-		exampleList.add("read");
+		/*exampleList.add("read");
 		exampleList.add("prio");
 		exampleList.add("if");
 		exampleList.add("class");
 		exampleList.add("fonction");
 		exampleList.add("for");
 		exampleList.add("full_example");
-		exampleList.add("inheritance");
+		exampleList.add("inheritance");*/
 	}
 	
 	private static void initializeTestingOutput(String filepath) throws Exception {
@@ -76,7 +77,7 @@ public class AST {
 		tokens = new CommonTokenStream(lexer);
 		parser = new LoocParser(tokens);
 	}
-
+	
 	public static void main(String[] args) throws Exception {
 		AST.fillExampleList();
 		AST.dotTreeGenerator = new DOTTreeGenerator();
@@ -100,7 +101,8 @@ public class AST {
 			AST.fileWriter.flush();
 			AST.fileWriter.close();
 			
-			System.out.println("Should be OK for AST_" + example);
+			SymbolTableBuilder build = new SymbolTableBuilder(exampleAST.tree);
+			build.getSymboleTable().info();
 		}
 	}
 
