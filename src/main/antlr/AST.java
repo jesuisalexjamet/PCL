@@ -48,7 +48,7 @@ public class AST {
 		return this.tree;
 	}
 	
-	public AST fromLoocFile(String filepath) throws Exception {
+	public static AST fromLoocFile(String filepath) throws Exception {
 		AST result = new AST();
 		
 		LoocLexer lexer = new LoocLexer(new ANTLRFileStream(filepath));
