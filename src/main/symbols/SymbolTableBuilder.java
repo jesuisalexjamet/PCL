@@ -26,7 +26,11 @@ public class SymbolTableBuilder {
 		String type;
 		switch (txt) {
 		case "DECL_CLASS":
-			ClassSymbol cls = new ClassSymbol(children.get(0).getText(),ST);
+			String parentClass = children.get(1).getText();
+			if (!ST.checkType(parentClass)){
+				parentClass = null;
+			}
+			ClassSymbol cls = new ClassSymbol(children.get(0).getText(),ST,children.get(1).getText());
 			for (CommonTree child : children){
 				this.checkChild(child, cls.getChildSymbolTable());
 			}
