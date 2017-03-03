@@ -20,6 +20,8 @@ tokens {
     RETURN;
     OPER;
     READ;
+    METHOD_CALL;
+    ANONYM;
 }
 
 @header {
@@ -53,7 +55,7 @@ type
     ;
 
 method_decl
-    :   'method' IDF '(' method_args? (',' e=method_args)* ')'  (':' type)? '{'var_decl* instruction+ '}' -> ^(DECL_METHOD IDF method_args? ($e)* type? var_decl* instruction)
+    :   'method' IDF '(' method_args? (',' e=method_args)* ')'  (':' type)? '{'var_decl* instruction+ '}' -> ^(DECL_METHOD IDF method_args? ($e)* type? var_decl* instruction+)
     ;
 
 method_args
@@ -61,10 +63,10 @@ method_args
     ;
 
 instruction
-    :   IDF ':=' expression ';' -> ^(AFFECT IDF expression)
+    :   IDF ':=' expression  ';' -> ^(AFFECT IDF  expression)
     |   'if' expression 'then'  c=instruction+ ('else' d=instruction+)?'fi' -> ^(COND expression $c ($d)?)
-    |   'for' IDF 'in' g=expression '..' h=expression  'do' instruction+ 'end' -> ^(FOR IDF $g $h instruction)
-    |   '{'  var_decl* instruction+  '}' -> var_decl* instruction
+    |   'for' IDF 'in' g=expression '..' h=expression  'do' instruction+ 'end' -> ^(FOR IDF $g $h instruction+)
+    |   '{'  var_decl* instruction+  '}' -> var_decl* instruction+
     |   'do' expression_start '.' IDF '('expression (',' expression)* ')' ';' -> ^(DO expression_start IDF expression*)
     |   print
     |   read
@@ -92,24 +94,29 @@ expression
     :   '-' (IDF|CSTE_ENT)  ('.' IDF '(' expression (',' expression)* ')'|comparaison expression)?
     |   'this' ( '.' IDF '(' expression (',' expression)* ')')?
     |   'super' ( '.' IDF '(' expression (',' expression)* ')')?
-    |   oper* ( '.'! IDF ^'('! expression (','! expression)* ')'!|comparaison ^expression)?
+    |   compOper* ( '.'! IDF ^'('! expression (','! expression)* ')'!|comparaison ^expression)?
     |   'new'! IDF_CLASS
     |   CSTE_CHAINE
     ;
+    
+compOper
+	:	oper (('<='|'>='|'=='|'<'|'>') ^oper)*
+	;
+	
+oper
+    :   multOper (('+'|'-') ^multOper)*
+    ;
 
 multOper
-    :    /*e=atom {$value = $e.value;}*/
-        atom  (('/'|'*'|'%') ^atom)*
+    :     atom  (('/'|'*'|'%') ^atom)*
     ;
 
-oper
-    :   multOper (('+'|'-') ^multOper)*//{$value += $e.value;}
-    ;
+
 
 atom
     :   CSTE_ENT
     |   IDF
-    |  '(' expression ')'-> expression //{$value = $expression.value;}
+    |  '(' expression ')'-> expression 
     ;
 
 comparaison
