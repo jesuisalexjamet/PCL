@@ -12,6 +12,7 @@ public class SymbolTableBuilder {
 		new Primitive("class", root);
 		new Primitive("method", root);
 		new Primitive("void", root);
+		new Primitive("block", root);
 	}
 	public SymbolTable getSymboleTable(){
 		for (CommonTree child : (List<CommonTree>) this.tree.getChildren()){
@@ -48,6 +49,9 @@ public class SymbolTableBuilder {
 			for (CommonTree child : children){
 				this.checkChild(child, mtd.getChildSymbolTable());
 			}
+			break;
+		case "ANONYMOUS":
+			new AnonymousBlock(ST);
 			break;
 		case "DECL_VAR":
 			type = children.get(1).getText();
