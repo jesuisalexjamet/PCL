@@ -20,7 +20,6 @@ tokens {
     RETURN;
     OPER;
     READ;
-    METHOD_CALL;
     BODY;
 }
 
@@ -63,19 +62,17 @@ method_args
     ;
 
 instruction
-    :   IDF ':=' (expression | method_call )  ';' -> ^(AFFECT IDF  expression)
-    |   'if' expression 'then'  c=instruction+ ('else' d=instruction+)?'fi' -> ^(COND expression $c ($d)?)
+    :   IDF ':=' expression  ';' -> ^(AFFECT IDF  expression)
+    |   'if' expression  'then'  c=instruction+ ('else' d=instruction+)?'fi' -> ^(COND expression $c ($d)?)
     |   'for' IDF 'in' g=expression '..' h=expression  'do' instruction+ 'end' -> ^(FOR IDF $g $h instruction+)
     |   '{'  var_decl* instruction+  '}' -> ^(BODY var_decl* instruction+)
-    |   'do' method_call '('expression (',' expression)* ')' ';' -> ^(DO method_call expression*)
+    |   'do' expression_start '.' IDF '('expression (',' expression)* ')' ';' -> ^(DO expression_start IDF expression*)
     |   print
     |   read
     |   retour
     ;
     
     
-method_call
-	:	(expression_start '.')? IDF '('expression (',' expression)* ')' ->^(METHOD_CALL expression_start IDF)
 
 print
     :   'write' expression ';' -> ^(WRITE expression)
