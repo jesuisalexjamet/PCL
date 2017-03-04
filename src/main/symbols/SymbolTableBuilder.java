@@ -20,7 +20,7 @@ public class SymbolTableBuilder {
 		}
 		return this.root;
 	}
-	
+
 	private void checkChild(CommonTree parent,SymbolTable ST){
 		String txt = parent.getText();
 		List<CommonTree> children = parent.getChildren();
@@ -28,10 +28,10 @@ public class SymbolTableBuilder {
 		switch (txt) {
 		case "DECL_CLASS":
 			String parentClass = children.get(1).getText();
-			
+
 			ClassSymbol cls;
-			
-			if (!ST.checkType(parentClass)){				
+
+			if (!ST.checkType(parentClass)){
 				cls = new ClassSymbol(children.get(0).getText(), ST);
 			} else {
 				cls = new ClassSymbol(children.get(0).getText(),ST,parentClass);
@@ -54,12 +54,16 @@ public class SymbolTableBuilder {
 				this.checkChild(child, mtd.getChildSymbolTable());
 			}
 			break;
-		case "ANONYMOUS":
-			new AnonymousBlock(ST);
+		case "BODY":
+            AnonymousBlock anonymous = new AnonymousBlock(ST);
+
+            for (CommonTree child : children){
+                this.checkChild(child, anonymous.getChildSymbolTable());
+            }
 			break;
 		case "DECL_VAR":
 			type = children.get(1).getText();
-			
+
 			new Variable(children.get(0).getText(),type,ST);
 			break;
 		case "METHOD_ARGS":
