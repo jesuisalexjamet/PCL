@@ -62,7 +62,7 @@ method_args
     ;
 
 instruction
-    :   IDF ':=' expression  ';' -> ^(AFFECT IDF  expression)
+    :   IDF ':=' expression  ';' -> ^(AFFECT IDF  expression) 
     |   'if' expression  'then'  c=instruction+ ('else' d=instruction+)?'fi' -> ^(COND expression $c ($d)?)
     |   'for' IDF 'in' g=expression '..' h=expression  'do' instruction+ 'end' -> ^(FOR IDF $g $h instruction+)
     |   '{'  var_decl* instruction+  '}' -> ^(BODY var_decl* instruction+)
@@ -71,8 +71,8 @@ instruction
     |   read
     |   retour
     ;
-    
-    
+
+
 
 print
     :   'write' expression ';' -> ^(WRITE expression)
@@ -92,19 +92,17 @@ expression_start
     ;
 
 expression
-    :   '-' (IDF|CSTE_ENT)  ('.' IDF '(' expression (',' expression)* ')'|comparaison expression)?
-    |	
-    |   'this' ( '.' IDF '(' expression (',' expression)* ')')?
+    :   'this' ( '.' IDF '(' expression (',' expression)* ')')?
     |   'super' ( '.' IDF '(' expression (',' expression)* ')')?
-    |   compOper* ( '.'! IDF ^'('! expression (','! expression)* ')'!|comparaison ^expression)?
+    |   '-'? compOper* ( '.'! IDF ^'('! expression (','! expression)* ')'!)?
     |   'new'! IDF_CLASS
     |   CSTE_CHAINE
     ;
-    
+
 compOper
-	:	oper (('<='|'>='|'=='|'<'|'>') ^oper)*
+	:	oper (comparaison ^oper)*
 	;
-	
+
 oper
     :   multOper (('+'|'-') ^multOper)*
     ;
@@ -118,7 +116,7 @@ multOper
 atom
     :   CSTE_ENT
     |   IDF
-    |  '(' expression ')'-> expression 
+    |  '(' expression ')'-> expression
     ;
 
 comparaison
