@@ -8,15 +8,22 @@ public class ClassSymbol extends Symbol {
 		this.parentClass = (ClassSymbol) parentSymbolTable.getSymbol(parentClass);
 		this.childSymbolTable = new SymbolTable(this.parentSymbolTable,name);
 	}
+
 	public ClassSymbol(String name, SymbolTable parentSymbolTable) {
 		super(name, "class", parentSymbolTable);
 		this.parentClass = null;
 		this.childSymbolTable = new SymbolTable(this.parentSymbolTable,name);
 	}
+
+    public ClassSymbol getParentClass() {
+        return this.parentClass;
+    }
+
 	@Override
 	public SymbolTable getChildSymbolTable() {
 		return this.childSymbolTable;
 	}
+    
 	@Override
 	public String toString() {
 		if (parentClass == null){
