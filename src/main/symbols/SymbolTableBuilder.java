@@ -31,7 +31,7 @@ public class SymbolTableBuilder {
 
 			ClassSymbol cls;
 
-			if (!ST.checkType(parentClass)){
+			if (!ST.symbolExists(parentClass)){
 				cls = new ClassSymbol(children.get(0).getText(), ST);
 			} else {
 				cls = new ClassSymbol(children.get(0).getText(),ST,parentClass);
@@ -46,7 +46,7 @@ public class SymbolTableBuilder {
 				count +=1;
 			}
 			type = children.get(count).getText();
-			if (!ST.checkType(type)){
+			if (!ST.symbolExists(type)){
 				type = "void";
 			}
 			Method mtd = new Method(children.get(0).getText(),ST,count-1,type);

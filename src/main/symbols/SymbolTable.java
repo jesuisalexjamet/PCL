@@ -42,7 +42,7 @@ public class SymbolTable extends ArrayList<Symbol> {
 		return null;
 	}
 
-	public boolean checkType(String symbolName) {
+	public boolean symbolExists(String symbolName) {
         ClassSymbol parentClassSymbol;
 
 		if (this.symbolParent instanceof ClassSymbol && (parentClassSymbol = ((ClassSymbol) this.symbolParent).getParentClass()) != null) {
@@ -58,7 +58,7 @@ public class SymbolTable extends ArrayList<Symbol> {
 		}
 
 		if (this.parent != null) {
-			return this.parent.checkType(symbolName);
+			return this.parent.symbolExists(symbolName);
 		}
 		return false;
 	}
