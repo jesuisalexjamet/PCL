@@ -8,6 +8,7 @@ options {
 
 tokens {
     ROOT;
+    ARGS;
     DECL_CLASS;
     DECL_VAR;
     DECL_METHOD;
@@ -15,10 +16,13 @@ tokens {
     COND;
     FOR;
     DO;
+    SUPER;
     AFFECT;
     WRITE;
+    THIS;
     RETURN;
     OPER;
+    METHOD_CALL;
     READ;
     BODY;
 }
@@ -62,11 +66,11 @@ method_args
     ;
 
 instruction
-    :   IDF ':=' expression  ';' -> ^(AFFECT IDF  expression) 
+    :   expression ':=' expression  ';' -> ^(AFFECT expression expression)
     |   'if' expression  'then'  c=instruction+ ('else' d=instruction+)?'fi' -> ^(COND expression $c ($d)?)
     |   'for' IDF 'in' g=expression '..' h=expression  'do' instruction+ 'end' -> ^(FOR IDF $g $h instruction+)
     |   '{'  var_decl* instruction+  '}' -> ^(BODY var_decl* instruction+)
-    |   'do' expression_start '.' IDF '('expression (',' expression)* ')' ';' -> ^(DO expression_start IDF expression*)
+    |   'do' expression_start '.' IDF '(' expression ( ',' expression)* ')' ';' -> ^(DO expression_start IDF ^(ARGS expression*)? ) 
     |   print
     |   read
     |   retour
@@ -85,6 +89,7 @@ retour
     :   'return' '(' expression ')' ';' -> ^(RETURN expression)
     ;
 
+
 expression_start
     :   IDF
     |   'this'
@@ -92,12 +97,16 @@ expression_start
     ;
 
 expression
-    :   'this' ( '.' IDF '(' expression (',' expression)* ')')?
-    |   'super' ( '.' IDF '(' expression (',' expression)* ')')?
-    |   '-'? compOper* ( '.'! IDF ^'('! expression (','! expression)* ')'!)?
+    :   'this' '.' IDF ('(' expression (',' expression)* ')')?  -> ^(THIS IDF expression*)
+    |   'super'  '.' IDF ('(' expression (',' expression)* ')')? -> ^(SUPER IDF expression*)
+    |   '-'?  compOper* ( -> compOper*
+   						| '.' IDF '(' expression (',' expression)* ')' -> ^(METHOD_CALL compOper? IDF ^(ARGS expression*)? ) 
+    )
     |   'new'! IDF_CLASS
     |   CSTE_CHAINE
     ;
+    
+ 
 
 compOper
 	:	oper (comparaison ^oper)*
@@ -116,7 +125,7 @@ multOper
 atom
     :   CSTE_ENT
     |   IDF
-    |  '(' expression ')'-> expression
+    |  '(' expression (','expression)* ')' ->  expression*
     ;
 
 comparaison
