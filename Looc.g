@@ -66,11 +66,15 @@ method_args
     ;
 
 instruction
-    :   expression ':=' expression  ';' -> ^(AFFECT expression expression)
+    :   expression ':=' expression ';'   -> ^(AFFECT expression expression)
     |   'if' expression  'then'  c=instruction+ ('else' d=instruction+)?'fi' -> ^(COND expression $c ($d)?)
     |   'for' IDF 'in' g=expression '..' h=expression  'do' instruction+ 'end' -> ^(FOR IDF $g $h instruction+)
     |   '{'  var_decl* instruction+  '}' -> ^(BODY var_decl* instruction+)
-    |   'do' expression_start '.' IDF '(' expression ( ',' expression)* ')' ';' -> ^(DO expression_start IDF ^(ARGS expression*)? ) 
+    |   'do' (
+    		  'this' 
+    		| 'super'
+    		| IDF
+    		) '.' IDF '(' expression ( ',' expression)* ')' ';' -> ^(DO 'this'? 'super'? IDF* ^(ARGS expression*)? ) 
     |   print
     |   read
     |   retour
@@ -90,20 +94,17 @@ retour
     ;
 
 
-expression_start
-    :   IDF
-    |   'this'
-    |   'super'
-    ;
+
 
 expression
-    :   'this' '.' IDF ('(' expression (',' expression)* ')')?  -> ^(THIS IDF expression*)
+    :   'this' '.' IDF ('(' expression (',' expression)* ')')?   -> ^(THIS IDF expression*)
     |   'super'  '.' IDF ('(' expression (',' expression)* ')')? -> ^(SUPER IDF expression*)
-    |   '-'?  compOper* ( -> compOper*
-   						| '.' IDF '(' expression (',' expression)* ')' -> ^(METHOD_CALL compOper? IDF ^(ARGS expression*)? ) 
-    )
-    |   'new'! IDF_CLASS
-    |   CSTE_CHAINE
+    |  '-'?  compOper*  -> compOper*
+   						//| '.' IDF '(' expression (',' expression)* ')'  -> ^(METHOD_CALL compOper? IDF ^(ARGS expression*)?  ) 
+    					
+    
+    |   'new'! IDF_CLASS 
+    |   CSTE_CHAINE 
     ;
     
  
@@ -124,8 +125,12 @@ multOper
 
 atom
     :   CSTE_ENT
-    |   IDF
-    |  '(' expression (','expression)* ')' ->  expression*
+    |   
+    	//'this' '.' IDF ('(' expression (',' expression)* ')')?   -> ^(METHOD_CALL 'this'  IDF ^(ARGS expression*)?  )
+    	//| 'super' '.' IDF ('(' expression (',' expression)* ')')?  -> ^(METHOD_CALL 'super'  IDF ^(ARGS expression*)?  ) 
+    	 IDF ( -> IDF | '.' IDF ('(' expression (',' expression)* ')')?  -> ^(METHOD_CALL IDF  IDF ^(ARGS expression*)?  ) )
+    	 
+    |  '(' expression ')' ->  expression
     ;
 
 comparaison
