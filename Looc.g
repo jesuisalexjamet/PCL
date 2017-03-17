@@ -29,10 +29,35 @@ tokens {
 
 @header {
     package main.antlr;
+    
+    import main.antlr.errors.*;
 }
 
 @lexer::header {
     package main.antlr;
+}
+
+@members {
+	private AbstractSyntaxErrorReporter syntaxErrorReporter = null;
+	
+	public void setErrorReporter(AbstractSyntaxErrorReporter errorReporter) {
+		this.syntaxErrorReporter = errorReporter;
+	}
+	
+	public AbstractSyntaxErrorReporter getErrorReporter() {
+		return this.syntaxErrorReporter;
+	}
+	
+	public void emitErrorMessage(String message) {
+		this.syntaxErrorReporter.reportError(message);
+	}
+	
+	public void displayRecognitionError(String[] tokenNames,
+										RecognitionException e) {
+		String message = "Error on token: '" + e.token.getText() + "' <line: " + e.line + ", column: " + e.charPositionInLine + "> " + getErrorMessage(e, tokenNames);
+		
+		this.syntaxErrorReporter.reportError(message);
+	}
 }
 
 program

@@ -17,6 +17,8 @@ import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.stringtemplate.StringTemplate;
 
 import main.antlr.LoocParser.program_return;
+import main.antlr.errors.AbstractSyntaxErrorReporter;
+import main.antlr.errors.StdErrSyntaxErrorReporter;
 import sun.reflect.generics.tree.Tree;
 import main.symbols.*;
 
@@ -26,6 +28,7 @@ public class AST {
 	private static LoocLexer lexer;
 	private static CommonTokenStream tokens;
 	private static LoocParser parser;
+	private static AbstractSyntaxErrorReporter syntaxErrorReporter;
 	private static DOTTreeGenerator dotTreeGenerator;
 	private static File out;
 	private static FileWriter fileWriter;
@@ -55,7 +58,11 @@ public class AST {
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		LoocParser parser = new LoocParser(tokens);
 		
+		parser.setErrorReporter(new StdErrSyntaxErrorReporter());
+		
 		result.setTree((CommonTree) parser.program().getTree());
+		
+		parser.getErrorReporter().output();
 		
 		return result;
 	}
@@ -76,6 +83,10 @@ public class AST {
 		lexer = new LoocLexer(new ANTLRFileStream(filepath));
 		tokens = new CommonTokenStream(lexer);
 		parser = new LoocParser(tokens);
+		
+		syntaxErrorReporter = new StdErrSyntaxErrorReporter();
+		
+		parser.setErrorReporter(syntaxErrorReporter);
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -91,6 +102,8 @@ public class AST {
 		for (String example: AST.exampleList) {
 			AST.initializeTestingOutput("tests/" + example + ".looc");
 			exampleAST.setTree((CommonTree) AST.parser.program().getTree());
+			
+			syntaxErrorReporter.output();
 			
 			StringTemplate st = AST.dotTreeGenerator.toDOT(exampleAST.getTree());
 			
