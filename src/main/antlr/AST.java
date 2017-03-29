@@ -118,6 +118,7 @@ public class AST {
 			
 			SymbolTableBuilder build = new SymbolTableBuilder(exampleAST.tree,semanticErrorReporter);
 			build.getSymboleTable().info();
+			semanticErrorReporter.output();
 		}
 	}
 
