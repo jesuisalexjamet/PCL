@@ -1,0 +1,8 @@
+var a : int;
+var b : int;
+
+a := 10;
+b := 0;
+
+write a/0;
+write a/b;

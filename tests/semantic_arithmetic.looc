@@ -1,0 +1,18 @@
+class Foo = (
+    method foo() : string {
+      
+      return ("Hello world !");
+    }
+
+    method bar() : int {
+        return (0);
+    }
+)
+
+var x: int;
+var foo: Foo;
+
+foo := new Foo;
+
+x := 5 + foo.foo();
+x := 5 + foo.bar();
