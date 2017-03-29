@@ -158,7 +158,7 @@ On aurait donc cette représentation mémoire pour une instance de la classe `Fo
 De même pour une instance de la classe `Foo`:
 
 | Attributs | Type | Déplacement | Taille en mémoire |
-| --- | --- | --- |
+| --- | --- | --- | --- |
 | a | int | 0 octets | 2 octets |
 | b | int | 2 octets | 2 octets |
 | c | int | 4 octets | 2 octets |
