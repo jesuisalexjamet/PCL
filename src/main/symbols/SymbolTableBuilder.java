@@ -1,7 +1,7 @@
 package main.symbols;
+import main.symbols.controls.*;
 import java.util.*;
 import org.antlr.runtime.tree.CommonTree;
-
 import main.antlr.errors.AbstractSemanticErrorReporter;
 public class SymbolTableBuilder {
 	private CommonTree tree;
@@ -29,6 +29,7 @@ public class SymbolTableBuilder {
 		String txt = parent.getText();
 		List<CommonTree> children = parent.getChildren();
 		String type;
+		
 		switch (txt) {
 		case "DECL_CLASS":
 			String parentClass = children.get(1).getText();
@@ -73,6 +74,36 @@ public class SymbolTableBuilder {
 		case "METHOD_ARGS":
 			type = children.get(1).getText();
 			new Variable(children.get(0).getText(),type,ST);
+			break;
+		case "/":
+			CheckArithmetique.checkOperation(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			break;
+		case "*":
+			CheckArithmetique.checkOperation(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			break;
+		case "-":
+			CheckArithmetique.checkOperation(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			break;
+		case "+":
+			CheckArithmetique.checkOperation(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			break;
+		case ">":
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			break;
+		case "<":
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			break;
+		case ">=":
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			break;
+		case "<=":
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			break;
+		case "==":
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			break;
+		case "!=":
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter);
 			break;
 		default:
 			break;
