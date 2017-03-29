@@ -17,7 +17,9 @@ import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.stringtemplate.StringTemplate;
 
 import main.antlr.LoocParser.program_return;
+import main.antlr.errors.AbstractSemanticErrorReporter;
 import main.antlr.errors.AbstractSyntaxErrorReporter;
+import main.antlr.errors.StdErrSemanticErrorReporter;
 import main.antlr.errors.StdErrSyntaxErrorReporter;
 import sun.reflect.generics.tree.Tree;
 import main.symbols.*;
@@ -29,6 +31,7 @@ public class AST {
 	private static CommonTokenStream tokens;
 	private static LoocParser parser;
 	private static AbstractSyntaxErrorReporter syntaxErrorReporter;
+	private static AbstractSemanticErrorReporter semanticErrorReporter;
 	private static DOTTreeGenerator dotTreeGenerator;
 	private static File out;
 	private static FileWriter fileWriter;
@@ -85,7 +88,7 @@ public class AST {
 		parser = new LoocParser(tokens);
 		
 		syntaxErrorReporter = new StdErrSyntaxErrorReporter();
-		
+		semanticErrorReporter = new StdErrSemanticErrorReporter();
 		parser.setErrorReporter(syntaxErrorReporter);
 	}
 	
@@ -106,7 +109,6 @@ public class AST {
 			syntaxErrorReporter.output();
 			
 			StringTemplate st = AST.dotTreeGenerator.toDOT(exampleAST.getTree());
-			
 			AST.out = new File("AST/AST_" + example + ".dot");
 			AST.fileWriter = new FileWriter(AST.out);
 			AST.printWriter = new PrintWriter(AST.fileWriter);
@@ -114,7 +116,7 @@ public class AST {
 			AST.fileWriter.flush();
 			AST.fileWriter.close();
 			
-			SymbolTableBuilder build = new SymbolTableBuilder(exampleAST.tree);
+			SymbolTableBuilder build = new SymbolTableBuilder(exampleAST.tree,semanticErrorReporter);
 			build.getSymboleTable().info();
 		}
 	}

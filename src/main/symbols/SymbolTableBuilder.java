@@ -1,10 +1,14 @@
 package main.symbols;
 import java.util.*;
 import org.antlr.runtime.tree.CommonTree;
+
+import main.antlr.errors.AbstractSemanticErrorReporter;
 public class SymbolTableBuilder {
 	private CommonTree tree;
 	private SymbolTable root;
-	public SymbolTableBuilder(CommonTree tree){
+	private AbstractSemanticErrorReporter reporter;
+	public SymbolTableBuilder(CommonTree tree,AbstractSemanticErrorReporter semanticErrorReporter){
+		this.reporter = semanticErrorReporter;
 		this.tree = tree;
 		root = new SymbolTable(null, "Root");
 		new Primitive("int", root);
