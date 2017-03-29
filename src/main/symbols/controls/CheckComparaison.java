@@ -8,7 +8,7 @@ import main.symbols.SymbolTable;
 public abstract class CheckComparaison {
 	public static void checkComparaison(String left, String right, SymbolTable ST, AbstractSemanticErrorReporter reporter) {
 
-		if (!left.matches("-?[0:9]+")) {
+		if (!left.matches("-?[0-9]+")) {
 			Symbol leftSymbol = ST.getSymbol(left);
 			if (leftSymbol == null) {
 				reporter.reportError("Left operand doesn't exist");
@@ -18,7 +18,7 @@ public abstract class CheckComparaison {
 			}
 			
 		}
-		if (!right.matches("-?[0:9]+")) {
+		if (!right.matches("-?[0-9]+")) {
 			Symbol rightSymbol = ST.getSymbol(right);
 			if (rightSymbol == null) {
 				reporter.reportError("Right operand doesn't exist");

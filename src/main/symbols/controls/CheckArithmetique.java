@@ -8,7 +8,7 @@ import main.symbols.SymbolTable;
 public abstract class CheckArithmetique {
 	
 	public static void checkOperation(String left, String right, SymbolTable ST, AbstractSemanticErrorReporter reporter) {
-		if (!left.matches("-?[0:9]+")) {
+		if (!left.matches("-?[0-9]+")) {
 			Symbol leftSymbol = ST.getSymbol(left);
 			if (leftSymbol == null) {
 				reporter.reportError("Left operand doesn't exist");
@@ -17,7 +17,7 @@ public abstract class CheckArithmetique {
 				reporter.reportError("Left operand is not an int");
 			}
 		}
-		if (!right.matches("-?[0:9]+")) {
+		if (!right.matches("-?[0-9]+")) {
 			Symbol rightSymbol = ST.getSymbol(right);
 			if (rightSymbol == null) {
 				reporter.reportError("Right operand doesn't exist");
