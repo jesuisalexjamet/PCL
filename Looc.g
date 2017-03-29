@@ -91,7 +91,7 @@ method_args
     ;
 
 instruction
-    :   expression ':=' expression ';'   -> ^(AFFECT expression expression)
+    :   expression ':=' (expression  -> ^(AFFECT expression expression)| 'nil' -> ^(AFFECT expression 'nil')) ';'   
     |   'if' expression  'then'  c=instruction+ ('else' d=instruction+)?'fi' -> ^(COND expression $c ($d)?)
     |   'for' IDF 'in' g=expression '..' h=expression  'do' instruction+ 'end' -> ^(FOR IDF $g $h instruction+)
     |   '{'  var_decl* instruction+  '}' -> ^(BODY var_decl* instruction+)
