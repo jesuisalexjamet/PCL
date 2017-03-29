@@ -1,0 +1,33 @@
+class Foo = (
+    method toString() : string {
+        return ("Foo");
+    }
+
+    method bar2() : int {
+        return (0);
+    }
+)
+
+class Bar inherit Foo = (
+  method toString() : string {
+    return ("Bar");
+  }
+)
+
+var x: int;
+var foo: Foo;
+
+var a: Foo;
+var b: Bar;
+
+a := new Bar;
+b := new Foo;
+
+foo := 4;
+foo := new Foo;
+
+x := "Hello World !";
+x := foo.bar();
+
+x := 10;
+x := foo.bar2();
