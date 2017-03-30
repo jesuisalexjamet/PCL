@@ -20,17 +20,18 @@ public class SymbolTableBuilder {
 	}
 	public SymbolTable getSymboleTable(){
 		for (CommonTree child : (List<CommonTree>) this.tree.getChildren()){
-			this.checkChild(child, root);
-		}
+			this.checkChild(child, root);		
+			}
 		return this.root;
 	}
 
 	private void checkChild(CommonTree parent,SymbolTable ST){
 		String txt = parent.getText();
 		List<CommonTree> children = parent.getChildren();
-		String type;
 		
+		String type;
 		switch (txt) {
+		
 		case "DECL_CLASS":
 			String parentClass = children.get(1).getText();
 
@@ -107,6 +108,12 @@ public class SymbolTableBuilder {
 			break;
 		default:
 			break;
+		}
+		
+		if (children != null) {
+			for (CommonTree child : children){
+				this.checkChild(child, ST);		
+			}
 		}
 	}
 
