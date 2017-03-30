@@ -71,7 +71,13 @@ public class AST {
 	}
 
 	private static void fillExampleList() {
-		exampleList.add("class");
+		/*exampleList.add("class");
+		exampleList.add("semantic_affectation");
+		exampleList.add("semantic_arithmetic");
+		exampleList.add("semantic_div0");
+		exampleList.add("semantic_loop");*/
+		exampleList.add("semantic_method");
+		//exampleList.add("test");
 		/*exampleList.add("read");
 		exampleList.add("prio");
 		exampleList.add("if");
