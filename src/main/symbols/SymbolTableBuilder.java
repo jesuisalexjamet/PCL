@@ -112,7 +112,8 @@ public class SymbolTableBuilder {
 		
 		if (children != null) {
 			for (CommonTree child : children){
-				this.checkChild(child, ST);		
+				if (!child.getText().equals("BODY") && !child.getText().equals("DECL_CLASS") && !child.getText().equals("DECL_METHOD")) 
+					this.checkChild(child, ST);		
 			}
 		}
 	}
