@@ -76,7 +76,7 @@ public class AST {
 		exampleList.add("semantic_arithmetic");
 		exampleList.add("semantic_div0");
 		exampleList.add("semantic_loop");*/
-		exampleList.add("semantic_method");
+		exampleList.add("semantic_arithmetic");
 		//exampleList.add("test");
 		/*exampleList.add("read");
 		exampleList.add("prio");
@@ -96,6 +96,7 @@ public class AST {
 		syntaxErrorReporter = new StdErrSyntaxErrorReporter();
 		semanticErrorReporter = new StdErrSemanticErrorReporter();
 		parser.setErrorReporter(syntaxErrorReporter);
+		parser.setErrorReporter(semanticErrorReporter);
 	}
 	
 	public static void main(String[] args) throws Exception {

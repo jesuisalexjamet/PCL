@@ -58,6 +58,27 @@ tokens {
 		
 		this.syntaxErrorReporter.reportError(message);
 	}
+	private AbstractSemanticErrorReporter semanticErrorReporter = null;
+    	
+    	public void setErrorReporter(AbstractSemanticErrorReporter errorReporter) {
+    		this.semanticErrorReporter = errorReporter;
+    	}
+    	
+    	public AbstractSemanticErrorReporter getSemanticErrorReporter() {
+    		return this.semanticErrorReporter;
+    	}
+    	
+    	public void semanticErrorMessage(String message) {
+    		this.semanticErrorReporter.reportError(message);
+    	}
+    	
+    	public void displaySemanticError(String[] tokenNames,
+    										RecognitionException e) {
+    		String message = "Error on token: '" + e.token.getText() + "' <line: " + e.line + ", column: " + e.charPositionInLine + "> " + getErrorMessage(e, tokenNames);
+    		
+    		this.semanticErrorReporter.reportError(message);
+    	}
+
 }
 
 program
