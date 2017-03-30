@@ -8,22 +8,22 @@ import main.symbols.SymbolTable;
 public abstract class CheckArithmetique {
 	
 	public static void checkOperation(String left, String right, SymbolTable ST, AbstractSemanticErrorReporter reporter) {
-		if (!left.matches("-?[0-9]+")) {
+		if (!(left.matches("-?[0-9]+"))) {
+			CheckDeclaration.checkVariableExistence(left, ST, reporter);
 			Symbol leftSymbol = ST.getSymbol(left);
-			if (leftSymbol == null) {
-				reporter.reportError("Left operand doesn't exist");
-			}
-			else if (!(leftSymbol.getType().getName().equals("int"))) {
-				reporter.reportError("Left operand is not an int");
+			if (leftSymbol !=null) {
+				if (!(leftSymbol.getType().getName().equals("int"))) {
+					reporter.reportError("Left operand is not an int");
+				}
 			}
 		}
-		if (!right.matches("-?[0-9]+")) {
+		if (!(right.matches("-?[0-9]+"))) {
+			CheckDeclaration.checkVariableExistence(right, ST, reporter);
 			Symbol rightSymbol = ST.getSymbol(right);
-			if (rightSymbol == null) {
-				reporter.reportError("Right operand doesn't exist");
-			}
-			else if (!(rightSymbol.getType().getName().equals("int"))) {
-				reporter.reportError("Right operand is not an int");
+			if (rightSymbol != null) {
+				if (!(rightSymbol.getType().getName().equals("int"))) {
+					reporter.reportError("Right operand is not an int");
+				}
 			}
 		}	
 	}
