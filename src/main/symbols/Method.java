@@ -14,6 +14,11 @@ public class Method extends Symbol {
 		this.argCount = argCount;
 		this.childSymbolTable = new SymbolTable(this.parentSymbolTable,name);
 		this.returnType = this.parentSymbolTable.getSymbol(returnType);
+		this.arg = this.returnType;
+	}
+	
+	public Symbol getReturnType() {
+		return this.returnType;
 	}
 	
 	@Override
