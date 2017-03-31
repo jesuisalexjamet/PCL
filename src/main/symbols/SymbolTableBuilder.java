@@ -106,6 +106,11 @@ public class SymbolTableBuilder {
 		case "!=":
 			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
+		case "AFFECT":
+			String left = children.get(0).getText();
+			String right = children.get(1).getText();
+			CheckAffectation.checkAffectation(left, right, ST, reporter);
+			break;
 		default:
 			break;
 		}
