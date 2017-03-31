@@ -73,7 +73,8 @@ public class SymbolTable extends ArrayList<Symbol> {
 		System.out.println("\n===========TDS :"+ this.name + "==========");
 		
 		for (Symbol symbol: this) {
-			System.out.println(symbol);
+			if (symbol.getType() != null)
+				System.out.println(symbol);
 		}
 		
 		System.out.println("===============================\n");

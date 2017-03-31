@@ -77,34 +77,34 @@ public class SymbolTableBuilder {
 			new Variable(children.get(0).getText(),type,ST);
 			break;
 		case "/":
-			CheckArithmetique.checkOperation(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		case "*":
-			CheckArithmetique.checkOperation(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		case "-":
-			CheckArithmetique.checkOperation(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		case "+":
-			CheckArithmetique.checkOperation(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		case ">":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		case "<":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		case ">=":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		case "<=":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		case "==":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		case "!=":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter);
+			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		default:
 			break;
