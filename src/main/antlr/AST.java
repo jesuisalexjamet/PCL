@@ -31,12 +31,13 @@ public class AST {
 	private static CommonTokenStream tokens;
 	private static LoocParser parser;
 	private static AbstractSyntaxErrorReporter syntaxErrorReporter;
-	private static AbstractSemanticErrorReporter semanticErrorReporter;
 	private static DOTTreeGenerator dotTreeGenerator;
 	private static File out;
 	private static FileWriter fileWriter;
 	private static PrintWriter printWriter;
 	private static List<String> exampleList=new ArrayList<String>();
+
+	private static AbstractSemanticErrorReporter semanticErrorReporter;
 	
 	public AST() {
 		this.tree = null;
@@ -94,9 +95,7 @@ public class AST {
 		parser = new LoocParser(tokens);
 		
 		syntaxErrorReporter = new StdErrSyntaxErrorReporter();
-		semanticErrorReporter = new StdErrSemanticErrorReporter();
 		parser.setErrorReporter(syntaxErrorReporter);
-		parser.setErrorReporter(semanticErrorReporter);
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -123,6 +122,7 @@ public class AST {
 			AST.fileWriter.flush();
 			AST.fileWriter.close();
 			
+			semanticErrorReporter = new StdErrSemanticErrorReporter();
 			SymbolTableBuilder build = new SymbolTableBuilder(exampleAST.tree,semanticErrorReporter);
 			build.getSymboleTable().info();
 			semanticErrorReporter.output();

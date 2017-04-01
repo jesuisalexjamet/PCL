@@ -24,6 +24,10 @@ public class SymbolTableBuilder {
 			}
 		return this.root;
 	}
+	
+	public AbstractSemanticErrorReporter getErrorReporter() {
+		return this.reporter;
+	}
 
 	private void checkChild(CommonTree parent,SymbolTable ST){
 		String txt = parent.getText();
@@ -105,11 +109,6 @@ public class SymbolTableBuilder {
 			break;
 		case "!=":
 			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
-			break;
-		case "AFFECT":
-			String left = children.get(0).getText();
-			String right = children.get(1).getText();
-			CheckAffectation.checkAffectation(left, right, ST, reporter);
 			break;
 		default:
 			break;
