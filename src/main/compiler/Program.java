@@ -9,6 +9,7 @@ import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.stringtemplate.StringTemplate;
 
 import main.antlr.AST;
+import main.antlr.errors.StdErrSemanticErrorReporter;
 import main.symbols.SymbolTable;
 import main.symbols.SymbolTableBuilder;
 
@@ -45,13 +46,16 @@ public class Program {
 	}
 	
 	public void processSymbolTable() {
-		SymbolTableBuilder builder = new SymbolTableBuilder(this.abstratTree.getTree());
+		StdErrSemanticErrorReporter errorReporter = new StdErrSemanticErrorReporter();
+		SymbolTableBuilder builder = new SymbolTableBuilder(this.abstratTree.getTree(), errorReporter);
 		
 		this.symbolTable = builder.getSymboleTable();
 		
 		if (this.outputTDS) {
 			this.outputSymbolTable();
 		}
+		
+		errorReporter.output();
 	}
 	
 	public void outputAbstractTree() throws IOException {
