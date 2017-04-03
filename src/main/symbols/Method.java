@@ -20,7 +20,9 @@ public class Method extends Symbol {
 	public Symbol getReturnType() {
 		return this.returnType;
 	}
-	
+	public int getArgCount(){
+		return this.argCount;
+	}
 	@Override
 	public SymbolTable getChildSymbolTable() {
 		return this.childSymbolTable;
