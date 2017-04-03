@@ -12,7 +12,7 @@ import java.util.List;
 import org.antlr.runtime.tree.CommonTree;
 public abstract class CheckMethod {
 	public static void checkDO(List<CommonTree> tree ,SymbolTable ST, AbstractSemanticErrorReporter reporter){
-		Symbol sClass = ST.getSymbol(tree.get(0).getText());
+		Symbol sClass=  ST.getSymbol(ST.getSymbol(tree.get(0).getText()).getType().getName());
 		if (sClass == null){
 			reporter.reportError("Class {} doesn't exist".format(tree.get(0).getText()));
 			return;
