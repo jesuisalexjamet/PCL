@@ -19,12 +19,8 @@ public abstract class CheckComparaison {
 			CheckComparaison.checkComparaison(leftChild.get(0).getText(), leftChild.get(1).getText(), ST, reporter, leftChild.get(0).getChildren(), leftChild.get(1).getChildren());
 		}
 		else if (left.equals("METHOD_CALL")) {
-			ClassSymbol classe= (ClassSymbol) ST.getSymbol(ST.getSymbol(leftChild.get(0).getText()).getType().getName());
-			Symbol method=classe.getChildSymbolTable().getSymbol(leftChild.get(1).getText());
-			Symbol type=method.getArg();
-			
-			if (type != null && !type.getName().equals("int")) {
-				reporter.reportError(method.getName()+ " is a method which does not return an int");
+			if (!CheckMethod.checkReturn(leftChild ,ST, reporter).equals("int")) {
+				reporter.reportError( "this method does not return an int");
 			}
 		}
 		else if (!(left.matches("-?[0-9]+"))) {
