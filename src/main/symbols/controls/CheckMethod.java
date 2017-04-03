@@ -34,9 +34,38 @@ public abstract class CheckMethod {
 		}
 		Method mtd = (Method) sMethod;
 		int arg = mtd.getArgCount();
-		int size = tree.size();
-		if (size-2 != arg){
-			reporter.reportError("Method {} needs {} arguments but {} given.".format(tree.get(1).getText(),arg,size));
+		int size = 0;
+		if (tree.size()>2)
+			size = tree.get(2).getChildren().size();
+		if (size != arg){
+			//reporter.reportError("Method {} needs {} arguments but {} given.".format(tree.get(1).getText(),arg,size));
+			reporter.reportError("Method "+ tree.get(1).getText() +" needs "+arg+ " arguments but "+size+ " given.");
 		}
+	}
+	
+	
+	public static String checkReturn(List<CommonTree> tree ,SymbolTable ST, AbstractSemanticErrorReporter reporter){
+		if (tree != null) {
+			Symbol classe= ST.getSymbol(ST.getSymbol(tree.get(0).getText()).getType().getName());
+			if (classe != null) {
+				Symbol method=classe.getChildSymbolTable().getSymbol(tree.get(1).getText());
+				if (method != null) {
+					Symbol type=method.getArg();
+					if (type != null) {
+						return(type.getName()) ;
+					}
+				}
+			}
+		}
+		return null;
+			
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }

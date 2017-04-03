@@ -31,6 +31,9 @@ public abstract class CheckAffectation {
 				CheckComparaison.checkComparaison(rightChild.get(0).getText(), rightChild.get(1).getText(), ST, reporter, rightChild.get(0).getChildren(), rightChild.get(1).getChildren());
 			}
 			else if (right.equals("METHOD_CALL")){
+				if (CheckMethod.checkReturn(rightChild ,ST, reporter)!=null && !CheckMethod.checkReturn(rightChild ,ST, reporter).equals(leftSymbol.getType().getName())) {
+					reporter.reportError( "The method does not return the type of "+leftSymbol.getName());
+				}
 				CheckMethod.checkDO(rightChild, ST, reporter);
 			}
 			else if (right.matches("\"[a-zA-Z0-9]*\"")) {
@@ -40,7 +43,6 @@ public abstract class CheckAffectation {
 			}
 			else {
 				Symbol rightSymbol = ST.getSymbol(right);
-				System.out.println(leftSymbol.getType().getName()+"  "+rightSymbol.getType().getName());
 				if (rightSymbol.getType().getName().equals("class") && !leftSymbol.getType().getName().equals(rightSymbol.getName())) {
 					reporter.reportError(left + " and " + right + " are not the same type");
 				}
