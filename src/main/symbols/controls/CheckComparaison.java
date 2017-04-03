@@ -12,7 +12,7 @@ import main.symbols.ClassSymbol;
 import main.symbols.Method;
 import main.symbols.Symbol;
 import main.symbols.SymbolTable;
-
+// Made by Antoine Choné
 public abstract class CheckComparaison {
 	public static void checkComparaison(String left, String right, SymbolTable ST, AbstractSemanticErrorReporter reporter,List<CommonTree> leftChild,List<CommonTree> rightChild) {
 		if (left.equals("METHOD_CALL")) {
