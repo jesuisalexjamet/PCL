@@ -71,6 +71,11 @@ public class SymbolTableBuilder {
                 this.checkChild(child, anonymous.getChildSymbolTable());
             }
 			break;
+		case "AFFECT":
+			 String left = children.get(0).getText();
+			 String right = children.get(1).getText();
+			 CheckAffectation.checkAffectation(left, right, ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
+			 break;
 		case "DECL_VAR":
 			type = children.get(1).getText();
 
@@ -83,7 +88,7 @@ public class SymbolTableBuilder {
 		case "DO":
 			CheckMethod.checkDO(children, ST, reporter);
 			break;
-		case "/":
+		/*case "/":
 			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		case "*":
@@ -114,7 +119,7 @@ public class SymbolTableBuilder {
 			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		default:
-			break;
+			break;*/
 		}
 		
 		if (children != null) {

@@ -15,13 +15,16 @@ import main.symbols.SymbolTable;
 // Made by Antoine Choné
 public abstract class CheckComparaison {
 	public static void checkComparaison(String left, String right, SymbolTable ST, AbstractSemanticErrorReporter reporter,List<CommonTree> leftChild,List<CommonTree> rightChild) {
-		if (left.equals("METHOD_CALL")) {
+		if (left.matches("-?[+,-,*,/,>,<,<=,>=,%]")) {
+			CheckComparaison.checkComparaison(leftChild.get(0).getText(), leftChild.get(1).getText(), ST, reporter, leftChild.get(0).getChildren(), leftChild.get(1).getChildren());
+		}
+		else if (left.equals("METHOD_CALL")) {
 			ClassSymbol classe= (ClassSymbol) ST.getSymbol(ST.getSymbol(leftChild.get(0).getText()).getType().getName());
 			Symbol method=classe.getChildSymbolTable().getSymbol(leftChild.get(1).getText());
 			Symbol type=method.getArg();
 			
 			if (type != null && !type.getName().equals("int")) {
-				reporter.reportError("Left operand is a method which does not return an int");
+				reporter.reportError(method.getName()+ " is a method which does not return an int");
 			}
 		}
 		else if (!(left.matches("-?[0-9]+"))) {
@@ -29,19 +32,21 @@ public abstract class CheckComparaison {
 			CheckDeclaration.checkVariableExistence(left, ST, reporter);
 			if (leftSymbol != null) {
 				if (!leftSymbol.getType().getName().equals("int")) {
-					reporter.reportError("Left operand is not an int");
+					reporter.reportError( left+" is not an int");
 				}
 			}
 			
 		}
 		
-		
-		if (right.equals("METHOD_CALL")) {
+		if (right.matches("-?[+,-,*,/,>,<,<=,>=,%]")) {
+			CheckComparaison.checkComparaison(rightChild.get(0).getText(), rightChild.get(1).getText(), ST, reporter, rightChild.get(0).getChildren(), rightChild.get(1).getChildren());
+		}		
+		else if (right.equals("METHOD_CALL")) {
 			ClassSymbol classe= (ClassSymbol) ST.getSymbol(ST.getSymbol(rightChild.get(0).getText()).getType().getName());
 			Symbol method=classe.getChildSymbolTable().getSymbol(rightChild.get(1).getText());
 			Symbol type=method.getArg();
 			if (type != null && !type.getName().equals("int")) {
-				reporter.reportError("Right operand is a method which does not return an int");
+				reporter.reportError(method.getName()+" is a method which does not return an int");
 			}
 		}
 		else if (!(right.matches("-?[0-9]+"))) {
@@ -49,7 +54,7 @@ public abstract class CheckComparaison {
 			CheckDeclaration.checkVariableExistence(right, ST, reporter);
 			if (rightSymbol != null)
 				if (!rightSymbol.getType().getName().equals("int")) {
-					reporter.reportError("Right operand is not an int");
+					reporter.reportError(right+" operand is not an int");
 				}
 		}
 		
