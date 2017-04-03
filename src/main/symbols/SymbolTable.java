@@ -74,7 +74,9 @@ public class SymbolTable extends ArrayList<Symbol> {
 		
 		for (Symbol symbol: this) {
 			if (symbol.getType() != null)
-				System.out.println(symbol);
+				if (!(symbol instanceof Primitive)){
+					System.out.println(symbol);
+				}
 		}
 		
 		System.out.println("===============================\n");
