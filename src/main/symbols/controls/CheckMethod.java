@@ -14,22 +14,22 @@ public abstract class CheckMethod {
 	public static void checkDO(List<CommonTree> tree ,SymbolTable ST, AbstractSemanticErrorReporter reporter){
 		Symbol sClass=  ST.getSymbol(ST.getSymbol(tree.get(0).getText()).getType().getName());
 		if (sClass == null){
-			reporter.reportError("Class {} doesn't exist".format(tree.get(0).getText()));
+			reporter.reportError(String.format("Class %1s doesn't exist",tree.get(0).getText()));
 			return;
 		}
 		else if (!(sClass instanceof ClassSymbol)){
-			reporter.reportError("{} is not a class".format(tree.get(0).getText()));
+			reporter.reportError(String.format("%1s is not a class",tree.get(0).getText()));
 			return;
 		}
 		ClassSymbol sclass = (ClassSymbol) sClass;
 		SymbolTable STclass = sclass.getChildSymbolTable();
 		Symbol sMethod = STclass.getSymbol(tree.get(1).getText());
 		if (sMethod == null){
-			reporter.reportError("Method {} doesn't exist or not defined in class {}".format(tree.get(1).getText(),tree.get(0).getText()));
+			reporter.reportError(String.format("Method %1s doesn't exist or not defined in class %2s",tree.get(1).getText(),tree.get(0).getText()));
 			return;
 		}
 		else if(!(sMethod instanceof Method)){
-			reporter.reportError("{} is not a method".format(tree.get(0).getText()));
+			reporter.reportError(String.format("%1s is not a method",tree.get(0).getText()));
 			return;
 		}
 		Method mtd = (Method) sMethod;
