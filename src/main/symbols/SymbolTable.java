@@ -14,29 +14,9 @@ public class SymbolTable extends ArrayList<Symbol> {
 		return this.parent;
 	}
 	
-	/*public Symbol getSymbol(String symbolName) {		
-		for (Symbol symbol: this) {
-			if (symbol.getName() == symbolName) {
-				System.out.println(""+symbolName+" in " + this.name);
-				return symbol;
-				
-			}
-		}
-		if (this.parent != null) {
-			return this.parent.getSymbol(symbolName);
-		}
-		else{
-			System.out.println("No "+symbolName+" in " + this.name);
-			System.out.println("\n===========TDS :"+ this.name + "==========");
-			
-			for (Symbol symbol: this) {
-				System.out.println(symbol);
-			}
-			System.out.println("===============================\n");
-		}
-		System.out.println("Error : "+symbolName+" doesn't exist");
-		return null;
-	}*/
+	public String getName(){
+		return this.name;
+	}
 	public Symbol getSymbol(String symbolName) {
 		if (symbolName == "WRITE"){
 			System.out.println("write:"+this.name);
@@ -53,7 +33,7 @@ public class SymbolTable extends ArrayList<Symbol> {
 		if (this.parent != null) {
 			return this.parent.getSymbol(symbolName);
 		}
-		System.out.println("Error : "+symbolName+" doesn't exist");
+		//System.out.println("Error : "+symbolName+" doesn't exist");
 		return null;
 	}
 	public boolean checkType(String symbolName) {

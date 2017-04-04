@@ -35,7 +35,9 @@ public class SymbolTableBuilder {
 		
 		String type;
 		switch (txt) {
-		
+		case "THIS":
+			CheckMethod.checkThis(ST, reporter);
+			break;
 		case "DECL_CLASS":
 			String parentClass = children.get(1).getText();
 
@@ -88,12 +90,13 @@ public class SymbolTableBuilder {
 		case "DO":
 			CheckMethod.checkDO(children, ST, reporter);
 			break;
+		
 		case "FOR":
 			CheckBoucle.checkBounds(children, ST, reporter);
 			CheckBoucle.checkModification(children, ST, reporter);
 			CheckBoucle.checkOrder(children, ST, reporter);
 			break;
-		/*case "/":
+		case "/":
 			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		case "*":
@@ -124,7 +127,7 @@ public class SymbolTableBuilder {
 			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
 		default:
-			break;*/
+			break;
 		}
 		
 		if (children != null) {

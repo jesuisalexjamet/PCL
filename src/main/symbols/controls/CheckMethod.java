@@ -37,7 +37,6 @@ public abstract class CheckMethod {
 		if (tree.size()>2)
 			size = tree.get(2).getChildren().size();
 		if (size != arg){
-			//reporter.reportError("Method {} needs {} arguments but {} given.".format(tree.get(1).getText(),arg,size));
 			reporter.reportError("Method "+ tree.get(1).getText() +" needs "+arg+ " arguments but "+size+ " given.");
 		}
 	}
@@ -56,15 +55,16 @@ public abstract class CheckMethod {
 				}
 			}
 		}
-		return null;
-			
-		
-		
-		
-		
-		
-		
-		
-		
+		return null;		
+	}
+	public static void checkThis(SymbolTable ST, AbstractSemanticErrorReporter reporter){
+		if (ST.getSymbol(ST.getName())==null){
+		}
+		else if (!ST.getSymbol(ST.getName()).getType().getName().equals("class")){
+			return ;
+		}
+		if (!ST.getName().equals("Root")){
+			checkThis(ST.getParent(), reporter);
+		}
 	}
 }
