@@ -1,5 +1,6 @@
 package main.antlr.errors;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,5 +33,5 @@ public abstract class AbstractErrorReporter {
 		this.incrementErrorCount();
 	}
 	
-	public abstract void output();
+	public abstract void output() throws Exception;
 }
