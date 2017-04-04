@@ -11,11 +11,12 @@ import main.symbols.SymbolTable;
 public abstract class CheckAffectation {
 	
 	public static void checkAffectation(String left, String right, SymbolTable ST, AbstractSemanticErrorReporter reporter,List<CommonTree> leftChild ,List<CommonTree> rightChild) {
-		if (right.equals("THIS")) {
-			
+		if (left == null || right == null || ST == null){
+			return;
 		}
-		else if (right.equals("SUPER")) {
-			
+		if (left.equals("THIS")) {
+		}
+		else if (left.equals("SUPER")) {
 		}
 		else {
 			Symbol leftSymbol = ST.getSymbol(left);
@@ -26,7 +27,11 @@ public abstract class CheckAffectation {
 				}
 				
 			}
-			
+			else if ((right.substring(0, 1)+right.substring(right.length()-1,right.length())).equals("\"\"")) {
+			}
+			else if (right.substring(0, 0).equals('"')){
+				
+			}
 			else if (right.matches("-?[+,-,*,/,>,<,<=,>=,%]")) {
 				CheckComparaison.checkComparaison(rightChild.get(0).getText(), rightChild.get(1).getText(), ST, reporter, rightChild.get(0).getChildren(), rightChild.get(1).getChildren());
 			}
@@ -43,7 +48,10 @@ public abstract class CheckAffectation {
 			}
 			else {
 				Symbol rightSymbol = ST.getSymbol(right);
-				if (rightSymbol.getType().getName().equals("class") && !leftSymbol.getType().getName().equals(rightSymbol.getName())) {
+				if (rightSymbol == null){
+					reporter.reportError(String.format("%1s is not defined", right));
+				}
+				else if (rightSymbol.getType().getName().equals("class") && !leftSymbol.getType().getName().equals(rightSymbol.getName())) {
 					reporter.reportError(left + " and " + right + " are not the same type");
 				}
 				else if (!rightSymbol.getType().getName().equals("class") && !(leftSymbol.getType().getName().equals(rightSymbol.getType().getName()))) {
