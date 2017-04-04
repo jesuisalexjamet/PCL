@@ -82,8 +82,18 @@ public abstract class CheckBoucle {
 	
 	public static void checkOrder(List<CommonTree> tree,SymbolTable ST,AbstractSemanticErrorReporter reporter) {
 		if (CheckBoucle.checkBounds(tree, ST, reporter) == false) {
-			Symbol min = ST.getSymbol(tree.get(1).getText() );
-			Symbol max = ST.getSymbol(tree.get(2).getText() );
+			String min = tree.get(1).getText();
+			String max = tree.get(2).getText();
+			if (min.matches("-?[0-9]+") && max.matches("-?[0-9]+")) {
+
+				int intMin=Integer.parseInt(min) ;
+				int intMax=Integer.parseInt(max) ; 
+				if (intMin > intMax ) {
+					reporter.reportError("Upper bound must be greater or equal than lower bound");
+				
+				}
+			}
+			
 
 		}
 	}

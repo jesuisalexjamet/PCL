@@ -29,7 +29,7 @@ tokens {
 
 @header {
     package main.antlr;
-    
+
     import main.antlr.errors.*;
 }
 
@@ -39,23 +39,23 @@ tokens {
 
 @members {
 	private AbstractSyntaxErrorReporter syntaxErrorReporter = null;
-	
+
 	public void setErrorReporter(AbstractSyntaxErrorReporter errorReporter) {
 		this.syntaxErrorReporter = errorReporter;
 	}
-	
+
 	public AbstractSyntaxErrorReporter getErrorReporter() {
 		return this.syntaxErrorReporter;
 	}
-	
+
 	public void emitErrorMessage(String message) {
 		this.syntaxErrorReporter.reportError(message);
 	}
-	
+
 	public void displayRecognitionError(String[] tokenNames,
 										RecognitionException e) {
 		String message = "Error on token: '" + e.token.getText() + "' <line: " + e.line + ", column: " + e.charPositionInLine + "> " + getErrorMessage(e, tokenNames);
-		
+
 		this.syntaxErrorReporter.reportError(message);
 	}
 }
@@ -174,6 +174,6 @@ comparaison
 
 IDF_CLASS:      ('A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
 IDF:            ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
-CSTE_ENT:       ('0'..'9')+ ;
+CSTE_ENT:       '-'?('0'..'9')+ ;
 CSTE_CHAINE:    '"' ('a'..'z'|'A'..'Z'|'0'..'9'|';'|':'|'/'|','|'?'|'!'|'%'|'@'|'#'|'~'|'&'|'\\'|'-'|'_'|'|'|'('|')'|'{'|'}'|'['|']'|'='|' ')* '"';
 WS:             (' '|'\t'|'\r'| '\n') {$channel=HIDDEN;} ;
