@@ -12,7 +12,7 @@ public class SemanticTest {
 	private static Program program;
 	
 	private static void initTest(String filepath) throws Exception {
-		program = new Program(filepath, false, false);
+		program = new Program(filepath, false, false, "");
 	}
 	
 	@Test
