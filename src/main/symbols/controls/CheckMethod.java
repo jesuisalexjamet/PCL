@@ -13,17 +13,16 @@ import org.antlr.runtime.tree.CommonTree;
 public abstract class CheckMethod {
 	public static void checkDO(List<CommonTree> tree ,SymbolTable ST, AbstractSemanticErrorReporter reporter){
 		Symbol sClass=  ST.getSymbol(ST.getSymbol(tree.get(0).getText()).getType().getName());
-		if (sClass == null){
+		if (sClass == null){ // S'il y a un Symbol avec ce nom dans les TDS a portée.
 			reporter.reportError(String.format("Class %1s doesn't exist",tree.get(0).getText()));
 			return;
 		}
-		else if (!(sClass instanceof ClassSymbol)){
+		else if (!(sClass instanceof ClassSymbol)){ // 
 			reporter.reportError(String.format("%1s is not a class",tree.get(0).getText()));
 			return;
 		}
 		ClassSymbol sclass = (ClassSymbol) sClass;
-		SymbolTable STclass = sclass.getChildSymbolTable();
-		Symbol sMethod = STclass.getSymbol(tree.get(1).getText());
+		Method sMethod = sclass.getMethod(tree.get(1).getText());
 		if (sMethod == null){
 			reporter.reportError(String.format("Method %1s doesn't exist or not defined in class %2s",tree.get(1).getText(),tree.get(0).getText()));
 			return;
