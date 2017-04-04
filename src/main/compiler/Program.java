@@ -5,19 +5,31 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import org.antlr.runtime.ANTLRFileStream;
+import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.DOTTreeGenerator;
 import org.antlr.stringtemplate.StringTemplate;
 
-import main.antlr.AST;
+import main.antlr.LoocLexer;
+import main.antlr.LoocParser;
+import main.antlr.errors.AbstractSemanticErrorReporter;
+import main.antlr.errors.AbstractSyntaxErrorReporter;
 import main.antlr.errors.StdErrSemanticErrorReporter;
+import main.antlr.errors.StdErrSyntaxErrorReporter;
 import main.symbols.SymbolTable;
 import main.symbols.SymbolTableBuilder;
 
 public class Program {
 	private String filepath;
 	private String programName;
-	private AST abstratTree;
+	
+	private LoocLexer lexer;
+	private CommonTokenStream tokens;
+	private LoocParser parser;
+	private CommonTree abstractTree;
 	private SymbolTable symbolTable;
+	private SymbolTableBuilder builder;
 	
 	private boolean outputAST;
 	private boolean outputTDS;
@@ -30,7 +42,6 @@ public class Program {
 		
 		this.programName = this.filepath.substring(beginPos, endPos);
 		
-		this.abstratTree = null;
 		this.symbolTable = null;
 		
 		this.outputAST = outputAST;
@@ -38,16 +49,24 @@ public class Program {
 	}
 	
 	public void processAbstractTree() throws Exception {
-		this.abstratTree = AST.fromLoocFile(this.filepath);
+		this.lexer = new LoocLexer(new ANTLRFileStream(this.filepath));
+		this.tokens = new CommonTokenStream(this.lexer);
+		this.parser = new LoocParser(this.tokens);
+		
+		this.parser.setErrorReporter(new StdErrSyntaxErrorReporter());
+		
+		this.abstractTree = (CommonTree) this.parser.program().getTree();
 		
 		if (this.outputAST) {
 			this.outputAbstractTree();
 		}
+		
+		// Affichage des erreurs syntaxiques.
+		this.getSyntaxErrorReporter().output();
 	}
 	
 	public void processSymbolTable() {
-		StdErrSemanticErrorReporter errorReporter = new StdErrSemanticErrorReporter();
-		SymbolTableBuilder builder = new SymbolTableBuilder(this.abstratTree.getTree(), errorReporter);
+		builder = new SymbolTableBuilder(this.abstractTree, new StdErrSemanticErrorReporter());
 		
 		this.symbolTable = builder.getSymboleTable();
 		
@@ -55,12 +74,13 @@ public class Program {
 			this.outputSymbolTable();
 		}
 		
-		errorReporter.output();
+		// Affichage des erreurs sémantiques.
+		this.getSemanticErrorReporter().output();
 	}
 	
 	public void outputAbstractTree() throws IOException {
 		DOTTreeGenerator dotTreeGenerator = new DOTTreeGenerator();
-		StringTemplate st = dotTreeGenerator.toDOT(this.abstratTree.getTree());
+		StringTemplate st = dotTreeGenerator.toDOT(this.abstractTree);
 		
 		File out = new File(this.programName + ".dot");
 		FileWriter fileWriter = new FileWriter(out);
@@ -82,11 +102,19 @@ public class Program {
 		return this.programName;
 	}
 	
-	public AST getAbstractTree() {
-		return this.abstratTree;
+	public CommonTree getAbstractTree() {
+		return this.abstractTree;
 	}
 	
 	public SymbolTable getSymbolTable() {
 		return this.symbolTable;
+	}
+	
+	public AbstractSyntaxErrorReporter getSyntaxErrorReporter() {
+		return this.parser.getErrorReporter();
+	}
+	
+	public AbstractSemanticErrorReporter getSemanticErrorReporter() {
+		return this.builder.getErrorReporter();
 	}
 }
