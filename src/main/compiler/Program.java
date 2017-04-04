@@ -15,6 +15,8 @@ import main.antlr.LoocLexer;
 import main.antlr.LoocParser;
 import main.antlr.errors.AbstractSemanticErrorReporter;
 import main.antlr.errors.AbstractSyntaxErrorReporter;
+import main.antlr.errors.FileSemanticErrorReporter;
+import main.antlr.errors.FileSyntaxErrorReporter;
 import main.antlr.errors.StdErrSemanticErrorReporter;
 import main.antlr.errors.StdErrSyntaxErrorReporter;
 import main.symbols.SymbolTable;
@@ -30,11 +32,14 @@ public class Program {
 	private CommonTree abstractTree;
 	private SymbolTable symbolTable;
 	private SymbolTableBuilder builder;
+	private AbstractSyntaxErrorReporter syntaxErrReporter;
+	private AbstractSemanticErrorReporter semanticErrReporter;
 	
 	private boolean outputAST;
 	private boolean outputTDS;
+	private String outputPath;
 	
-	public Program(String filepath, boolean outputAST, boolean outputTDS) {
+	public Program(String filepath, boolean outputAST, boolean outputTDS, String outputPath) throws IOException {
 		this.filepath = filepath;
 		
 		int beginPos = this.filepath.lastIndexOf("/") + 1;
@@ -46,6 +51,19 @@ public class Program {
 		
 		this.outputAST = outputAST;
 		this.outputTDS = outputTDS;
+		this.outputPath = outputPath;
+		
+		if (this.outputPath.equals("")) {
+			this.syntaxErrReporter = new StdErrSyntaxErrorReporter();
+		} else {
+			this.syntaxErrReporter = new FileSyntaxErrorReporter(this.outputPath);
+		}
+		
+		if (this.outputPath.equals("")) {
+			this.semanticErrReporter = new StdErrSemanticErrorReporter();
+		} else {
+			this.semanticErrReporter = new FileSemanticErrorReporter(this.outputPath);
+		}
 	}
 	
 	public void processAbstractTree() throws Exception {
@@ -53,7 +71,7 @@ public class Program {
 		this.tokens = new CommonTokenStream(this.lexer);
 		this.parser = new LoocParser(this.tokens);
 		
-		this.parser.setErrorReporter(new StdErrSyntaxErrorReporter());
+		this.parser.setErrorReporter(this.syntaxErrReporter);
 		
 		this.abstractTree = (CommonTree) this.parser.program().getTree();
 		
@@ -65,8 +83,8 @@ public class Program {
 		this.getSyntaxErrorReporter().output();
 	}
 	
-	public void processSymbolTable() {
-		builder = new SymbolTableBuilder(this.abstractTree, new StdErrSemanticErrorReporter());
+	public void processSymbolTable() throws Exception {
+		builder = new SymbolTableBuilder(this.abstractTree, this.semanticErrReporter);
 		
 		this.symbolTable = builder.getSymboleTable();
 		
