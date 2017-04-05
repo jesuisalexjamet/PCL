@@ -36,14 +36,14 @@ public class SymbolTable extends ArrayList<Symbol> {
 				
 			}
 		}
-		if (this.parent != null) {
-			return this.parent.getSymbol(symbolName);
-		}else if (this.master != null && this.master instanceof ClassSymbol){
+		if (this.master != null && this.master instanceof ClassSymbol){
 			Symbol s = ((ClassSymbol) this.master).getSymbol(symbolName);
-			System.out.println(s);
 			if (s != null){
 				return s;
 			}
+		}
+		if (this.parent != null) {
+			return this.parent.getSymbol(symbolName);
 		}
 		//System.out.println("Error : "+symbolName+" doesn't exist");
 		return null;
