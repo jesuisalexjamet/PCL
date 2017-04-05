@@ -60,7 +60,7 @@ public abstract class CheckAffectation {
 				CheckComparaison.checkComparaison(rightChild.get(0).getText(), rightChild.get(1).getText(), ST, reporter, rightChild.get(0).getChildren(), rightChild.get(1).getChildren());
 			}
 			else if (right.equals("METHOD_CALL")){
-				if (CheckMethod.checkReturn(rightChild ,ST, reporter)!=null && !CheckMethod.checkReturn(rightChild ,ST, reporter).equals(leftSymbol.getType().getName())) {
+				if (CheckMethod.getReturn(rightChild ,ST, reporter)!=null && !CheckMethod.getReturn(rightChild ,ST, reporter).equals(leftSymbol.getType().getName())) {
 					reporter.reportError( "The method does not return the type of "+leftSymbol.getName());
 				}
 				CheckMethod.checkDO(rightChild, ST, reporter);

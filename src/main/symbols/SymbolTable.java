@@ -19,7 +19,9 @@ public class SymbolTable extends ArrayList<Symbol> {
 	public SymbolTable getParent() {
 		return this.parent;
 	}
-	
+	public Symbol getMaster(){
+		return this.master;
+	}
 	public String getName(){
 		return this.name;
 	}

@@ -73,7 +73,7 @@ public abstract class CheckMethod {
 	}
 	
 	
-	public static String checkReturn(List<CommonTree> tree ,SymbolTable ST, AbstractSemanticErrorReporter reporter){
+	public static String getReturn(List<CommonTree> tree ,SymbolTable ST, AbstractSemanticErrorReporter reporter){
 		if (tree != null) {
 			Symbol classe= ST.getSymbol(ST.getSymbol(tree.get(0).getText()).getType().getName());
 			if (classe != null) {
@@ -96,6 +96,15 @@ public abstract class CheckMethod {
 		}
 		if (!ST.getName().equals("Root")){
 			checkThis(ST.getParent(), reporter);
+		}
+	}
+	public static void checkReturn(String name,SymbolTable ST,AbstractSemanticErrorReporter reporter){
+		if (ST.getMaster() == null || !(ST.getMaster() instanceof Method)){
+			reporter.reportError("Return call outside a Method");
+		}else if (ST.getMaster() != null && ST.getMaster() instanceof Method && ((Method)ST.getMaster()).getReturnType().getName().equals("void")){
+			reporter.reportError(String.format("%1s return type is void, no return expected.",ST.getMaster().getName()));
+		}else if (((Method) ST.getMaster()).getReturnType()!=ST.getSymbol(name).getType()){
+			reporter.reportError((String.format("Bad return type: %2s given but %1s expeted",((Method) ST.getMaster()).getReturnType().getName(),ST.getSymbol(name).getType().getName())));
 		}
 	}
 }
