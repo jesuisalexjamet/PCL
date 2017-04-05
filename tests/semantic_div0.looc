@@ -1,8 +1,4 @@
 var a : int;
-var b : int;
 
-a := 10;
-b := 0;
-
-write a/0;
-write a/b;
+a := 5/0 + 3;
+a := 3 + 5/0;
