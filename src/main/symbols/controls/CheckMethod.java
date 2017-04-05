@@ -44,11 +44,12 @@ public abstract class CheckMethod {
 			List<CommonTree> newTree = tree.get(2).getChildren();
 			SymbolTable SymT = mtd.getChildSymbolTable();
 			for (Symbol symb: SymT) {
+				String right = newTree.get(i).getText();
 				if (newTree.get(i).getText().matches("-?[0-9]+")) {
 					if (!symb.getType().getName().equals("int"))
 						reporter.reportError("Method "+ tree.get(1).getText() +" needs the argument number "+ i+" of type string" );
 				}
-				else if (newTree.get(i).getText().matches("\"[a-zA-Z0-9 _-]*\"")) {
+				else if ((right.substring(0, 1)+right.substring(right.length()-1,right.length())).equals("\"\"")) {
 					if (symb.getType().getName().equals("int")) 
 						reporter.reportError("Method "+ tree.get(1).getText() +" needs the argument number "+ i+" of type int" );
 				}

@@ -29,12 +29,11 @@ public abstract class CheckAffectation {
 				}
 				
 			}
-			//else if ((right.substring(0, 1)+right.substring(right.length()-1,right.length())).equals("\"\"")) {
-			//}
-			//else if (right.substring(0, 0).equals('"')){
-			//}
 			else if (right.matches("-?[+,-,*,/,>,<,<=,>=,%]")) {
-				CheckComparaison.checkComparaison(rightChild.get(0).getText(), rightChild.get(1).getText(), ST, reporter, rightChild.get(0).getChildren(), rightChild.get(1).getChildren());
+				if (leftSymbol.getType().getName().equals("string")) {
+					reporter.reportError(left +" is a string and is affected to an int");
+					CheckComparaison.checkComparaison(rightChild.get(0).getText(), rightChild.get(1).getText(), ST, reporter, rightChild.get(0).getChildren(), rightChild.get(1).getChildren());
+				}
 			}
 			else if (right.equals("METHOD_CALL")){
 				if (CheckMethod.checkReturn(rightChild ,ST, reporter)!=null && !CheckMethod.checkReturn(rightChild ,ST, reporter).equals(leftSymbol.getType().getName())) {
@@ -42,7 +41,7 @@ public abstract class CheckAffectation {
 				}
 				CheckMethod.checkDO(rightChild, ST, reporter);
 			}
-			else if (right.matches("\"[a-zA-Z0-9 _-]*\"")) {
+			else if ((right.substring(0, 1)+right.substring(right.length()-1,right.length())).equals("\"\"")) {
 				if (!(leftSymbol.getType().getName().equals("string"))) {
 					reporter.reportError(left + " is not a string");
 				}
