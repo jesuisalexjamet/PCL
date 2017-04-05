@@ -39,10 +39,12 @@ public class SymbolTableBuilder {
 			CheckMethod.checkThis(ST, reporter);
 			break;
 		case "SUPER":
+			CheckHeritage.checkSuperInInheritedClass(ST, reporter);
 			CheckHeritage.checkSuperCalledInClass(ST, reporter);
 			CheckHeritage.checkCallSuperOnParent(parent.getChild(0).getText(), ST, reporter);
 			break;
 		case "super":
+			CheckHeritage.checkSuperInInheritedClass(ST, reporter);
 			CheckHeritage.checkSuperCalledInClass(ST, reporter);
 			CheckHeritage.checkCallSuperOnParent(parent.getParent().getChild(1).getText(), ST, reporter);
 			break;

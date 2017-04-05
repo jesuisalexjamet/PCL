@@ -158,7 +158,7 @@ public abstract class CheckHeritage {
 				}
 				
 				if (!result) {
-					reporter.reportError(String.format("Method %1s is not defined in a parent class", mtdName));
+					reporter.reportError(String.format("Member %1s is not defined in a parent class", mtdName));
 					return;
 				}
 			}
@@ -177,7 +177,7 @@ public abstract class CheckHeritage {
 		}
 		
 		if (!result) {
-			reporter.reportError(String.format("Method %1s is not defined in a parent class", mtdName));
+			reporter.reportError(String.format("Member %1s is not defined in a parent class", mtdName));
 			return;
 		}
 	}
@@ -191,5 +191,25 @@ public abstract class CheckHeritage {
 		}
 		
 		return false;
+	}
+	
+	public static void checkSuperInInheritedClass(SymbolTable symbolTable,
+			AbstractSemanticErrorReporter reporter) {
+		// Recherche de la classe courante.
+		SymbolTable currSymbolTable = symbolTable;
+		ClassSymbol cls = null;
+				
+		while (!currSymbolTable.getName().equals("Root")) {
+			if (currSymbolTable.getSymbol(currSymbolTable.getName()) instanceof ClassSymbol) {
+				cls = (ClassSymbol) currSymbolTable.getSymbol(currSymbolTable.getName());
+				break;
+			}
+			
+			currSymbolTable = currSymbolTable.getParent();
+		}
+		
+		if (cls.getParentClass() == null) {
+			reporter.reportError(String.format("super shouldn't be used as %1s doesn't have any parent class", cls.getName()));
+		}
 	}
 }
