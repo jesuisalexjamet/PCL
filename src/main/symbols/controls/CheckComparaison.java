@@ -15,8 +15,12 @@ import main.symbols.SymbolTable;
 // Made by Antoine Choné
 public abstract class CheckComparaison {
 	public static void checkComparaison(String left, String right, SymbolTable ST, AbstractSemanticErrorReporter reporter,List<CommonTree> leftChild,List<CommonTree> rightChild) {
+
 		if (left.matches("-?[+,-,*,/,>,<,<=,>=,%]")) {
 			CheckComparaison.checkComparaison(leftChild.get(0).getText(), leftChild.get(1).getText(), ST, reporter, leftChild.get(0).getChildren(), leftChild.get(1).getChildren());
+			if (left.equals("/") && leftChild.get(1).getText().equals("0")) {
+				reporter.reportError( "Divison by 0");
+			}
 		}
 		else if (left.equals("METHOD_CALL")) {
 			if (!CheckMethod.checkReturn(leftChild ,ST, reporter).equals("int")) {
@@ -36,6 +40,9 @@ public abstract class CheckComparaison {
 		
 		if (right.matches("-?[+,-,*,/,>,<,<=,>=,%]")) {
 			CheckComparaison.checkComparaison(rightChild.get(0).getText(), rightChild.get(1).getText(), ST, reporter, rightChild.get(0).getChildren(), rightChild.get(1).getChildren());
+			if (right.equals("/") && rightChild.get(1).getText().equals("0")) {
+				reporter.reportError( "Divison by 0");
+			}
 		}		
 		else if (right.equals("METHOD_CALL")) {
 			ClassSymbol classe= (ClassSymbol) ST.getSymbol(ST.getSymbol(rightChild.get(0).getText()).getType().getName());
