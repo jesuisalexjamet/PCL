@@ -101,10 +101,28 @@ public abstract class CheckMethod {
 	public static void checkReturn(String name,SymbolTable ST,AbstractSemanticErrorReporter reporter){
 		if (ST.getMaster() == null || !(ST.getMaster() instanceof Method)){
 			reporter.reportError("Return call outside a Method");
+			return;
 		}else if (ST.getMaster() != null && ST.getMaster() instanceof Method && ((Method)ST.getMaster()).getReturnType().getName().equals("void")){
 			reporter.reportError(String.format("%1s return type is void, no return expected.",ST.getMaster().getName()));
-		}else if (((Method) ST.getMaster()).getReturnType()!=ST.getSymbol(name).getType()){
-			reporter.reportError((String.format("Bad return type: %2s given but %1s expeted",((Method) ST.getMaster()).getReturnType().getName(),ST.getSymbol(name).getType().getName())));
+			return;
+		}
+		Symbol sReturn = ((Method) ST.getMaster()).getReturnType();
+		if (ST.getSymbol(name) == null){
+			if ((name.substring(0, 1)+name.substring(name.length()-1,name.length())).equals("\"\"")){
+				if (sReturn.getName() != "string"){
+					reporter.reportError((String.format("Bad return type in %1s: %2s given but string expeted",ST.getMaster().getName(),((Method) ST.getMaster()).getReturnType().getName())));
+				}
+			}
+			else if(name.matches("-?[0-9]+")){
+				if (sReturn.getName() != "int"){
+					reporter.reportError((String.format("Bad return type in %1s: %2s given but int expeted",ST.getMaster().getName(),((Method) ST.getMaster()).getReturnType().getName())));
+				}
+			}
+		}
+		else if (sReturn!=ST.getSymbol(name).getType()){
+				reporter.reportError((String.format("Bad return type: %1s given but %2s expeted",ST.getSymbol(name).getType().getName(),((Method) ST.getMaster()).getReturnType().getName())));
+			}
 		}
 	}
-}
+
+
