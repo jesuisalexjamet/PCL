@@ -95,8 +95,9 @@ public class SymbolTableBuilder {
 			 break;
 		case "DECL_VAR":
 			type = children.get(1).getText();
-
-			new Variable(children.get(0).getText(),type,ST);
+			if (!CheckDeclaration.checkDoubleDeclaration(children.get(0).getText(), ST, reporter)) {
+				new Variable(children.get(0).getText(),type,ST);
+			}
 			break;
 		case "METHOD_ARGS":
 			type = children.get(1).getText();
