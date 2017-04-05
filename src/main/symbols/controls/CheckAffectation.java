@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.antlr.runtime.tree.CommonTree;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 import main.antlr.errors.AbstractSemanticErrorReporter;
 import main.symbols.Symbol;
 import main.symbols.SymbolTable;
@@ -27,11 +29,10 @@ public abstract class CheckAffectation {
 				}
 				
 			}
-			else if ((right.substring(0, 1)+right.substring(right.length()-1,right.length())).equals("\"\"")) {
-			}
-			else if (right.substring(0, 0).equals('"')){
-				
-			}
+			//else if ((right.substring(0, 1)+right.substring(right.length()-1,right.length())).equals("\"\"")) {
+			//}
+			//else if (right.substring(0, 0).equals('"')){
+			//}
 			else if (right.matches("-?[+,-,*,/,>,<,<=,>=,%]")) {
 				CheckComparaison.checkComparaison(rightChild.get(0).getText(), rightChild.get(1).getText(), ST, reporter, rightChild.get(0).getChildren(), rightChild.get(1).getChildren());
 			}
@@ -41,7 +42,7 @@ public abstract class CheckAffectation {
 				}
 				CheckMethod.checkDO(rightChild, ST, reporter);
 			}
-			else if (right.matches("\"[a-zA-Z0-9]*\"")) {
+			else if (right.matches("\"[a-zA-Z0-9 _-]*\"")) {
 				if (!(leftSymbol.getType().getName().equals("string"))) {
 					reporter.reportError(left + " is not a string");
 				}
