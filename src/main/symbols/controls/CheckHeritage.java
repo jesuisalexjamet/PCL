@@ -147,21 +147,37 @@ public abstract class CheckHeritage {
 				
 		for (Symbol symb: cls.getChildSymbolTable()) {
 			if (symb instanceof Method && symb.getName().equals(mtdName)) {
-				reporter.reportError(String.format("super should not be used with  %1s as %2s is not a method of a parent class", mtdName, mtdName));
-				return;
+				// On vérifie si la méthode est définie dans les classes parents...
+				ClassSymbol parentCls = cls.getParentClass();
+				boolean result = false;
+				
+				while (parentCls != null) {
+					result |= checkCallSuperOnParentHelper(mtdName, parentCls);
+					
+					parentCls = parentCls.getParentClass();
+				}
+				
+				if (!result) {
+					reporter.reportError(String.format("Method %1s is not defined in a parent class", mtdName));
+					return;
+				}
 			}
 		}
 		
-		// Vérification de l'existence de la méthode.
-		boolean result = false;
+		/*
+		 *  La méthode n'est pas définie dans les classes parents, on vérifie si elle est définie dans les classes parents.
+		 */
 		ClassSymbol parentCls = cls.getParentClass();
+		boolean result = false;
 		
 		while (parentCls != null) {
 			result |= checkCallSuperOnParentHelper(mtdName, parentCls);
+			
+			parentCls = parentCls.getParentClass();
 		}
 		
 		if (!result) {
-			reporter.reportError(String.format("%1s is not declared in a parent class", mtdName));
+			reporter.reportError(String.format("Method %1s is not defined in a parent class", mtdName));
 			return;
 		}
 	}
