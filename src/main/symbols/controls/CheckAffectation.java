@@ -22,6 +22,10 @@ public abstract class CheckAffectation {
 		}
 		else {
 			Symbol leftSymbol = ST.getSymbol(left);
+			if (leftSymbol == null){
+				reporter.reportError(String.format("%1s is not defined in %2s", left,ST.getName()));
+				return;
+			}
 			CheckDeclaration.checkVariableExistence(left,ST,reporter);
 			if (right.matches("-?[0-9]+")) {
 				if (!(leftSymbol.getType().getName().equals("int"))) {

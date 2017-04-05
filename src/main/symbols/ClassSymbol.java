@@ -12,7 +12,7 @@ public class ClassSymbol extends Symbol {
 	public ClassSymbol(String name, SymbolTable parentSymbolTable,String parentClass) {
 		super(name, "class", parentSymbolTable);
 		this.parentClass = (ClassSymbol) parentSymbolTable.getSymbol(parentClass);
-		this.childSymbolTable = new SymbolTable(this.parentSymbolTable,name);
+		this.childSymbolTable = new SymbolTable(this.parentSymbolTable,this);
 	}
 	/**
 	 * Constructeur sans heritage
@@ -29,14 +29,14 @@ public class ClassSymbol extends Symbol {
 	 * @param name nom de la method
 	 * @return la method
 	 */
-	public Method getMethod(String name){
+	public Symbol getSymbol(String name){
 		for (Symbol s: this.childSymbolTable){
-			if ((s instanceof Method) && (s.getName().equals(name))){
-				return (Method) s;
+			if (s.getName().equals(name)){
+				return s;
 			}
 		}
 		if (this.parentClass != null){
-			return this.parentClass.getMethod(name);
+			return this.parentClass.getSymbol(name);
 		}
 		return null;
 	}
