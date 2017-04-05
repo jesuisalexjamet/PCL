@@ -37,7 +37,7 @@ public abstract class CheckBoucle {
 				reporter.reportError("Lower bound must be an int");
 			}
 		}
-		else if (min.matches("\"[a-zA-Z0-9]*\"")) {
+		else if ((min.substring(0, 1)+min.substring(min.length()-1,min.length())).equals("\"\"")) {
 			reporter.reportError("Lower bound must be an int");
 		}
 		else if (!min.matches("-?[0-9]+")) {
@@ -63,7 +63,7 @@ public abstract class CheckBoucle {
 				reporter.reportError("Upper bound must be an int");
 			}
 		}
-		else if (max.matches("\"[a-zA-Z0-9]*\"")) {
+		else if ((max.substring(0, 1)+max.substring(max.length()-1,max.length())).equals("\"\"")) {
 			reporter.reportError("Upper bound must be an int");
 		}
 		else if (!max.matches("-?[0-9]+")) {
