@@ -96,4 +96,16 @@ public class SemanticTest {
 			fail("Aucune erreurs sémantiques détectées.");
 		}
 	}
+	
+	@Test
+	public void testInheritance() throws Exception {
+		initTest("tests/semantic_inheritance.looc");
+		
+		program.processAbstractTree();
+		program.processSymbolTable();
+		
+		if (program.getSemanticErrorReporter().getErrorCount() == 0) {
+			fail("Aucune erreurs sémantiques détectées.");
+		}
+	}
 }
