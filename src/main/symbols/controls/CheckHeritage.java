@@ -36,6 +36,11 @@ public abstract class CheckHeritage {
 			curr = curr.getParent();
 		}
 		
+		if (curr.getName().equals("Root")) {
+			reporter.reportError(String.format("super used outside of a class"));
+			return;
+		}
+		
 		reporter.reportError(String.format("super should only be used in a method", curr.getName()));
 	}
 	
@@ -144,6 +149,11 @@ public abstract class CheckHeritage {
 			
 			currSymbolTable = currSymbolTable.getParent();
 		}
+		
+		if (cls == null) {
+			reporter.reportError(String.format("super used outside of a class"));
+			return;
+		}
 				
 		for (Symbol symb: cls.getChildSymbolTable()) {
 			if (symb instanceof Method && symb.getName().equals(mtdName)) {
@@ -206,6 +216,11 @@ public abstract class CheckHeritage {
 			}
 			
 			currSymbolTable = currSymbolTable.getParent();
+		}
+		
+		if (cls == null) {
+			reporter.reportError(String.format("super used outside of a class"));
+			return;
 		}
 		
 		if (cls.getParentClass() == null) {
