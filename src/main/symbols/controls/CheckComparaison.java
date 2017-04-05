@@ -23,7 +23,7 @@ public abstract class CheckComparaison {
 			}
 		}
 		else if (left.equals("METHOD_CALL")) {
-			if (!CheckMethod.checkReturn(leftChild ,ST, reporter).equals("int")) {
+			if (!CheckMethod.getReturn(leftChild ,ST, reporter).equals("int")) {
 				reporter.reportError( "this method does not return an int");
 			}
 		}

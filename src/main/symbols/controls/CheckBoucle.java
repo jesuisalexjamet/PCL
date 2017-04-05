@@ -26,7 +26,7 @@ public abstract class CheckBoucle {
 		String max =tree.get(2).getText();
 		
 		if (min.matches("METHOD_CALL")) {
-			if (!CheckMethod.checkReturn(tree.get(1).getChildren(), ST, reporter).equals("int")) {
+			if (!CheckMethod.getReturn(tree.get(1).getChildren(), ST, reporter).equals("int")) {
 				reporter.reportError("Lower bound must be an int");
 			}
 		}
@@ -52,7 +52,7 @@ public abstract class CheckBoucle {
 		
 		
 		if (max.matches("METHOD_CALL")) {
-			if (!CheckMethod.checkReturn(tree.get(1).getChildren(), ST, reporter).equals("int")) {
+			if (!CheckMethod.getReturn(tree.get(1).getChildren(), ST, reporter).equals("int")) {
 				reporter.reportError("Upper bound must be an int");
 			}
 		}
