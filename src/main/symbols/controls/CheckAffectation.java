@@ -17,6 +17,26 @@ public abstract class CheckAffectation {
 			return;
 		}
 		if (left.equals("THIS")) {
+			String methodName = ST.getName();
+			Symbol methodSymb = ST.getSymbol(methodName);
+			if (methodSymb != null) {
+				String className = methodSymb.getParentSymbolTable().getName();
+				Symbol classSymbol = methodSymb.getParentSymbolTable().getSymbol(className);
+				if (classSymbol != null && classSymbol.getType().getName().equals("class")) {
+					String attributGauche = leftChild.get(0).getText();
+					CheckDeclaration.checkVariableExistence(attributGauche, methodSymb.getParentSymbolTable(), reporter);
+					Symbol attributGaucheSymb = methodSymb.getParentSymbolTable().getSymbol(attributGauche);
+					if (attributGaucheSymb != null) {
+						checkAffectation(attributGauche,right,ST,reporter,leftChild,rightChild);
+					}
+				}
+			
+			}
+			else {
+				reporter.reportError("this cannot be used outside a class");
+			}
+		
+			
 		}
 		else if (left.equals("SUPER")) {
 		}
@@ -51,6 +71,25 @@ public abstract class CheckAffectation {
 				}
 				else if (!(leftSymbol.getType().getName().equals("string"))) {
 					reporter.reportError(left + " is not a string");
+				}
+			}
+			else if (right.equals("THIS")) {
+				String methodName = ST.getName();
+				Symbol methodSymb = ST.getSymbol(methodName);
+				if (methodSymb != null) {
+					String className = methodSymb.getParentSymbolTable().getName();
+					Symbol classSymbol = methodSymb.getParentSymbolTable().getSymbol(className);
+					if (classSymbol != null && classSymbol.getType().getName().equals("class")) {
+						String attributDroit = rightChild.get(0).getText();
+						CheckDeclaration.checkVariableExistence(attributDroit, methodSymb.getParentSymbolTable(), reporter);
+						Symbol attributDroitSymb = methodSymb.getParentSymbolTable().getSymbol(attributDroit);
+						if (attributDroitSymb != null) {
+							checkAffectation(left,attributDroit,ST,reporter,leftChild,rightChild);
+						}
+					}
+				}
+				else {
+					reporter.reportError("this cannot be used outside a class");
 				}
 			}
 			else if (right.equals("SUPER")) {
