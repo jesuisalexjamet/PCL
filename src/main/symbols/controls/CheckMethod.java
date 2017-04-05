@@ -12,6 +12,9 @@ import java.util.List;
 import org.antlr.runtime.tree.CommonTree;
 public abstract class CheckMethod {
 	public static void checkDO(List<CommonTree> tree ,SymbolTable ST, AbstractSemanticErrorReporter reporter){
+		if (tree.get(0).getText().equals("super")){
+			return;
+		}
 		Symbol sClass=  ST.getSymbol(ST.getSymbol(tree.get(0).getText()).getType().getName());
 		if (sClass == null){ // S'il y a un Symbol avec ce nom dans les TDS a portée.
 			reporter.reportError(String.format("Class %1s doesn't exist",tree.get(0).getText()));
@@ -22,7 +25,7 @@ public abstract class CheckMethod {
 			return;
 		}
 		ClassSymbol sclass = (ClassSymbol) sClass;
-		Method sMethod = sclass.getMethod(tree.get(1).getText());
+		Method sMethod = (Method) sclass.getSymbol(tree.get(1).getText());
 		if (sMethod == null){
 			reporter.reportError(String.format("Method %1s doesn't exist or not defined in class %2s",tree.get(1).getText(),tree.get(0).getText()));
 			return;

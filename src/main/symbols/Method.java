@@ -12,7 +12,7 @@ public class Method extends Symbol {
 		super(name, "method", parentSymbolTable);
 		
 		this.argCount = argCount;
-		this.childSymbolTable = new SymbolTable(this.parentSymbolTable,name);
+		this.childSymbolTable = new SymbolTable(this.parentSymbolTable,this);
 		this.returnType = this.parentSymbolTable.getSymbol(returnType);
 		this.arg = this.returnType;
 	}

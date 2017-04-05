@@ -5,9 +5,15 @@ import java.util.ArrayList;
 public class SymbolTable extends ArrayList<Symbol> {
 	private SymbolTable parent;
 	private String name;
+	private Symbol master;
 	public SymbolTable(SymbolTable parent,String name) {
 		this.parent = parent;
 		this.name = name;
+	}
+	public SymbolTable(SymbolTable parent,Symbol master) {
+		this.parent = parent;
+		this.master = master;
+		this.name = master.getName();
 	}
 	
 	public SymbolTable getParent() {
@@ -32,6 +38,12 @@ public class SymbolTable extends ArrayList<Symbol> {
 		}
 		if (this.parent != null) {
 			return this.parent.getSymbol(symbolName);
+		}else if (this.master != null && this.master instanceof ClassSymbol){
+			Symbol s = ((ClassSymbol) this.master).getSymbol(symbolName);
+			System.out.println(s);
+			if (s != null){
+				return s;
+			}
 		}
 		//System.out.println("Error : "+symbolName+" doesn't exist");
 		return null;
