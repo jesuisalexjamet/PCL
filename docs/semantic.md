@@ -21,24 +21,22 @@ qui seront éxécutés sur les programme passés en entrée du compilateur.
 1. Vérifier qu'une méthode est bien définie au sein de la classe de l'instance
    sur laquelle elle est appelée. (Killian / Antoine)
 
-2. L'utilisation du mot-clè `this` n'a de sens qu'au sein d'une méthode. (Killian)
+2. L'utilisation du mot-clè `this` n'a de sens qu'au sein d'une méthode. (Nicolas / Killian)
 
 3. Vérifier la correction d'un appel de méthode:
     - Le nombre d'arguments est correct (Killian)
     - Les types de données correspondent (Antoine)
 
 4. Vérifier l'utilisation que l'instruction `return` se fait avec une valeur dont
-   le type est le même que celui spécifié dans le prototype de la méthode. (Antoine)
+   le type est le même que celui spécifié dans le prototype de la méthode. (Killian)
 
 5. Vérifier que pour toute méthode dont le type de retour est spécifié,
-   le méthode comporte au moins une instruction `return`.
+   le méthode comporte au moins une instruction `return`. (Killian)
 
 6. Vérifier l'absence d'instruction `return` dont le type de retour
-   n'est pas spécifié.
+   n'est pas spécifié. (Killian)
 
-7. Il n'est pas permis d'effectuer une affectation sur un paramètre d'une méthode.
-
-8. Il est permis de surcharger une méthode au sein d'une classe, à la
+7. Il est permis de surcharger une méthode au sein d'une classe, à la
    condition de conserver le type de retour.
 
 ## Affectation ##
@@ -119,7 +117,7 @@ qui seront éxécutés sur les programme passés en entrée du compilateur.
 ## Condition ##
 
 1. L'expression évaluée dans une condition doit être un booléen résultant
-   d'un test ou un entier qui sera évalué comme un booléen.
+   d'un test ou un entier qui sera évalué comme un booléen. (Nicolas)
 
 ## Comparaison ##
 
@@ -145,14 +143,14 @@ qui seront éxécutés sur les programme passés en entrée du compilateur.
    et de `B` doivent être disjoints. (Alex)
 
 3. L'utilisation du mot-clé `super` n'a de sens que si la classe hérite
-   d'une autre classe.
+   d'une autre classe. (Alex)
 
 4. Il est permis de surcharger une méthode de la classe parent au sein
    de la classe fille à la condition de respecter le prototype de la méthode
    définie dans la classe mère. (Alex)
 
 5. Utiliser le mot-clé `super` dans toute autre situation que l'appel
-   d'une méthode de la classe parent n'a pas de sens.
+   d'une méthode de la classe parent n'a pas de sens. (Alex)
 
 ## Portée ##
 
