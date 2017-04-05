@@ -39,6 +39,31 @@ public abstract class CheckMethod {
 		if (size != arg){
 			reporter.reportError("Method "+ tree.get(1).getText() +" needs "+arg+ " arguments but "+size+ " given.");
 		}
+		else {
+			int i=0;
+			List<CommonTree> newTree = tree.get(2).getChildren();
+			SymbolTable SymT = mtd.getChildSymbolTable();
+			for (Symbol symb: SymT) {
+				if (newTree.get(i).getText().matches("-?[0-9]+")) {
+					if (!symb.getType().getName().equals("int"))
+						reporter.reportError("Method "+ tree.get(1).getText() +" needs the argument number "+ i+" of type string" );
+				}
+				else if (newTree.get(i).getText().matches("\"[a-zA-Z0-9 _-]*\"")) {
+					if (symb.getType().getName().equals("int")) 
+						reporter.reportError("Method "+ tree.get(1).getText() +" needs the argument number "+ i+" of type int" );
+				}
+				else {
+					Symbol sym=ST.getSymbol(newTree.get(i).getText());
+					if (sym==null) {
+						CheckDeclaration.checkVariableExistence(newTree.get(i).getText(), ST, reporter);
+					}
+					else if (!sym.getType().getName().equals(symb.getType().getName())) {
+						reporter.reportError("Method "+ tree.get(1).getText() +" needs the argument number "+ i+" of type "+ symb.getType().getName()+" but type "+ sym.getType().getName()+" given" );
+					}
+				}
+				i++;
+			}	
+		}
 	}
 	
 	

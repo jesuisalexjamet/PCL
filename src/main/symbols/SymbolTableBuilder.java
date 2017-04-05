@@ -96,6 +96,7 @@ public class SymbolTableBuilder {
 			CheckBoucle.checkModification(children, ST, reporter);
 			CheckBoucle.checkOrder(children, ST, reporter);
 			break;
+		/*
 		case "/":
 			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
 			break;
@@ -128,6 +129,8 @@ public class SymbolTableBuilder {
 			break;
 		default:
 			break;
+			
+		*/
 		}
 		
 		if (children != null) {

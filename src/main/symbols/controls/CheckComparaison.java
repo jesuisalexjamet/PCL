@@ -40,11 +40,16 @@ public abstract class CheckComparaison {
 		else if (right.equals("METHOD_CALL")) {
 			ClassSymbol classe= (ClassSymbol) ST.getSymbol(ST.getSymbol(rightChild.get(0).getText()).getType().getName());
 			Symbol method=classe.getChildSymbolTable().getSymbol(rightChild.get(1).getText());
-			Symbol type=method.getArg();
-			if (type != null && !type.getName().equals("int")) {
-				reporter.reportError(method.getName()+" is a method which does not return an int");
+			if (method == null) {
+				reporter.reportError(rightChild.get(1).getText()+" does not exist"); }
+			else {
+				Symbol type=method.getArg();
+				if (type != null && !type.getName().equals("int")) {
+					reporter.reportError(method.getName()+" is a method which does not return an int");
+				}
 			}
 		}
+			
 		else if (!(right.matches("-?[0-9]+"))) {
 			Symbol rightSymbol = ST.getSymbol(right);
 			CheckDeclaration.checkVariableExistence(right, ST, reporter);
