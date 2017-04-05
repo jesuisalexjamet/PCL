@@ -76,4 +76,56 @@ public abstract class CheckHeritage {
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 * @param mtd
+	 * @param cls
+	 * @param reporter
+	 */
+	public static void checkOverloadedMethod(Method mtd, ClassSymbol cls, AbstractSemanticErrorReporter reporter) {
+		ClassSymbol parentCls = cls.getParentClass();
+		
+		while (parentCls != null) {
+			checkOverloadedMethodHelper(mtd, cls, parentCls, reporter);
+			
+			parentCls = parentCls.getParentClass();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param mtd
+	 * @param cls
+	 * @param parentCls
+	 * @param reporter
+	 */
+	private static void checkOverloadedMethodHelper(Method mtd,
+			ClassSymbol cls,
+			ClassSymbol parentCls,
+			AbstractSemanticErrorReporter reporter) {
+		/*
+		 * On parcours l'ensmeble des méthodes de la table des symboles de la classe fille.
+		 */
+		for (Symbol parentSymb: parentCls.getChildSymbolTable()) {
+			if (parentSymb instanceof Method && mtd.getName().equals(parentSymb.getName())) {
+				Method parentMtd = (Method) parentSymb;
+				
+				if (mtd.getReturnType() != parentMtd.getReturnType()) {
+					reporter.reportError(String.format("Method %1s can't be overloaded in %2s with a different return type", mtd.getName(), cls.getName()));
+				}
+				
+				if (mtd.getArgCount() != parentMtd.getArgCount()) {
+					reporter.reportError(String.format("Method %1s can't be overloaded with a different amount of argument", mtd.getName()));
+					return;
+				}
+				
+				for (int i = 0; i < mtd.getArgCount(); i++) {
+					if (mtd.getChildSymbolTable().get(i).getType() != parentMtd.getChildSymbolTable().get(i).getType()) {
+						reporter.reportError(String.format("Argument %1s in method %2s should be of type %3s", mtd.getChildSymbolTable().get(i).getName(), mtd.getName(), parentMtd.getChildSymbolTable().get(i).getType().getName()));
+					}
+				}
+			}
+		}
+	}
 }

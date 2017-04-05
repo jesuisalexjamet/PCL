@@ -71,6 +71,8 @@ public class SymbolTableBuilder {
 			for (CommonTree child : children){
 				this.checkChild(child, mtd.getChildSymbolTable());
 			}
+			
+			CheckHeritage.checkOverloadedMethod(mtd, (ClassSymbol) ST.getSymbol(ST.getName()), reporter);
 			break;
 		case "BODY":
             AnonymousBlock anonymous = new AnonymousBlock(ST);
