@@ -48,6 +48,9 @@ public class SymbolTableBuilder {
 			CheckHeritage.checkSuperCalledInClass(ST, reporter);
 			CheckHeritage.checkCallSuperOnParent(parent.getParent().getChild(1).getText(), ST, reporter);
 			break;
+		case "RETURN":
+			CheckMethod.checkReturn(children.get(0).getText(), ST, reporter);
+			break;
 		case "DECL_CLASS":
 			String parentClass = children.get(1).getText();
 			
