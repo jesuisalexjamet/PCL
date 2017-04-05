@@ -3,7 +3,9 @@ package main.symbols.controls;
 import main.antlr.errors.AbstractSemanticErrorReporter;
 import main.symbols.ClassSymbol;
 import main.symbols.Method;
+import main.symbols.Symbol;
 import main.symbols.SymbolTable;
+import main.symbols.Variable;
 
 /**
  * CheckHeritage est la classe dédiée à la gestion des contrôles
@@ -35,5 +37,43 @@ public abstract class CheckHeritage {
 		}
 		
 		reporter.reportError(String.format("super should only be used in a method", curr.getName()));
+	}
+	
+	/**
+	 * 
+	 * @param cls
+	 * @param reporter
+	 */
+	public static void checkAttrDisjoint(ClassSymbol cls,
+			AbstractSemanticErrorReporter reporter) {
+		ClassSymbol parentCls = cls.getParentClass();
+		
+		while (parentCls != null) {
+			checkAttrDisjointHelper(cls, parentCls, reporter);
+			
+			parentCls = parentCls.getParentClass();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param cls
+	 * @param parentCls
+	 * @param reporter
+	 */
+	private static void checkAttrDisjointHelper(ClassSymbol cls, 
+			ClassSymbol parentCls, 
+			AbstractSemanticErrorReporter reporter) {
+		/*
+		 * On parcours l'ensemble des éléments de la table des symboles de la
+		 * classe fille.
+		 */
+		for (Symbol symb: cls.getChildSymbolTable()) {
+			for (Symbol parentSymb: parentCls.getChildSymbolTable()) {
+				if (symb instanceof Variable && parentSymb instanceof Variable && symb.getName().equals(parentSymb.getName())) {
+					reporter.reportError(String.format("Attribute %1s is already defined in parent class %2s", symb.getName(), parentCls.getName()));
+				}
+			}
+		}
 	}
 }

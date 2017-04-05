@@ -38,9 +38,12 @@ public class SymbolTableBuilder {
 		case "THIS":
 			CheckMethod.checkThis(ST, reporter);
 			break;
+		case "SUPER":
+			CheckHeritage.checkSuperCalledInClass(ST, reporter);
+			break;
 		case "DECL_CLASS":
 			String parentClass = children.get(1).getText();
-
+			
 			ClassSymbol cls;
 
 			if (!ST.checkType(parentClass)){
@@ -48,9 +51,12 @@ public class SymbolTableBuilder {
 			} else {
 				cls = new ClassSymbol(children.get(0).getText(),ST,parentClass);
 			}
+			
 			for (CommonTree child : children){
 				this.checkChild(child, cls.getChildSymbolTable());
 			}
+			
+			CheckHeritage.checkAttrDisjoint(cls, reporter);
 			break;
 		case "DECL_METHOD":
 			int count = 1;
