@@ -63,5 +63,5 @@ i := z + r;
 
 
 do p.initbis();
-do p.init(i);
+do p.init(i,r,i,r);
 r := p.test(c);

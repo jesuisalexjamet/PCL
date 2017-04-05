@@ -67,8 +67,9 @@ public abstract class CheckBoucle {
 			reporter.reportError("Upper bound must be an int");
 		}
 		else if (!max.matches("-?[0-9]+")) {
-			Symbol mmax = ST.getSymbol(max);
-			if (!mmax.getType().getName().equals("int")) {
+			CheckDeclaration.checkVariableExistence(max, ST, reporter);
+			Symbol mmax = ST.getSymbol(max);			
+			if (mmax != null && !mmax.getType().getName().equals("int")) {
 				reporter.reportError("Upper bound must be an int");
 			}
 		}

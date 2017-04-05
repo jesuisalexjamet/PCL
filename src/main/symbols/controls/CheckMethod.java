@@ -39,27 +39,29 @@ public abstract class CheckMethod {
 		if (size != arg){
 			reporter.reportError("Method "+ tree.get(1).getText() +" needs "+arg+ " arguments but "+size+ " given.");
 		}
-		else {
+		else if (tree.size()>2){
 			int i=0;
 			List<CommonTree> newTree = tree.get(2).getChildren();
 			SymbolTable SymT = mtd.getChildSymbolTable();
 			for (Symbol symb: SymT) {
-				String right = newTree.get(i).getText();
-				if (newTree.get(i).getText().matches("-?[0-9]+")) {
-					if (!symb.getType().getName().equals("int"))
-						reporter.reportError("Method "+ tree.get(1).getText() +" needs the argument number "+ i+" of type string" );
-				}
-				else if ((right.substring(0, 1)+right.substring(right.length()-1,right.length())).equals("\"\"")) {
-					if (symb.getType().getName().equals("int")) 
-						reporter.reportError("Method "+ tree.get(1).getText() +" needs the argument number "+ i+" of type int" );
-				}
-				else {
-					Symbol sym=ST.getSymbol(newTree.get(i).getText());
-					if (sym==null) {
-						CheckDeclaration.checkVariableExistence(newTree.get(i).getText(), ST, reporter);
+				if (i<arg) {
+					String right = newTree.get(i).getText();
+					if (newTree.get(i).getText().matches("-?[0-9]+")) {
+						if (!symb.getType().getName().equals("int"))
+							reporter.reportError("Method "+ tree.get(1).getText() +" needs the argument number "+ i+" of type string" );
 					}
-					else if (!sym.getType().getName().equals(symb.getType().getName())) {
-						reporter.reportError("Method "+ tree.get(1).getText() +" needs the argument number "+ i+" of type "+ symb.getType().getName()+" but type "+ sym.getType().getName()+" given" );
+					else if ((right.substring(0, 1)+right.substring(right.length()-1,right.length())).equals("\"\"")) {
+						if (symb.getType().getName().equals("int")) 
+							reporter.reportError("Method "+ tree.get(1).getText() +" needs the argument number "+ i+" of type int" );
+					}
+					else {
+						Symbol sym=ST.getSymbol(newTree.get(i).getText());
+						if (sym==null) {
+							CheckDeclaration.checkVariableExistence(newTree.get(i).getText(), ST, reporter);
+						}
+						else if (!sym.getType().getName().equals(symb.getType().getName())) {
+							reporter.reportError("Method "+ tree.get(1).getText() +" needs the argument number "+ i+" of type "+ symb.getType().getName()+" but type "+ sym.getType().getName()+" given" );
+						}
 					}
 				}
 				i++;

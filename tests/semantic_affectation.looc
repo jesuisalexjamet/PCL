@@ -3,7 +3,7 @@ class Foo = (
         return ("Foo");
     }
 
-    method bar2() : int {
+    method bar() : int {
         return (0);
     }
 )
@@ -15,6 +15,7 @@ class Bar inherit Foo = (
 )
 
 var x: int;
+var s: string;
 var foo: Foo;
 
 var a: Foo;
@@ -30,4 +31,3 @@ x := "Hello World !";
 x := foo.bar();
 
 x := 10;
-x := foo.bar2();
