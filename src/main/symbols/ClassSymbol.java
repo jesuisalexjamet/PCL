@@ -40,6 +40,14 @@ public class ClassSymbol extends Symbol {
 		}
 		return null;
 	}
+	/**
+	 * Retourne le symbole représentant la classe parente de la classe courante.
+	 * 
+	 * @return Symbole représentant la classe parente de la classe courante.
+	 */
+	public ClassSymbol getParentClass() {
+		return this.parentClass;
+	}
 	@Override
 	public SymbolTable getChildSymbolTable() {
 		return this.childSymbolTable;
