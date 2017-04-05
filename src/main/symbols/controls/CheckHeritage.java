@@ -128,4 +128,52 @@ public abstract class CheckHeritage {
 			}
 		}
 	}
+	
+	public static void checkCallSuperOnParent(String mtdName,
+			SymbolTable symbolTable, 
+			AbstractSemanticErrorReporter reporter) {
+		// Recherche de la classe courante.
+		SymbolTable currSymbolTable = symbolTable;
+		ClassSymbol cls = null;
+				
+		while (!currSymbolTable.getName().equals("Root")) {
+			if (currSymbolTable.getSymbol(currSymbolTable.getName()) instanceof ClassSymbol) {
+				cls = (ClassSymbol) currSymbolTable.getSymbol(currSymbolTable.getName());
+				break;
+			}
+			
+			currSymbolTable = currSymbolTable.getParent();
+		}
+				
+		for (Symbol symb: cls.getChildSymbolTable()) {
+			if (symb instanceof Method && symb.getName().equals(mtdName)) {
+				reporter.reportError(String.format("super should not be used with  %1s as %2s is not a method of a parent class", mtdName, mtdName));
+				return;
+			}
+		}
+		
+		// Vérification de l'existence de la méthode.
+		boolean result = false;
+		ClassSymbol parentCls = cls.getParentClass();
+		
+		while (parentCls != null) {
+			result |= checkCallSuperOnParentHelper(mtdName, parentCls);
+		}
+		
+		if (!result) {
+			reporter.reportError(String.format("%1s is not declared in a parent class", mtdName));
+			return;
+		}
+	}
+	
+	private static boolean checkCallSuperOnParentHelper(String mtdName,
+			ClassSymbol parentCls) {
+		for (Symbol symb: parentCls.getChildSymbolTable()) {
+			if (symb instanceof Method && symb.getName().equals(mtdName)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
