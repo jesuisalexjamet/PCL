@@ -108,4 +108,16 @@ public class SemanticTest {
 			fail("Aucune erreurs sémantiques détectées.");
 		}
 	}
+	
+	@Test
+	public void testCond() throws Exception {
+		initTest("tests/semantic_cond.looc");
+		
+		program.processAbstractTree();
+		program.processSymbolTable();
+		
+		if (program.getSemanticErrorReporter().getErrorCount() == 0) {
+			fail("Aucune erreurs sémantiques détectées.");
+		}
+	}
 }
