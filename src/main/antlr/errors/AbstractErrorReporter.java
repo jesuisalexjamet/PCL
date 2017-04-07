@@ -27,10 +27,18 @@ public abstract class AbstractErrorReporter {
 		return this.errors;
 	}
 	
-	public void reportError(String errorMessage) {
+	public final void reportError(String errorMessage) {
 		this.errors.add(errorMessage);
 		
 		this.incrementErrorCount();
+	}
+	
+	public final void reportError(String errorMessage, int line) {
+		this.reportError(String.format("%1s <line: %2s>", errorMessage, line));
+	}
+	
+	public final void reportError(String errorMessage, int line, int column) {
+		this.reportError(String.format("%1s <line: %2s, column: %3s>", errorMessage, line, column));
 	}
 	
 	public abstract void output() throws Exception;
