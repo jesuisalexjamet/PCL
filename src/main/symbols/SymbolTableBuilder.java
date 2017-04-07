@@ -66,7 +66,6 @@ public class SymbolTableBuilder {
 				this.checkChild(child, cls.getChildSymbolTable());
 			}
 			
-			CheckHeritage.checkAttrDisjoint(cls, reporter, parent.getLine(), parent.getCharPositionInLine());
 			break;
 		case "DECL_METHOD":
 			int count = 1;

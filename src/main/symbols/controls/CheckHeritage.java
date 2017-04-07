@@ -47,48 +47,6 @@ public abstract class CheckHeritage {
 	
 	/**
 	 * 
-	 * @param cls
-	 * @param reporter
-	 * @param line TODO
-	 */
-	public static void checkAttrDisjoint(ClassSymbol cls,
-			AbstractSemanticErrorReporter reporter,
-			int line, int column) {
-		ClassSymbol parentCls = cls.getParentClass();
-		
-		while (parentCls != null) {
-			checkAttrDisjointHelper(cls, parentCls, reporter, line, column);
-			
-			parentCls = parentCls.getParentClass();
-		}
-	}
-	
-	/**
-	 * 
-	 * @param cls
-	 * @param parentCls
-	 * @param reporter
-	 * @param line TODO
-	 */
-	private static void checkAttrDisjointHelper(ClassSymbol cls, 
-			ClassSymbol parentCls, 
-			AbstractSemanticErrorReporter reporter,
-			int line, int column) {
-		/*
-		 * On parcours l'ensemble des éléments de la table des symboles de la
-		 * classe fille.
-		 */
-		for (Symbol symb: cls.getChildSymbolTable()) {
-			for (Symbol parentSymb: parentCls.getChildSymbolTable()) {
-				if (symb instanceof Variable && parentSymb instanceof Variable && symb.getName().equals(parentSymb.getName())) {
-					reporter.reportError(String.format("Attribute %1s is already defined in parent class %2s", symb.getName(), parentCls.getName()), line, column);
-				}
-			}
-		}
-	}
-	
-	/**
-	 * 
 	 * @param mtd
 	 * @param cls
 	 * @param reporter
