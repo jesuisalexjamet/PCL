@@ -34,11 +34,11 @@ public abstract class AbstractErrorReporter {
 	}
 	
 	public final void reportError(String errorMessage, int line) {
-		this.reportError(String.format("%1s <line: %2s>", errorMessage, line));
+		this.reportError(String.format("%1s <line: %2d>", errorMessage, line));
 	}
 	
 	public final void reportError(String errorMessage, int line, int column) {
-		this.reportError(String.format("%1s <line: %2s, column: %3s>", errorMessage, line, column));
+		this.reportError(String.format("%1s <line: %2d, column: %3d>", errorMessage, line, column));
 	}
 	
 	public abstract void output() throws Exception;

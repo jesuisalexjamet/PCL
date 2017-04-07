@@ -39,14 +39,14 @@ public class SymbolTableBuilder {
 			CheckMethod.checkThis(ST, reporter);
 			break;
 		case "SUPER":
-			CheckHeritage.checkSuperInInheritedClass(ST, reporter);
-			CheckHeritage.checkSuperCalledInClass(ST, reporter);
-			CheckHeritage.checkCallSuperOnParent(parent.getChild(0).getText(), ST, reporter);
+			CheckHeritage.checkSuperInInheritedClass(ST, reporter, parent.getLine(), parent.getCharPositionInLine());
+			CheckHeritage.checkSuperCalledInClass(ST, reporter, parent.getLine(), parent.getCharPositionInLine());
+			CheckHeritage.checkCallSuperOnParent(parent.getChild(0).getText(), ST, reporter, parent.getLine(), parent.getCharPositionInLine());
 			break;
 		case "super":
-			CheckHeritage.checkSuperInInheritedClass(ST, reporter);
-			CheckHeritage.checkSuperCalledInClass(ST, reporter);
-			CheckHeritage.checkCallSuperOnParent(parent.getParent().getChild(1).getText(), ST, reporter);
+			CheckHeritage.checkSuperInInheritedClass(ST, reporter, parent.getLine(), parent.getCharPositionInLine());
+			CheckHeritage.checkSuperCalledInClass(ST, reporter, parent.getLine(), parent.getCharPositionInLine());
+			CheckHeritage.checkCallSuperOnParent(parent.getParent().getChild(1).getText(), ST, reporter, parent.getLine(), parent.getCharPositionInLine());
 			break;
 		case "RETURN":
 			CheckMethod.checkReturn(children.get(0).getText(), ST, reporter);
@@ -66,7 +66,7 @@ public class SymbolTableBuilder {
 				this.checkChild(child, cls.getChildSymbolTable());
 			}
 			
-			CheckHeritage.checkAttrDisjoint(cls, reporter);
+			CheckHeritage.checkAttrDisjoint(cls, reporter, parent.getLine(), parent.getCharPositionInLine());
 			break;
 		case "DECL_METHOD":
 			int count = 1;
@@ -82,7 +82,7 @@ public class SymbolTableBuilder {
 				this.checkChild(child, mtd.getChildSymbolTable());
 			}
 			
-			CheckHeritage.checkOverloadedMethod(mtd, (ClassSymbol) ST.getSymbol(ST.getName()), reporter);
+			CheckHeritage.checkOverloadedMethod(mtd, (ClassSymbol) ST.getSymbol(ST.getName()), reporter, parent.getLine(), parent.getCharPositionInLine());
 			break;
 		case "BODY":
             AnonymousBlock anonymous = new AnonymousBlock(ST);
