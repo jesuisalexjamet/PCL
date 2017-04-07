@@ -37,7 +37,6 @@ public abstract class CheckHeritage {
 		}
 		
 		if (curr.getName().equals("Root")) {
-			reporter.reportError(String.format("super used outside of a class"));
 			return;
 		}
 		
@@ -151,7 +150,6 @@ public abstract class CheckHeritage {
 		}
 		
 		if (cls == null) {
-			reporter.reportError(String.format("super used outside of a class"));
 			return;
 		}
 				
