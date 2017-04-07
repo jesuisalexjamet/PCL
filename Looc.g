@@ -54,9 +54,7 @@ tokens {
 
 	public void displayRecognitionError(String[] tokenNames,
 										RecognitionException e) {
-		String message = "Error on token: '" + e.token.getText() + "' <line: " + e.line + ", column: " + e.charPositionInLine + "> " + getErrorMessage(e, tokenNames);
-
-		this.syntaxErrorReporter.reportError(message);
+		this.syntaxErrorReporter.reportError(String.format("Error on token: '%1s' | %1s", e.token.getText(), getErrorMessage(e, tokenNames)), e.line, e.charPositionInLine);
 	}
 }
 
