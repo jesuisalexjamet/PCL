@@ -93,7 +93,7 @@ public class SymbolTableBuilder {
 		case "AFFECT":
 			 String left = children.get(0).getText();
 			 String right = children.get(1).getText();
-			 CheckAffectation.checkAffectation(left, right, ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
+			 CheckAffectation.checkAffectation(left, right, ST, reporter,children.get(0).getChildren(),children.get(1).getChildren(),parent.getLine(),parent.getCharPositionInLine());
 			 break;
 		case "DECL_VAR":
 			type = children.get(1).getText();
