@@ -57,7 +57,7 @@ public abstract class CheckAffectation {
 				if (leftSymbol.getType().getName().equals("string")) {
 					reporter.reportError(left +" is a string and is affected to an int",line,column);
 				}
-				CheckComparaison.checkComparaison(rightChild.get(0).getText(), rightChild.get(1).getText(), ST, reporter, rightChild.get(0).getChildren(), rightChild.get(1).getChildren());
+				CheckComparaison.checkComparaison(rightChild.get(0).getText(), rightChild.get(1).getText(), ST, reporter, rightChild.get(0).getChildren(), rightChild.get(1).getChildren(),rightChild.get(0).getLine(),rightChild.get(0).getCharPositionInLine());
 			}
 			else if (right.equals("METHOD_CALL")){
 				if (CheckMethod.getReturn(rightChild ,ST, reporter)!=null && !CheckMethod.getReturn(rightChild ,ST, reporter).equals(leftSymbol.getType().getName())) {

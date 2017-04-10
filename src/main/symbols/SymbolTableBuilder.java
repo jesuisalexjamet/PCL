@@ -115,7 +115,7 @@ public class SymbolTableBuilder {
 			CheckBoucle.checkOrder(children, ST, reporter);
 			break;
 		case "COND":
-			CheckCondition.checkCond(children, ST, reporter);
+			CheckCondition.checkCond(children, ST, reporter,parent.getLine(),parent.getCharPositionInLine());
 		/*
 		case "/":
 			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
