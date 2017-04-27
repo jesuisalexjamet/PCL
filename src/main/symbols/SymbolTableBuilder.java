@@ -68,15 +68,21 @@ public class SymbolTableBuilder {
 			
 			break;
 		case "DECL_METHOD":
+			ArrayList<String> arglist = new ArrayList<String>();
 			int count = 1;
 			while (children.get(count).getText() == "METHOD_ARGS"){
+				
+				String argtype = ((CommonTree) children.get(count).getChildren().get(1)).getText();
+				arglist.add(argtype);
 				count +=1;
 			}
+			List enfant = children.get(count).getChildren();
+
 			type = children.get(count).getText();
 			if (!ST.checkType(type)){
 				type = "void";
 			}
-			Method mtd = new Method(children.get(0).getText(),ST,count-1,type);
+			Method mtd = new Method(children.get(0).getText(),ST,count-1,type,arglist);
 			for (CommonTree child : children){
 				this.checkChild(child, mtd.getChildSymbolTable());
 			}
