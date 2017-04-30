@@ -1,0 +1,17 @@
+var x : int;
+var s : string;
+
+if x>0
+then
+    x := 5;
+fi
+
+if s==2
+then
+    s := "Coucou";
+fi
+
+if 5>6+3*2+s
+then
+    write "Coucou";
+fi

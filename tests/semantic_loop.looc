@@ -1,0 +1,16 @@
+var somme : int;
+var boucle : int;
+var n : int;
+
+
+for boucle in 20 .. 10
+do
+	boucle := 2;
+end
+
+
+for boucle in "Coucou" .. s
+do
+	boucle := "Hello";
+end
+

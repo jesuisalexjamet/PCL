@@ -4,6 +4,7 @@ public abstract class Symbol {
 	protected String name;
 	protected Symbol type;
 	protected SymbolTable parentSymbolTable;
+	protected Symbol arg;
 	
 	public Symbol(String name, String type, SymbolTable parentSymbolTable) {
 		this.name = name;
@@ -19,6 +20,10 @@ public abstract class Symbol {
 	
 	public Symbol getType() {
 		return this.type;
+	}
+	
+	public Symbol getArg(){
+		return this.arg;
 	}
 	
 	public SymbolTable getParentSymbolTable() {

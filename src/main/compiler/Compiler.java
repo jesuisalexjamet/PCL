@@ -3,6 +3,7 @@ package main.compiler;
 public class Compiler {
 	public static void main(String args[]) throws Exception {
 		String programPath;
+		String outputPath = "";
 		boolean outputTDS = false, outputAST = false;
 		
 		if (args.length < 1) {
@@ -21,10 +22,12 @@ public class Compiler {
 			case "--tds":
 				outputTDS = true;
 				break;
+			case "--out":
+				outputPath = args[i + 1];
 			}
 		}
 		
-		Program loocProgram = new Program(programPath, outputAST, outputTDS);
+		Program loocProgram = new Program(programPath, outputAST, outputTDS, outputPath);
 		
 		// Acquisition de l'arbre abstrait.
 		loocProgram.processAbstractTree();

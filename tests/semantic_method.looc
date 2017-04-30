@@ -1,0 +1,67 @@
+class Point =
+(
+  var x : int;
+  var y : int;
+
+  method init()
+	{
+	this.x:=0;
+    this.y:=0;
+	}
+
+  method test(c : int) : int {
+    var a : int;
+    a := x+c;
+    return (a);
+  }
+
+  method returnType() : string {
+    var a : int;
+    a := 10;
+    return (a);
+  }
+
+  method noReturn() : int {
+    this.x:=2;
+  }
+
+  method sameReturnType() : int {
+    var b : string;
+    b := "Coucou c pa bon";
+    return(0);
+  }
+
+  method noNeedReturn() {
+    var a : int;
+    a := 2;
+    return(a);
+  }
+
+  method errorInAttribute(a : int) {
+    a := 5;
+  }
+
+  method test(c : int) : string {
+    var a : string;
+    a := "ahah";
+    return (a);
+  }
+
+
+)
+
+var p : Point;
+var r : int;
+var i : int;
+var z: string;
+p := new Point;
+this.x := 2;
+
+
+
+i := z + r;
+
+
+do p.initbis();
+do p.init(i,r,i,r);
+r := p.test(c);

@@ -1,0 +1,5 @@
+var a : int;
+
+var s : Foo;
+
+s := "Hello !";

@@ -19,26 +19,24 @@ qui seront éxécutés sur les programme passés en entrée du compilateur.
 ## Méthodes ##
 
 1. Vérifier qu'une méthode est bien définie au sein de la classe de l'instance
-   sur laquelle elle est appelée.
+   sur laquelle elle est appelée. (Killian / Antoine)
 
-2. L'utilisation du mot-clè `this` n'a de sens qu'au sein d'une méthode.
+2. L'utilisation du mot-clè `this` n'a de sens qu'au sein d'une méthode. (Nicolas / Killian)
 
 3. Vérifier la correction d'un appel de méthode:
-    - Le nombre d'arguments est correct
-    - Les types de données correspondent
+    - Le nombre d'arguments est correct (Killian)
+    - Les types de données correspondent (Antoine)
 
 4. Vérifier l'utilisation que l'instruction `return` se fait avec une valeur dont
-   le type est le même que celui spécifié dans le prototype de la méthode.
+   le type est le même que celui spécifié dans le prototype de la méthode. (Killian)
 
 5. Vérifier que pour toute méthode dont le type de retour est spécifié,
-   le méthode comporte au moins une instruction `return`.
+   le méthode comporte au moins une instruction `return`. (Killian)
 
 6. Vérifier l'absence d'instruction `return` dont le type de retour
-   n'est pas spécifié.
+   n'est pas spécifié. (Killian)
 
-7. Il n'est pas permis d'effectuer une affectation sur un paramètre d'une méthode.
-
-8. Il est permis de surcharger une méthode au sein d'une classe, à la
+7. Il est permis de surcharger une méthode au sein d'une classe, à la
    condition de conserver le type de retour.
 
 ## Affectation ##
@@ -46,7 +44,7 @@ qui seront éxécutés sur les programme passés en entrée du compilateur.
 1. Verification de la correspondance des types des deux membres d'une affectation
     Lors d'une affectation à un nombre entier, le membre droit de l'affectation
     est soit une constante entière soit le résultat d'une fonction renvoyant
-    un nombre entier.
+    un nombre entier. (Nicolas)
 
     Exemple:
     ```
@@ -80,7 +78,7 @@ qui seront éxécutés sur les programme passés en entrée du compilateur.
 
 ## Arithmetique ##
 
-1. Vérification des types atomes d'une expression arithmétique
+1. Vérification des types atomes d'une expression arithmétique (Nicolas / Antoine)
 
    Chacun des atomes d'une expression arithmétiques, qu'il s'agisse d'une
    constante ou du résultat d'une méthode, doit être un nombre entier.
@@ -109,21 +107,21 @@ qui seront éxécutés sur les programme passés en entrée du compilateur.
 ## Boucle ##
 
 1. Les bornes inférieures et supérieures du compteur d'une boucle `for`
-   sont des entiers.
+   sont des entiers. (Antoine)
 
 2. Les boucles sont valides à la condition que la borne inférieure du compteur
-   de boucle soit inférieure ou égale à la borne supérieure de ce même compteur.
+   de boucle soit inférieure ou égale à la borne supérieure de ce même compteur. (Antoine)
 
-3. Il n'est pas permis de modifier le compteur d'une boucle `for`.
+3. Il n'est pas permis de modifier le compteur d'une boucle `for`. (Antoine)
 
 ## Condition ##
 
 1. L'expression évaluée dans une condition doit être un booléen résultant
-   d'un test ou un entier qui sera évalué comme un booléen.
+   d'un test ou un entier qui sera évalué comme un booléen. (Nicolas)
 
 ## Comparaison ##
 
-1. Les deux membres d'une comparaison doivent être de même type.
+1. Les deux membres d'une comparaison doivent être de même type. (Nicolas)
 
 ## Déclaration ##
 
@@ -135,24 +133,24 @@ qui seront éxécutés sur les programme passés en entrée du compilateur.
    var x: int;  // Seconde déclaration non autorisée.
    ```
 
-2. Vérifier que le type utilisé dans une déclaration de variable est bien défini.
+2. Vérifier que le type utilisé dans une déclaration de variable est bien défini. (Ok)
 
 ## Héritage ##
 
-1. Le parent d'une classe doit être une classe.
+1. Le parent d'une classe doit être une classe. (Alex)
 
 2. Soit `A` une classe héritant de `B`, l'ensemble des noms des attributs de `A`
-   et de `B` doivent être disjoints.
+   et de `B` doivent être disjoints. (Alex)
 
 3. L'utilisation du mot-clé `super` n'a de sens que si la classe hérite
-   d'une autre classe.
+   d'une autre classe. (Alex)
 
 4. Il est permis de surcharger une méthode de la classe parent au sein
    de la classe fille à la condition de respecter le prototype de la méthode
-   définie dans la classe mère.
+   définie dans la classe mère. (Alex)
 
 5. Utiliser le mot-clé `super` dans toute autre situation que l'appel
-   d'une méthode de la classe parent n'a pas de sens.
+   d'une méthode de la classe parent n'a pas de sens. (Alex)
 
 ## Portée ##
 
@@ -161,4 +159,4 @@ qui seront éxécutés sur les programme passés en entrée du compilateur.
 
 ## Autres ##
 
-1. S'assurer de l'absence de divisions par zéro.
+1. S'assurer de l'absence de divisions par zéro. (Antoine)

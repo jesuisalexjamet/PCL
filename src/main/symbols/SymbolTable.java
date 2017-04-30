@@ -5,38 +5,26 @@ import java.util.ArrayList;
 public class SymbolTable extends ArrayList<Symbol> {
 	private SymbolTable parent;
 	private String name;
+	private Symbol master;
 	public SymbolTable(SymbolTable parent,String name) {
 		this.parent = parent;
 		this.name = name;
+	}
+	public SymbolTable(SymbolTable parent,Symbol master) {
+		this.parent = parent;
+		this.master = master;
+		this.name = master.getName();
 	}
 	
 	public SymbolTable getParent() {
 		return this.parent;
 	}
-	
-	/*public Symbol getSymbol(String symbolName) {		
-		for (Symbol symbol: this) {
-			if (symbol.getName() == symbolName) {
-				System.out.println(""+symbolName+" in " + this.name);
-				return symbol;
-				
-			}
-		}
-		if (this.parent != null) {
-			return this.parent.getSymbol(symbolName);
-		}
-		else{
-			System.out.println("No "+symbolName+" in " + this.name);
-			System.out.println("\n===========TDS :"+ this.name + "==========");
-			
-			for (Symbol symbol: this) {
-				System.out.println(symbol);
-			}
-			System.out.println("===============================\n");
-		}
-		System.out.println("Error : "+symbolName+" doesn't exist");
-		return null;
-	}*/
+	public Symbol getMaster(){
+		return this.master;
+	}
+	public String getName(){
+		return this.name;
+	}
 	public Symbol getSymbol(String symbolName) {
 		if (symbolName == "WRITE"){
 			System.out.println("write:"+this.name);
@@ -50,10 +38,16 @@ public class SymbolTable extends ArrayList<Symbol> {
 				
 			}
 		}
+		if (this.master != null && this.master instanceof ClassSymbol){
+			Symbol s = ((ClassSymbol) this.master).getSymbol(symbolName);
+			if (s != null){
+				return s;
+			}
+		}
 		if (this.parent != null) {
 			return this.parent.getSymbol(symbolName);
 		}
-		System.out.println("Error : "+symbolName+" doesn't exist");
+		//System.out.println("Error : "+symbolName+" doesn't exist");
 		return null;
 	}
 	public boolean checkType(String symbolName) {
@@ -73,7 +67,10 @@ public class SymbolTable extends ArrayList<Symbol> {
 		System.out.println("\n===========TDS :"+ this.name + "==========");
 		
 		for (Symbol symbol: this) {
-			System.out.println(symbol);
+			if (symbol.getType() != null)
+				if (!(symbol instanceof Primitive)){
+					System.out.println(symbol);
+				}
 		}
 		
 		System.out.println("===============================\n");

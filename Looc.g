@@ -29,7 +29,7 @@ tokens {
 
 @header {
     package main.antlr;
-    
+
     import main.antlr.errors.*;
 }
 
@@ -39,24 +39,22 @@ tokens {
 
 @members {
 	private AbstractSyntaxErrorReporter syntaxErrorReporter = null;
-	
+
 	public void setErrorReporter(AbstractSyntaxErrorReporter errorReporter) {
 		this.syntaxErrorReporter = errorReporter;
 	}
-	
+
 	public AbstractSyntaxErrorReporter getErrorReporter() {
 		return this.syntaxErrorReporter;
 	}
-	
+
 	public void emitErrorMessage(String message) {
 		this.syntaxErrorReporter.reportError(message);
 	}
-	
+
 	public void displayRecognitionError(String[] tokenNames,
 										RecognitionException e) {
-		String message = "Error on token: '" + e.token.getText() + "' <line: " + e.line + ", column: " + e.charPositionInLine + "> " + getErrorMessage(e, tokenNames);
-		
-		this.syntaxErrorReporter.reportError(message);
+		this.syntaxErrorReporter.reportError(String.format("Error on token: '%1s' | %1s", e.token.getText(), getErrorMessage(e, tokenNames)), e.line, e.charPositionInLine);
 	}
 }
 
@@ -91,7 +89,7 @@ method_args
     ;
 
 instruction
-    :   expression ':=' expression ';'   -> ^(AFFECT expression expression)
+    :   expression ':=' (expression  -> ^(AFFECT expression expression)| 'nil' -> ^(AFFECT expression 'nil')) ';'   
     |   'if' expression  'then'  c=instruction+ ('else' d=instruction+)?'fi' -> ^(COND expression $c ($d)?)
     |   'for' IDF 'in' g=expression '..' h=expression  'do' instruction+ 'end' -> ^(FOR IDF $g $h instruction+)
     |   '{'  var_decl* instruction+  '}' -> ^(BODY var_decl* instruction+)
@@ -174,6 +172,6 @@ comparaison
 
 IDF_CLASS:      ('A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
 IDF:            ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*;
-CSTE_ENT:       ('0'..'9')+ ;
-CSTE_CHAINE:    '"' ('a'..'z'|'A'..'Z'|'0'..'9'|';'|':'|'/'|','|'?'|'!'|'%'|'@'|'#'|'~'|'&'|'\\'|'-'|'_'|'|'|'('|')'|'{'|'}'|'['|']'|'='|' ')* '"';
+CSTE_ENT:       '-'?('0'..'9')+ ;
+CSTE_CHAINE:    '"' ('a'..'z'|'A'..'Z'|'0'..'9'|';'|':'|'/'|','|'?'|'!'|'%'|'@'|'#'|'~'|'&'|'\\'|'-'|'_'|'|'|'('|')'|'{'|'}'|'['|']'|'='|' '|'.'|'+'|'*'|'<'|'>'|'é'|'è'|'à'|'ù')* '"';
 WS:             (' '|'\t'|'\r'| '\n') {$channel=HIDDEN;} ;

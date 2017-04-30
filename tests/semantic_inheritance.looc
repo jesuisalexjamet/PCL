@@ -1,0 +1,63 @@
+class Objet = (
+	var x: int;
+)
+
+class Voiture inherit Objet =
+(
+	var brand : string;
+	var	model : string;
+	var maxspeed : int;
+	
+	method init() 
+	{
+		do super.init();
+		brand := "";
+		model := "";
+		maxspeed := super.getSpeed();
+	}
+
+	method getSpeed() : int 
+	{
+		return(maxspeed);
+	}
+
+	method setBrand(n : string) 
+	{
+		brand := n;
+	}
+
+	method getBrand() : string
+	{
+		return(brand);
+	}
+)
+
+class BugattiVeyron inherit Voiture =
+(
+	var brand: string;
+	var x: int;
+	method init()
+	{
+		do super.init();
+		brand := "Bugatti";
+		model := "Veyron";
+		maxspeed := 431;
+	}
+)
+
+var v : Voiture;
+var b : BugattiVeyron;
+
+
+v := new Voiture;
+b := new BugattiVeyron;
+
+do v.init();
+do b.init();
+do super.init();
+write v.getBrand();
+
+do v.setName("No Brand");
+
+write b.getSpeed();
+write v.getBrand();

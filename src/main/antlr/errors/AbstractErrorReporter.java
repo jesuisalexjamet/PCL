@@ -1,5 +1,6 @@
 package main.antlr.errors;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,11 +27,19 @@ public abstract class AbstractErrorReporter {
 		return this.errors;
 	}
 	
-	public void reportError(String errorMessage) {
+	public final void reportError(String errorMessage) {
 		this.errors.add(errorMessage);
 		
 		this.incrementErrorCount();
 	}
 	
-	public abstract void output();
+	public final void reportError(String errorMessage, int line) {
+		this.reportError(String.format("%1s <line: %2d>", errorMessage, line));
+	}
+	
+	public final void reportError(String errorMessage, int line, int column) {
+		this.reportError(String.format("%1s <line: %2d, column: %3d>", errorMessage, line, column));
+	}
+	
+	public abstract void output() throws Exception;
 }
