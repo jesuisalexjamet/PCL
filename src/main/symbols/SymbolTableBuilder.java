@@ -7,6 +7,7 @@ public class SymbolTableBuilder {
 	private CommonTree tree;
 	private SymbolTable root;
 	private AbstractSemanticErrorReporter reporter;
+	private int offset;
 	public SymbolTableBuilder(CommonTree tree,AbstractSemanticErrorReporter semanticErrorReporter){
 		this.reporter = semanticErrorReporter;
 		this.tree = tree;
@@ -17,11 +18,11 @@ public class SymbolTableBuilder {
 		new Primitive("method", root);
 		new Primitive("void", root);
 		new Primitive("block", root);
+		this.offset = 0;
 	}
 	public SymbolTable getSymboleTable(){
-		int i=0;
 		for (CommonTree child : (List<CommonTree>) this.tree.getChildren()){
-			this.checkChild(child, root,i);		
+			this.checkChild(child, root);		
 			}
 		return this.root;
 	}
@@ -30,10 +31,9 @@ public class SymbolTableBuilder {
 		return this.reporter;
 	}
 
-	private void checkChild(CommonTree parent,SymbolTable ST,int i){
+	private void checkChild(CommonTree parent,SymbolTable ST){
 		String txt = parent.getText();
 		List<CommonTree> children = parent.getChildren();
-		
 		String type;
 		switch (txt) {
 		case "THIS":
@@ -54,19 +54,17 @@ public class SymbolTableBuilder {
 			break;
 		case "DECL_CLASS":
 			String parentClass = children.get(1).getText();
-			
 			ClassSymbol cls;
 
 			if (!ST.checkType(parentClass)){
-				cls = new ClassSymbol(children.get(0).getText(), ST,i+2);
+				cls = new ClassSymbol(children.get(0).getText(), ST,offset);
 			} else {
-				cls = new ClassSymbol(children.get(0).getText(),ST,parentClass,i+4);
+				cls = new ClassSymbol(children.get(0).getText(),ST,parentClass,offset);
 			}
-			
+			offset += 2;
 			for (CommonTree child : children){
-				this.checkChild(child, cls.getChildSymbolTable(),i);
+				this.checkChild(child, cls.getChildSymbolTable());
 			}
-			
 			break;
 		case "DECL_METHOD":
 			ArrayList<String> arglist = new ArrayList<String>();
@@ -83,18 +81,18 @@ public class SymbolTableBuilder {
 			if (!ST.checkType(type)){
 				type = "void";
 			}
-			Method mtd = new Method(children.get(0).getText(),ST,count-1,type,arglist,i+2);
+			Method mtd = new Method(children.get(0).getText(),ST,count-1,type,arglist,offset);
 			for (CommonTree child : children){
-				this.checkChild(child, mtd.getChildSymbolTable(),i);
+				this.checkChild(child, mtd.getChildSymbolTable());
 			}
-			
+			offset += 2;
 			CheckHeritage.checkOverloadedMethod(mtd, (ClassSymbol) ST.getSymbol(ST.getName()), reporter, parent.getLine(), parent.getCharPositionInLine());
 			break;
 		case "BODY":
-            AnonymousBlock anonymous = new AnonymousBlock(ST);
-
+            AnonymousBlock anonymous = new AnonymousBlock(ST,offset);
+            offset += 2;
             for (CommonTree child : children){
-                this.checkChild(child, anonymous.getChildSymbolTable(),i);
+                this.checkChild(child, anonymous.getChildSymbolTable());
             }
 			break;
 		case "AFFECT":
@@ -105,12 +103,16 @@ public class SymbolTableBuilder {
 		case "DECL_VAR":
 			type = children.get(1).getText();
 			if (!CheckDeclaration.checkDoubleDeclaration(children.get(0).getText(), ST, reporter)) {
-				new Variable(children.get(0).getText(),type,ST,i-25);
+				this.offset = ST.getOffset();
+				ST.setOffset(offset+2);
+				new Variable(children.get(0).getText(),type,ST,offset);
 			}
 			break;
 		case "METHOD_ARGS":
 			type = children.get(1).getText();
-			new Variable(children.get(0).getText(),type,ST,42);
+			this.offset = ST.getOffset();
+			ST.setOffset(offset+2);
+			new Variable(children.get(0).getText(),type,ST,offset);
 			break;
 		case "DO":
 			CheckMethod.checkDO(children, ST, reporter);
@@ -123,49 +125,16 @@ public class SymbolTableBuilder {
 			break;
 		case "COND":
 			CheckCondition.checkCond(children, ST, reporter,parent.getLine(),parent.getCharPositionInLine());
-		/*
-		case "/":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
-			break;
-		case "*":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
-			break;
-		case "-":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
-			break;
-		case "+":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
-			break;
-		case ">":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
-			break;
-		case "<":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
-			break;
-		case ">=":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
-			break;
-		case "<=":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
-			break;
-		case "==":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
-			break;
-		case "!=":
-			CheckComparaison.checkComparaison(children.get(0).getText(), children.get(1).getText(), ST, reporter,children.get(0).getChildren(),children.get(1).getChildren());
-			break;
-		default:
-			break;
-			
-		*/
+	
 		}
 		
 		if (children != null) {
 			if ( !txt.equals("BODY") && !txt.equals("DECL_CLASS") && !txt.equals("DECL_METHOD")) 
 				for (CommonTree child : children){
-						this.checkChild(child, ST,i);		
+						this.checkChild(child, ST);		
 			}
 		}
 	}
+
 
 }

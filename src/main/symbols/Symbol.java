@@ -6,15 +6,21 @@ public abstract class Symbol {
 	protected SymbolTable parentSymbolTable;
 	protected Symbol arg;
 	protected int offset;
+	protected int size;
 	
 	public Symbol(String name, String type, SymbolTable parentSymbolTable) {
 		this.name = name;
 		this.type = parentSymbolTable.getSymbol(type);
 		this.parentSymbolTable = parentSymbolTable;
-		
 		this.parentSymbolTable.add(this);
+		this.size = 2;
 	}
-	
+	public void setSize(int size){
+		this.size = size;
+	}
+	public int getSize(){
+		return this.size;
+	}
 	public void setOffset(int d) {
 		this.offset=d;
 	}

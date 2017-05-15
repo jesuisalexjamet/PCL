@@ -6,6 +6,7 @@ public class SymbolTable extends ArrayList<Symbol> {
 	private SymbolTable parent;
 	private String name;
 	private Symbol master;
+	private int offset = 0;
 	public SymbolTable(SymbolTable parent,String name) {
 		this.parent = parent;
 		this.name = name;
@@ -15,9 +16,14 @@ public class SymbolTable extends ArrayList<Symbol> {
 		this.master = master;
 		this.name = master.getName();
 	}
-	
 	public SymbolTable getParent() {
 		return this.parent;
+	}
+	public int getOffset() {
+		return offset;
+	}
+	public void setOffset(int offset) {
+		this.offset = offset;
 	}
 	public Symbol getMaster(){
 		return this.master;
