@@ -5,6 +5,7 @@ public abstract class Symbol {
 	protected Symbol type;
 	protected SymbolTable parentSymbolTable;
 	protected Symbol arg;
+	protected int offset;
 	
 	public Symbol(String name, String type, SymbolTable parentSymbolTable) {
 		this.name = name;
@@ -12,6 +13,14 @@ public abstract class Symbol {
 		this.parentSymbolTable = parentSymbolTable;
 		
 		this.parentSymbolTable.add(this);
+	}
+	
+	public void setOffset(int d) {
+		this.offset=d;
+	}
+	
+	public int getOffset(int d) {
+		return this.offset;
 	}
 	
 	public String getName() {
@@ -33,6 +42,6 @@ public abstract class Symbol {
 	abstract public SymbolTable getChildSymbolTable();
 	
 	public String toString() {
-		return "name: " + this.name + " type: " + this.type.getName();
+		return "name: " + this.name + " type: " + this.type.getName()+ " déplacement :"+this.offset;
 	}
 }

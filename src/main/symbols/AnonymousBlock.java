@@ -8,6 +8,12 @@ public class AnonymousBlock extends Symbol {
 		count += 1;
 		this.childSymbolTable = new SymbolTable(this.parentSymbolTable,name);
 	}
+	public AnonymousBlock(SymbolTable parentSymbolTable,int offset) {
+		super(Integer.toString(count),"block",parentSymbolTable);
+		this.offset = offset;
+		count += 1;
+		this.childSymbolTable = new SymbolTable(this.parentSymbolTable,name);
+	}
 	@Override
 	public SymbolTable getChildSymbolTable() {
 		return this.childSymbolTable;

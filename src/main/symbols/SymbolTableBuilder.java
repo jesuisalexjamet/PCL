@@ -19,8 +19,9 @@ public class SymbolTableBuilder {
 		new Primitive("block", root);
 	}
 	public SymbolTable getSymboleTable(){
+		int i=0;
 		for (CommonTree child : (List<CommonTree>) this.tree.getChildren()){
-			this.checkChild(child, root);		
+			this.checkChild(child, root,i);		
 			}
 		return this.root;
 	}
@@ -29,7 +30,7 @@ public class SymbolTableBuilder {
 		return this.reporter;
 	}
 
-	private void checkChild(CommonTree parent,SymbolTable ST){
+	private void checkChild(CommonTree parent,SymbolTable ST,int i){
 		String txt = parent.getText();
 		List<CommonTree> children = parent.getChildren();
 		
@@ -57,13 +58,13 @@ public class SymbolTableBuilder {
 			ClassSymbol cls;
 
 			if (!ST.checkType(parentClass)){
-				cls = new ClassSymbol(children.get(0).getText(), ST);
+				cls = new ClassSymbol(children.get(0).getText(), ST,i+2);
 			} else {
-				cls = new ClassSymbol(children.get(0).getText(),ST,parentClass);
+				cls = new ClassSymbol(children.get(0).getText(),ST,parentClass,i+4);
 			}
 			
 			for (CommonTree child : children){
-				this.checkChild(child, cls.getChildSymbolTable());
+				this.checkChild(child, cls.getChildSymbolTable(),i);
 			}
 			
 			break;
@@ -82,9 +83,9 @@ public class SymbolTableBuilder {
 			if (!ST.checkType(type)){
 				type = "void";
 			}
-			Method mtd = new Method(children.get(0).getText(),ST,count-1,type,arglist);
+			Method mtd = new Method(children.get(0).getText(),ST,count-1,type,arglist,i+2);
 			for (CommonTree child : children){
-				this.checkChild(child, mtd.getChildSymbolTable());
+				this.checkChild(child, mtd.getChildSymbolTable(),i);
 			}
 			
 			CheckHeritage.checkOverloadedMethod(mtd, (ClassSymbol) ST.getSymbol(ST.getName()), reporter, parent.getLine(), parent.getCharPositionInLine());
@@ -93,7 +94,7 @@ public class SymbolTableBuilder {
             AnonymousBlock anonymous = new AnonymousBlock(ST);
 
             for (CommonTree child : children){
-                this.checkChild(child, anonymous.getChildSymbolTable());
+                this.checkChild(child, anonymous.getChildSymbolTable(),i);
             }
 			break;
 		case "AFFECT":
@@ -104,12 +105,12 @@ public class SymbolTableBuilder {
 		case "DECL_VAR":
 			type = children.get(1).getText();
 			if (!CheckDeclaration.checkDoubleDeclaration(children.get(0).getText(), ST, reporter)) {
-				new Variable(children.get(0).getText(),type,ST);
+				new Variable(children.get(0).getText(),type,ST,i-25);
 			}
 			break;
 		case "METHOD_ARGS":
 			type = children.get(1).getText();
-			new Variable(children.get(0).getText(),type,ST);
+			new Variable(children.get(0).getText(),type,ST,42);
 			break;
 		case "DO":
 			CheckMethod.checkDO(children, ST, reporter);
@@ -162,7 +163,7 @@ public class SymbolTableBuilder {
 		if (children != null) {
 			if ( !txt.equals("BODY") && !txt.equals("DECL_CLASS") && !txt.equals("DECL_METHOD")) 
 				for (CommonTree child : children){
-						this.checkChild(child, ST);		
+						this.checkChild(child, ST,i);		
 			}
 		}
 	}

@@ -15,6 +15,32 @@ public class ClassSymbol extends Symbol {
 		this.childSymbolTable = new SymbolTable(this.parentSymbolTable,this);
 	}
 	/**
+	 * Constructeur avec heritage et déplacement
+	 * @param name
+	 * @param parentSymbolTable
+	 * @param parentClass
+	 * @param offset
+	 */
+	public ClassSymbol(String name, SymbolTable parentSymbolTable,String parentClass, int offset) {
+		super(name, "class", parentSymbolTable);
+		this.offset=offset;
+		this.parentClass = (ClassSymbol) parentSymbolTable.getSymbol(parentClass);
+		this.childSymbolTable = new SymbolTable(this.parentSymbolTable,this);
+	}
+	/**
+	 * Constructeur sans heritage mais avec déplacement
+	 * @param name
+	 * @param parentSymbolTable
+	 * @param offset
+	 */
+	public ClassSymbol(String name, SymbolTable parentSymbolTable,int offset) {
+		super(name, "class", parentSymbolTable);
+		this.offset = offset;
+		this.parentClass = null;
+		this.childSymbolTable = new SymbolTable(this.parentSymbolTable,name);
+	}
+	
+	/**
 	 * Constructeur sans heritage
 	 * @param name
 	 * @param parentSymbolTable

@@ -23,6 +23,22 @@ public class Method extends Symbol {
 		this.argTypeList=argList;
 	}
 	
+	public Method(String name,
+			SymbolTable parentSymbolTable,
+			int argCount,
+			String returnType,
+			ArrayList<String> argList,
+			int offset) {
+	super(name, "method", parentSymbolTable);
+	
+	this.argCount = argCount;
+	this.childSymbolTable = new SymbolTable(this.parentSymbolTable,this);
+	this.returnType = this.parentSymbolTable.getSymbol(returnType);
+	this.arg = this.returnType;
+	this.argTypeList=argList;
+	this.offset=offset;
+}
+	
 	public Symbol getReturnType() {
 		return this.returnType;
 	}
