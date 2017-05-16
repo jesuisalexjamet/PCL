@@ -1,5 +1,7 @@
 package main.compiler;
 
+import main.assembly.AssemblyBuilder;
+
 public class Compiler {
 	public static void main(String args[]) throws Exception {
 		String programPath;
@@ -34,5 +36,9 @@ public class Compiler {
 		
 		// Acquisition de la table des symboles.
 		loocProgram.processSymbolTable();
+		
+		AssemblyBuilder assBuilder = AssemblyBuilder.getInstance();
+		
+		System.out.println(assBuilder.translateProgram(loocProgram));
 	}
 }

@@ -1,6 +1,8 @@
 package main.assembly;
 
 import main.compiler.Program;
+import main.symbols.Symbol;
+import main.symbols.Variable;
 
 /**
  * AssemblyBuilder est une classe dédiée à la traduction des structures
@@ -28,7 +30,7 @@ public class AssemblyBuilder {
 	 * 
 	 * @return L'unique instance de la classe AssemblyBuilder
 	 */
-	public AssemblyBuilder getInstance() {
+	public static AssemblyBuilder getInstance() {
 		// Instanciation de l'unique instance de la classe.
 		if (AssemblyBuilder._instance == null) {
 			AssemblyBuilder._instance = new AssemblyBuilder();
@@ -51,8 +53,10 @@ public class AssemblyBuilder {
 	 * d'une chaîne de caractères.
 	 */
 	public String translateProgram(Program prg) {
+		String assPrg = this.bootstrap(prg);
+		assPrg += this.translateGlobalVariables(prg) + "\n\n";
 		
-		return null;
+		return assPrg;
 	}
 	
 	/**
@@ -64,7 +68,7 @@ public class AssemblyBuilder {
 	 * sous la forme d'un code source écrit en lagnage d'assemblage.
 	 */
 	private String bootstrap(Program prg) {
-		return null;
+		return new String("SP EQU R15\nHP EQU R14\n\n");
 	}
 	
 	/**
@@ -99,7 +103,16 @@ public class AssemblyBuilder {
 	 * @return
 	 */
 	private String translateGlobalVariables(Program prg) {
-		return null;
+		String res = "";
+		
+		// On parcours les l'ensemble des variables définies à la racines de la table des symboles.
+		for (Symbol curr: prg.getSymbolTable()) {
+			if (curr instanceof Variable) {
+				res += String.format("%1s EQU 1\n", curr.getName().toUpperCase());
+			}
+		}
+		
+		return res;
 	}
 	
 	/**
