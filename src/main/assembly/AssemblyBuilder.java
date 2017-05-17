@@ -5,9 +5,7 @@ import java.util.List;
 import org.antlr.runtime.tree.CommonTree;
 
 import main.compiler.Program;
-import main.symbols.Symbol;
-import main.symbols.SymbolTable;
-import main.symbols.Variable;
+import main.symbols.*;
 
 /**
  * AssemblyBuilder est une classe dédiée à la traduction des structures
@@ -58,9 +56,11 @@ public class AssemblyBuilder {
 	 * d'une chaîne de caractères.
 	 */
 	public String translateProgram(Program prg) {
-		String assPrg = this.bootstrap(prg);
-		//assPrg += this.translateGlobalVariables(prg) + "\n\n";
-		assPrg += this.translateArithmetic(prg.getAbstractTree(), prg.getSymbolTable());
+		String assPrg = this.bootstrap(prg) + "\n";
+		assPrg += this.translateGlobalVariables(prg) + "\n";
+		assPrg += this.translateClasses(prg) + "\n";
+		assPrg += this.translateGlobalInstructions(prg) + "\n";
+
 		return assPrg;
 	}
 	
@@ -73,12 +73,13 @@ public class AssemblyBuilder {
 	 * sous la forme d'un code source écrit en lagnage d'assemblage.
 	 */
 	private String bootstrap(Program prg) {
-		return new String("SP EQU R15\nHP EQU R14\n\n");
+		return new String("SP EQU R15\nHP EQU R14\n\nORG 0x0000\n");
 	}
 	
 	/**
 	 * Méthode permettant d'obtenir une représentation sous forme de langage d'assemblage
-	 * des descripteurs de classes à partir du programme passé en paramètre.
+	 * des descripteurs de classes à partir du programme passé en paramètre. Cette méthode
+	 * propose également une traduction des méthodes des classes.
 	 * 
 	 * @param prg Le programme pour lequel doit être produit des descripteurs de classes
 	 * sous la forme de langage d'assemblage.
@@ -86,7 +87,69 @@ public class AssemblyBuilder {
 	 * d'assemblage.
 	 */
 	private String translateClasses(Program prg) {
-		return null;
+		String res;
+		String descriptors = "";
+		String descriptorsInit = "INIT_DESCRIPTOR ";
+		String methods = "";
+		
+		// Pour chaque déclaration de classes...
+		for (Symbol curr: prg.getSymbolTable()) {
+			if (curr instanceof ClassSymbol) {
+				ClassSymbol currClass = (ClassSymbol) curr;
+				ClassSymbol parentClass = (ClassSymbol) currClass.getParentClass();
+				
+				int descriptorSize = 1; // Taille du descripteur en mots.
+				
+				// On ajoute à descriptorSize le nombre de méthode de la classe...
+				descriptorSize += currClass.getMethodCount();
+				
+				descriptors += String.format("%1s_CLASSDESCRIPTOR RSW %d\n", currClass.getName().toUpperCase(), descriptorSize);
+				
+				// Consturction de la séquence d'initialisation du descripteur de classe.
+				if (parentClass != null) {
+					descriptorsInit += String.format("LDW R1, #%1s_CLASSDESCRIPTOR\nSTW R1, @%2s_CLASSDESCRIPTOR\n", parentClass.getName().toUpperCase(), currClass.getName().toUpperCase());
+				} else {
+					descriptorsInit += String.format("LDW R1, #0xFFFF\nSTW R1, @%1s_CLASSDESCRIPTOR\n", currClass.getName().toUpperCase());
+				}
+				
+				int classDescriptorOffset = 2;
+				
+				for (Symbol classChild: currClass.getChildSymbolTable()) {
+					if (classChild instanceof Method) {
+						descriptorsInit += String.format("LDW R1, #%1s_%2s\nSTW R1, @(%3s_CLASSDESCRIPTOR + %d)\n", currClass.getName().toUpperCase(), classChild.getName().toUpperCase(), currClass.getName().toUpperCase(), classDescriptorOffset);
+						
+						classDescriptorOffset += 2;
+						
+						// Recherche du noeud de l'arbre abstrait correspondant à la définition de la méthode.
+						CommonTree matchingNode = prg.getAbstractTree();
+						
+						for (CommonTree node: (List<CommonTree>) prg.getAbstractTree().getChildren()) {
+							if (node.getText() == "DECL_CLASS" && node.getChild(0).getText() == currClass.getName()) {
+								matchingNode = node;
+								break;
+							}
+						}
+						
+						for (CommonTree node: (List<CommonTree>) matchingNode.getChildren()) {
+							if (node.getText() == "DECL_METHOD" && node.getChild(0).getText() == classChild.getName()) {
+								matchingNode = node;
+								break;
+							}
+						}
+						
+						methods += this.translateMethods(classChild.getChildSymbolTable(), matchingNode) + "\n";
+					}
+				}
+				
+				descriptorsInit += "\n";
+			}
+		}
+		
+		res = descriptors + "\n";
+		res += descriptorsInit + "\n";
+		res += methods;
+		
+		return res;
 	}
 	
 	/**
@@ -96,8 +159,10 @@ public class AssemblyBuilder {
 	 * @param prg
 	 * @return
 	 */
-	private String translateMethods(Program prg) {
-		return null;
+	private String translateMethods(SymbolTable table, CommonTree tree) {
+		String res = String.format("%1s_%2s ", table.getParent().getName().toUpperCase(), table.getName().toUpperCase());
+		
+		return res;
 	}
 	
 	/**
@@ -113,7 +178,7 @@ public class AssemblyBuilder {
 		// On parcours les l'ensemble des variables définies à la racines de la table des symboles.
 		for (Symbol curr: prg.getSymbolTable()) {
 			if (curr instanceof Variable) {
-				res += String.format("%1s EQU 1\n", curr.getName().toUpperCase());
+				res += String.format("%1s RSW 1\n", curr.getName().toUpperCase());
 			}
 		}
 		
@@ -207,6 +272,8 @@ public class AssemblyBuilder {
 	 * @return
 	 */
 	private String translateGlobalInstructions(Program prg) {
-		return null;
+		String res = "MAIN ";
+		
+		return res;
 	}
 }

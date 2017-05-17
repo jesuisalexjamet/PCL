@@ -74,6 +74,28 @@ public class ClassSymbol extends Symbol {
 	public ClassSymbol getParentClass() {
 		return this.parentClass;
 	}
+	public int getMethodCount() {
+		int count = 0;
+		
+		for (Symbol curr: this.childSymbolTable) {
+			if (curr instanceof Method) {
+				count++;
+			}
+		}
+		
+		return count;
+	}
+	public int getAttributesCount() {
+		int count = 0;
+		
+		for (Symbol curr: this.childSymbolTable) {
+			if (curr instanceof Variable) {
+				count++;
+			}
+		}
+		
+		return count;
+	}
 	@Override
 	public SymbolTable getChildSymbolTable() {
 		return this.childSymbolTable;
