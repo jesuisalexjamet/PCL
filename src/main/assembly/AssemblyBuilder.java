@@ -121,6 +121,21 @@ public class AssemblyBuilder {
 	}
 	
 	/**
+	 * Méthode permettant d'obtenir une représentation sous forme de langage d'assemblage les déclarations de variables
+	 * 
+	 * @param tree, ST
+	 * @return
+	 */
+	private String translateDeclaration(CommonTree tree, SymbolTable ST) {
+		String res = "";
+		String node = tree.getText();
+		if (node.equals("DECL_VAR")) {
+			res += "STW (SP)2, SP";
+		}
+		return res;
+	}
+	
+	/**
 	 * Méthode permettant d'obtenir une représentation sous forme de langage d'assemblage les affectations de variables
 	 * 
 	 * @param tree, ST
@@ -146,40 +161,41 @@ public class AssemblyBuilder {
 			return "";
 		}
 		String operation = tree.getText();
-		if (!operation.matches("([+,1,*,/])")){
+		if (!operation.matches("([+,-,*,/])")){
 			res += translateArithmetic((CommonTree) tree.getChild(0), ST);
 			res += translateArithmetic((CommonTree) tree.getChild(1), ST);
 			return res;
 		}
 		CommonTree childOne = (CommonTree) tree.getChild(0);
 		CommonTree childTwo = (CommonTree) tree.getChild(1);
+		if (childTwo.getText().matches("([+,-,*,/])")) {
+			res += translateArithmetic(childTwo,ST);
+		}
+		else if (childTwo.getText().matches("[0-9]+")) {
+			res += "LDW R1, #" + childTwo.getText()+ "\n";
+			res = res + "STW R1, -(SP)\n";
+		}
+		else {
+			
+		}
 		if (childOne.getText().matches("([+,-,*,/])")) {
 			res += translateArithmetic(childOne,ST);
-			res += "STW R3 R1\n";
 		}
 		else if (childOne.getText().matches("[0-9]+")) {
-			res = res + "STW R1 "+childOne.getText() + "\n";
+			res += "LDW R1, #" + childOne.getText()+ "\n";
+			res = res + "STW R1, -(SP)\n";
 		}
 		else {
 			
 			res+="coucou";
 		}
-		if (childTwo.getText().matches("([+,-,*,/])")) {
-			res += translateArithmetic(childTwo,ST);
-			res += "STW R3 R2\n";
-		}
-		else if (childTwo.getText().matches("[0-9]+")) {
-			res = res + "STW R2 "+childTwo.getText() + "\n";
-		}
-		else {
-			
-		}
+		
 		
 		switch (operation) {
-		case "+": res += "ADD R1 R2 R3 \n"; break;
-		case "-": res += "SUB R1 R2 R3 \n"; break;
-		case "*": res += "MUL R1 R2 R3 \n"; break;
-		case "/": res += "DIV R1 R2 R3 \n"; break;
+		case "+": res += "LDW R1, (SP)+\nLDW R2, (SP)+\nADD R1, R2, R3\nSTW R3, -(SP) \n"; break;
+		case "-": res += "LDW R1, (SP)+\nLDW R2, (SP)+\nSUB R1, R2, R3\nSTW R3, -(SP) \n"; break;
+		case "*": res += "LDW R1, (SP)+\nLDW R2, (SP)+\nMUL R1, R2, R3\nSTW R3, -(SP) \n"; break;
+		case "/": res += "LDW R1, (SP)+\nLDW R2, (SP)+\nDIV R1, R2, R3\nSTW R3, -(SP) \n"; break;
 	}
 		return res;
 	}
