@@ -60,7 +60,6 @@ public class AssemblyBuilder {
 		assPrg += this.translateGlobalVariables(prg) + "\n";
 		assPrg += this.translateClasses(prg) + "\n";
 		assPrg += this.translateGlobalInstructions(prg) + "\n";
-
 		return assPrg;
 	}
 	
@@ -207,11 +206,23 @@ public class AssemblyBuilder {
 	 * @return
 	 */
 	private String translateAffectation(CommonTree tree, SymbolTable ST) {
-		String res = "";
-		String childOne = tree.getChild(0).getText();
-		String childTwo = tree.getChild(1).getText();
-	
-		return res;
+			String res = "";
+			CommonTree childOne = (CommonTree) tree.getChild(0);
+			CommonTree childTwo = (CommonTree) tree.getChild(1);
+			Symbol symb = ST.getSymbol(childOne.getText());
+			if (symb.getType().getName().equals("int")) {
+				int offset = symb.getOffset();
+				String value = childTwo.getText();
+				if (!value.matches("([+,-,*,/])")) {
+					res += "STW "+value+", (SP)"+Integer.toString(offset) +"\n";
+				}
+				else {
+					res += translateArithmetic(childTwo,ST);
+					res += "STW R3,(SP)"+Integer.toString(offset)+"\n";
+				}
+					
+			}
+			return res;
 	}
 	
 	/**
@@ -222,9 +233,6 @@ public class AssemblyBuilder {
 	 */
 	private String translateArithmetic(CommonTree tree, SymbolTable ST) {
 		String res = "";
-		if (tree==null) {
-			return "";
-		}
 		String operation = tree.getText();
 		if (!operation.matches("([+,-,*,/])")){
 			res += translateArithmetic((CommonTree) tree.getChild(0), ST);
@@ -273,7 +281,19 @@ public class AssemblyBuilder {
 	 */
 	private String translateGlobalInstructions(Program prg) {
 		String res = "MAIN ";
-		
+		CommonTree tree = prg.getAbstractTree();
+		SymbolTable ST = prg.getSymbolTable();
+		res += this.mainTranslate(tree, ST);
+		return res;
+	}
+	public String mainTranslate(CommonTree tree, SymbolTable ST){
+		String res = "";
+		for (CommonTree child : (List<CommonTree>) tree.getChildren()){
+			switch (child.getText()){
+			case "AFFECT": res += this.translateAffectation(child, ST); break;
+			case "DECL_METHOD": break;
+			}
+		}
 		return res;
 	}
 }

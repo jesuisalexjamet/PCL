@@ -25,7 +25,7 @@ public abstract class Symbol {
 		this.offset=d;
 	}
 	
-	public int getOffset(int d) {
+	public int getOffset() {
 		return this.offset;
 	}
 	
