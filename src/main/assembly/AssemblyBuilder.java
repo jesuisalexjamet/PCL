@@ -214,10 +214,12 @@ public class AssemblyBuilder {
 				int offset = symb.getOffset();
 				String value = childTwo.getText();
 				if (!value.matches("([+,-,*,/])")) {
-					res += "STW "+value+", (SP)"+Integer.toString(offset) +"\n";
+					res += "LDW R2, #" +value+"\n";
+					res += "STW R2, (SP)"+Integer.toString(offset) +"\n";
 				}
 				else {
 					res += translateArithmetic(childTwo,ST);
+					res += "LDW R3, (SP)+ \n";
 					res += "STW R3,(SP)"+Integer.toString(offset)+"\n";
 				}
 					
@@ -260,7 +262,6 @@ public class AssemblyBuilder {
 		}
 		else {
 			
-			res+="coucou";
 		}
 		
 		
