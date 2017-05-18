@@ -213,9 +213,10 @@ public class AssemblyBuilder {
 			if (symb.getType().getName().equals("int")) {
 				int offset = symb.getOffset();
 				String value = childTwo.getText();
-				if (!value.matches("([+,-,*,/])")) {
-					res += "LDW R2, #" +value+"\n";
-					res += "STW R2, (SP)"+Integer.toString(offset) +"\n";
+				
+				if (!value.matches("([+,-,*,/])")) {	
+					res += "LDW R2, #"+value+"\n";
+					res += "STW R2, (SP)"+Integer.toString(offset)+"\n";
 				}
 				else {
 					res += translateArithmetic(childTwo,ST);
@@ -228,7 +229,7 @@ public class AssemblyBuilder {
 	}
 	
 	/**
-	 * Méthode permettant d'obtenir une représentation sous forme de langage d'assemblage les opérations arithmétiques
+	 * Méthode permettant d'obtenir une représentation sous forme de langage d'assemblage des opérations arithmétiques
 	 * 
 	 * @param tree, ST
 	 * @return
@@ -236,6 +237,8 @@ public class AssemblyBuilder {
 	private String translateArithmetic(CommonTree tree, SymbolTable ST) {
 		String res = "";
 		String operation = tree.getText();
+		Symbol rightSymb = null;
+		Symbol leftSymb = null;
 		if (!operation.matches("([+,-,*,/])")){
 			res += translateArithmetic((CommonTree) tree.getChild(0), ST);
 			res += translateArithmetic((CommonTree) tree.getChild(1), ST);
@@ -251,6 +254,9 @@ public class AssemblyBuilder {
 			res = res + "STW R1, -(SP)\n";
 		}
 		else {
+			rightSymb = ST.getSymbol(childTwo.getText());
+			int offsetR = rightSymb.getOffset();
+			res += "LDW R2, (SP)"+offsetR+"\n";
 			
 		}
 		if (childOne.getText().matches("([+,-,*,/])")) {
@@ -258,18 +264,29 @@ public class AssemblyBuilder {
 		}
 		else if (childOne.getText().matches("[0-9]+")) {
 			res += "LDW R1, #" + childOne.getText()+ "\n";
-			res = res + "STW R1, -(SP)\n";
+			res = res + "STW R1, -(SP)\n";			
 		}
 		else {
-			
+			leftSymb = ST.getSymbol(childOne.getText());
+			int offsetL = leftSymb.getOffset();
+			res += "LDW R1, (SP)"+offsetL+"\n";
 		}
 		
+		if (leftSymb == null && !(rightSymb == null)) {
+			res += "LDW R1, (SP)+ \n";
+		}
+		else if (!(leftSymb == null) && rightSymb == null) {
+			res += "LDW R2, (SP)+ \n";
+		}
+		else if (leftSymb == null && rightSymb == null) {
+			res += "LDW R1, (SP)+ \nLDW R2, (SP)+ \n";
+		}
 		
 		switch (operation) {
-		case "+": res += "LDW R1, (SP)+\nLDW R2, (SP)+\nADD R1, R2, R3\nSTW R3, -(SP) \n"; break;
-		case "-": res += "LDW R1, (SP)+\nLDW R2, (SP)+\nSUB R1, R2, R3\nSTW R3, -(SP) \n"; break;
-		case "*": res += "LDW R1, (SP)+\nLDW R2, (SP)+\nMUL R1, R2, R3\nSTW R3, -(SP) \n"; break;
-		case "/": res += "LDW R1, (SP)+\nLDW R2, (SP)+\nDIV R1, R2, R3\nSTW R3, -(SP) \n"; break;
+		case "+": res += "ADD R1, R2, R3 \nSTW R3, -(SP) \n"; break;
+		case "-": res += "SUB R1, R2, R3 \nSTW R3, -(SP) \n"; break;
+		case "*": res += "MUL R1, R2, R3 \nSTW R3, -(SP) \n"; break;
+		case "/": res += "DIV R1, R2, R3 \nSTW R3, -(SP) \n"; break;
 	}
 		return res;
 	}
