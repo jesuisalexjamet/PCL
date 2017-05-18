@@ -1,6 +1,7 @@
 package main.compiler;
 
 import main.assembly.AssemblyBuilder;
+import main.assembly.AssemblyWriter;
 
 public class Compiler {
 	public static void main(String args[]) throws Exception {
@@ -38,7 +39,9 @@ public class Compiler {
 		loocProgram.processSymbolTable();
 		
 		AssemblyBuilder assBuilder = AssemblyBuilder.getInstance();
-		
-		System.out.println(assBuilder.translateProgram(loocProgram));
+		AssemblyWriter assWriter = new AssemblyWriter("test");
+		String res = assBuilder.translateProgram(loocProgram);
+		assWriter.writeInFile(res,"test");
+		System.out.println(res);
 	}
 }

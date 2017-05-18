@@ -4,8 +4,8 @@ import java.io.*;
 
 public class AssemblyWriter {
 	
-	private FileWriter assemblyFile;
-	private File file;
+	private FileWriter assemblyFile = null;
+	private File file= null;
 	
 	public AssemblyWriter(String name) {
 		file = new File(name + ".asm");
@@ -22,13 +22,16 @@ public class AssemblyWriter {
 		}
 	}
 	
-	public void writeInFile(String txt) {
-		try {
+	public void writeInFile(String txt,String name) throws IOException {
+		file = new File(name + ".asm");
+		assemblyFile = new FileWriter(file);	
+		//try {
 			this.assemblyFile.write(txt);
-		} catch (IOException e) {
+		//} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+		//}
+			assemblyFile.close();
 	}
 	
 

@@ -20,7 +20,7 @@ import main.symbols.*;
  */
 public class AssemblyBuilder {
 	private static AssemblyBuilder _instance = null;
-	private static int nbofvar = 0;
+	
 	/**
 	 * Constructeur par défaut de la classe AssemblyBuilder.
 	 */
@@ -303,12 +303,74 @@ public class AssemblyBuilder {
 	 * @return
 	 */
 	private String translateGlobalInstructions(Program prg) {
-		String res = "MAIN ";
+		String res = "MAIN LDW R1, #0x1000\nSTW R1, SP\n";
 		CommonTree tree = prg.getAbstractTree();
 		SymbolTable ST = prg.getSymbolTable();
 		res += this.mainTranslate(tree, ST);
 		return res;
 	}
+	
+	private String translateCond(CommonTree tree, SymbolTable ST) {
+		String res ="";
+		String comp = tree.getChild(0).getText();
+		String right = tree.getChild(0).getChild(1).getText();
+		String left = tree.getChild(0).getChild(0).getText();
+		Symbol rightSymbol = null;
+		Symbol leftSymbol = null;
+		String instructionTrue = tree.getChild(1).getText();
+		String instructionFalse = tree.getChild(2).getText();
+		if (right.matches("-?[0-9]+")) {
+			res += "LDW R2, #" + right+ "\n";
+			res = res + "STW R2, -(SP)\n";
+		}
+		else { //Le else n'est pas complet, ya masse autre cas TODO
+			rightSymbol=ST.getSymbol(right);
+			int offsetVar = rightSymbol.getOffset();
+			int offsetT = ST.getOffset();
+			int offset = offsetT-offsetVar;
+			res += "LDW R2, (SP)"+offset+"\n";
+		}
+		
+		if (left.matches("-?[0-9]+")) {
+			res += "LDW R1, #" + left+ "\n";
+			res = res + "STW R1, -(SP)\n";
+		}
+		else {//Le else n'est pas complet, ya masse autre cas TODO
+			leftSymbol=ST.getSymbol(left);
+			int offsetVar = leftSymbol.getOffset();
+			int offsetT = ST.getOffset();
+			int offset = offsetT-offsetVar;
+			res += "LDW R1, (SP)"+offset+"\n";
+		}
+		res += "CMP R1,R2\n";
+		switch (comp) {
+		case ">": res += "JGT #IF-$-2\n"; break;
+		case ">=": res += "JGE #IF-$-2\n"; break;
+		case "<": res += "JLW #IF-$-2\n"; break;
+		case "<=": res += "JLE #IF-$-2\n"; break;
+		case "==": res += "JEQ #IF-$-2\n"; break;
+		case "!=": res += "JNE #IF-$-2\n"; break;
+		}
+		
+		if (instructionFalse.equals("AFFECT")) {
+			res += this.translateAffectation((CommonTree)tree.getChild(2), ST);
+		}
+		else {
+			//TODO
+		}
+		
+		if (instructionTrue.equals("AFFECT")) {
+			res += "IF	";
+			res += this.translateAffectation((CommonTree)tree.getChild(1), ST);
+		} 
+		else {
+			//TODO
+		}
+		return res;
+
+	}
+	
+	
 	public String mainTranslate(CommonTree tree, SymbolTable ST){
 		String res = "";
 		for (CommonTree child : (List<CommonTree>) tree.getChildren()){
@@ -316,6 +378,7 @@ public class AssemblyBuilder {
 			case "AFFECT": res += this.translateAffectation(child, ST); break;
 			case "DECL_METHOD": break;
 			case "DECL_VAR": res += this.translateDeclaration(child, ST); break;
+			case "COND": res += this.translateCond(child,ST); break;
 			}
 		}
 		return res;

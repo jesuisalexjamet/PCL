@@ -4,7 +4,7 @@ test := 10;
 
 if test==10
 then
-	write "Okay !";
+	test := 16;
 else
-	write "Not Okay !";
+	test := 256;
 fi
