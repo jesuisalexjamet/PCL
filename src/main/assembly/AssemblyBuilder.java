@@ -20,6 +20,7 @@ import main.symbols.*;
  */
 public class AssemblyBuilder {
 	private static AssemblyBuilder _instance = null;
+	private static int nbofvar = 0;
 	/**
 	 * Constructeur par défaut de la classe AssemblyBuilder.
 	 */
@@ -193,9 +194,8 @@ public class AssemblyBuilder {
 	private String translateDeclaration(CommonTree tree, SymbolTable ST) {
 		String res = "";
 		String node = tree.getText();
-		if (node.equals("DECL_VAR")) {
-			res += "STW (SP)2, SP";
-		}
+		res += "LDW R0, #0\n";
+		res += "STW R0, -(SP)\n";
 		return res;
 	}
 	
@@ -211,17 +211,18 @@ public class AssemblyBuilder {
 			CommonTree childTwo = (CommonTree) tree.getChild(1);
 			Symbol symb = ST.getSymbol(childOne.getText());
 			if (symb.getType().getName().equals("int")) {
-				int offset = symb.getOffset();
+				int offsetVar = symb.getOffset();
+				int offsetT = ST.getOffset();
 				String value = childTwo.getText();
 				
 				if (!value.matches("([+,-,*,/])")) {	
 					res += "LDW R2, #"+value+"\n";
-					res += "STW R2, (SP)"+Integer.toString(offset)+"\n";
+					res += "STW R2, (SP)"+Integer.toString(offsetT-offsetVar)+"\n";
 				}
 				else {
 					res += translateArithmetic(childTwo,ST);
 					res += "LDW R3, (SP)+ \n";
-					res += "STW R3,(SP)"+Integer.toString(offset)+"\n";
+					res += "STW R3,(SP)"+Integer.toString(offsetT-offsetVar)+"\n";
 				}
 					
 			}
@@ -255,8 +256,10 @@ public class AssemblyBuilder {
 		}
 		else {
 			rightSymb = ST.getSymbol(childTwo.getText());
-			int offsetR = rightSymb.getOffset();
-			res += "LDW R2, (SP)"+offsetR+"\n";
+			int offsetVar = rightSymb.getOffset();
+			int offsetT = ST.getOffset();
+			int offset = offsetT-offsetVar;
+			res += "LDW R2, (SP)"+offset+"\n";
 			
 		}
 		if (childOne.getText().matches("([+,-,*,/])")) {
@@ -268,8 +271,10 @@ public class AssemblyBuilder {
 		}
 		else {
 			leftSymb = ST.getSymbol(childOne.getText());
-			int offsetL = leftSymb.getOffset();
-			res += "LDW R1, (SP)"+offsetL+"\n";
+			int offsetVar = leftSymb.getOffset();
+			int offsetT = ST.getOffset();
+			int offset = offsetT-offsetVar;
+			res += "LDW R1, (SP)"+offset+"\n";
 		}
 		
 		if (leftSymb == null && !(rightSymb == null)) {
@@ -310,6 +315,7 @@ public class AssemblyBuilder {
 			switch (child.getText()){
 			case "AFFECT": res += this.translateAffectation(child, ST); break;
 			case "DECL_METHOD": break;
+			case "DECL_VAR": res += this.translateDeclaration(child, ST); break;
 			}
 		}
 		return res;
