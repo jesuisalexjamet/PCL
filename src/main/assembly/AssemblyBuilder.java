@@ -1,5 +1,6 @@
 package main.assembly;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.antlr.runtime.tree.CommonTree;
@@ -21,6 +22,7 @@ import main.symbols.*;
 public class AssemblyBuilder {
 	private static AssemblyBuilder _instance = null;
 	private static int conditionCounter = 0;
+	private static int loopCounter = 0;
 	
 	/**
 	 * Constructeur par défaut de la classe AssemblyBuilder.
@@ -218,12 +220,12 @@ public class AssemblyBuilder {
 				
 				if (!value.matches("([+,-,*,/])")) {	
 					res += "LDW R2, #"+value+"\n";
-					res += "STW R2, (SP)"+Integer.toString(offsetT-offsetVar)+"\n";
+					res += "STW R2, (SP)"+Integer.toString(offsetT-offsetVar-2)+"\n";
 				}
 				else {
 					res += translateArithmetic(childTwo,ST);
 					res += "LDW R3, (SP)+ \n";
-					res += "STW R3,(SP)"+Integer.toString(offsetT-offsetVar)+"\n";
+					res += "STW R3,(SP)"+Integer.toString(offsetT-offsetVar-2)+"\n";
 				}
 					
 			}
@@ -322,7 +324,6 @@ public class AssemblyBuilder {
 		String instructionFalse = tree.getChild(2).getText();
 		if (right.matches("-?[0-9]+")) {
 			res += "LDW R2, #" + right+ "\n";
-			res = res + "STW R2, -(SP)\n";
 		}
 		else { //Le else n'est pas complet, ya masse autre cas TODO
 			rightSymbol=ST.getSymbol(right);
@@ -334,7 +335,6 @@ public class AssemblyBuilder {
 		
 		if (left.matches("-?[0-9]+")) {
 			res += "LDW R1, #" + left+ "\n";
-			res = res + "STW R1, -(SP)\n";
 		}
 		else {//Le else n'est pas complet, ya masse autre cas TODO
 			leftSymbol=ST.getSymbol(left);
@@ -377,6 +377,58 @@ public class AssemblyBuilder {
 
 	}
 	
+	private String translateLoop(CommonTree tree,SymbolTable ST) {
+		String res ="";
+		String idf = tree.getChild(0).getText();
+		String minBound = tree.getChild(1).getText();
+		String maxBound = tree.getChild(2).getText();
+		Symbol rightSymbol = null;
+		Symbol leftSymbol = null;
+		List<String> instructions = new ArrayList<String>();
+		for (int i=3;i<tree.getChildren().size();i++) {
+			instructions.add(tree.getChild(i).getText());
+		}
+		
+		
+		if (maxBound.matches("-?[0-9]+")) {
+			res += "LDW R10, #"+maxBound+"\n";
+		} else {
+			Symbol var = ST.getSymbol(maxBound);
+			int offsetT = ST.getOffset();
+			int offsetV = var.getOffset();
+			res += "LDW R10, (SP)"+Integer.toString(offsetT-offsetV-2)+"\n";
+		}
+		
+		
+		if (minBound.matches("-?[0-9]+")) {
+			res += "LDW R9, #"+minBound+"\n";
+		} else {
+			Symbol var = ST.getSymbol(minBound);
+			int offsetT = ST.getOffset();
+			int offsetV = var.getOffset();
+			res += "LDW R9, (SP)"+Integer.toString(offsetT-offsetV-2)+"\n";
+		}
+		
+		res += "LOOP_"+AssemblyBuilder.loopCounter+"	";
+		res += "CMP R9, R10\n";
+		res += "JGT #ENDLOOP_"+AssemblyBuilder.loopCounter+"-$-2\n";
+		for (int i=0;i<instructions.size();i++) {
+			if (instructions.get(i).equals("AFFECT")) {
+				res += this.translateAffectation((CommonTree)tree.getChild(3+i), ST);
+			}
+		}
+	
+		res += "LDW R1, #1\n";
+		res += "ADD R9 ,R1 ,R9\n";
+		res += "JMP #LOOP_"+AssemblyBuilder.loopCounter+"-$-2\n";
+		res += "ENDLOOP_"+AssemblyBuilder.loopCounter+"	";
+		
+		
+		
+		AssemblyBuilder.loopCounter++;
+		return res;
+	}
+	
 	
 	public String mainTranslate(CommonTree tree, SymbolTable ST){
 		String res = "";
@@ -386,6 +438,8 @@ public class AssemblyBuilder {
 			case "DECL_METHOD": break;
 			case "DECL_VAR": res += this.translateDeclaration(child, ST); break;
 			case "COND": res += this.translateCond(child,ST); break;
+			case "FOR" : res += this.translateLoop(child,ST); break;
+			default: this.mainTranslate(child, ST); 
 			}
 		}
 		return res;
