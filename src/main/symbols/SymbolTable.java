@@ -7,6 +7,8 @@ public class SymbolTable extends ArrayList<Symbol> {
 	private String name;
 	private Symbol master;
 	private int offset = 0;
+	private int treatedAffection = 0;
+	
 	public SymbolTable(SymbolTable parent,String name) {
 		this.parent = parent;
 		this.name = name;
@@ -30,6 +32,23 @@ public class SymbolTable extends ArrayList<Symbol> {
 	}
 	public String getName(){
 		return this.name;
+	}
+	public void incrementTreatedAffectation() {
+		this.treatedAffection++;
+	}
+	public int getTreadtedAffectation() {
+		return this.treatedAffection;
+	}
+	public int getVariableCount() {
+		int result = 0;
+		
+		for (Symbol sb: this) {
+			if (sb instanceof Variable) {
+				result++;
+			}
+		}
+		
+		return result;
 	}
 	public Symbol getSymbol(String symbolName) {
 		if (symbolName == "WRITE"){
@@ -68,7 +87,6 @@ public class SymbolTable extends ArrayList<Symbol> {
 		}
 		return false;
 	}
-	
 	public void info() {
 		System.out.println("\n===========TDS :"+ this.name + "==========");
 		

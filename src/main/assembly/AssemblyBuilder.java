@@ -196,9 +196,15 @@ public class AssemblyBuilder {
 	 */
 	private String translateDeclaration(CommonTree tree, SymbolTable ST) {
 		String res = "";
-		String node = tree.getText();
-		res += "LDW R0, #0\n";
-		res += "STW R0, -(SP)\n";
+		
+		if (ST.getTreadtedAffectation() < ST.getVariableCount() - 1) {
+			String node = tree.getText();
+			res += "LDW R0, #0\n";
+			res += "STW R0, -(SP)\n";
+			
+			ST.incrementTreatedAffectation();
+		}
+		
 		return res;
 	}
 	
@@ -220,12 +226,12 @@ public class AssemblyBuilder {
 				
 				if (!value.matches("([+,-,*,/])")) {	
 					res += "LDW R2, #"+value+"\n";
-					res += "STW R2, (SP)"+Integer.toString(offsetT-offsetVar-2)+"\n";
+					res += "STW R2, (SP)"+Integer.toString(offsetT-offsetVar - 2)+"\n";
 				}
 				else {
 					res += translateArithmetic(childTwo,ST);
 					res += "LDW R3, (SP)+ \n";
-					res += "STW R3,(SP)"+Integer.toString(offsetT-offsetVar-2)+"\n";
+					res += "STW R3,(SP)"+Integer.toString(offsetT-offsetVar - 2)+"\n";
 				}
 					
 			}
@@ -306,7 +312,7 @@ public class AssemblyBuilder {
 	 * @return
 	 */
 	private String translateGlobalInstructions(Program prg) {
-		String res = "MAIN LDW R1, #0x1000\nSTW R1, SP\n";
+		String res = "MAIN LDW R1, #0xFFFE\nSTW R1, SP\n";
 		CommonTree tree = prg.getAbstractTree();
 		SymbolTable ST = prg.getSymbolTable();
 		res += this.mainTranslate(tree, ST);
@@ -343,6 +349,7 @@ public class AssemblyBuilder {
 			int offset = offsetT-offsetVar;
 			res += "LDW R1, (SP)"+offset+"\n";
 		}
+		
 		res += "CMP R1,R2\n";
 		switch (comp) {
 		case ">": res += String.format("JGT #IF_%d-$-2\n", AssemblyBuilder.conditionCounter); break;
@@ -369,7 +376,7 @@ public class AssemblyBuilder {
 			//TODO
 		}
 		
-		res += String.format("ENDIF_%d ", AssemblyBuilder.conditionCounter);
+		res += String.format("\nENDIF_%d ", AssemblyBuilder.conditionCounter);
 		
 		AssemblyBuilder.conditionCounter++;
 		
@@ -430,7 +437,7 @@ public class AssemblyBuilder {
 	}
 	
 	
-	public String mainTranslate(CommonTree tree, SymbolTable ST){
+	private String mainTranslate(CommonTree tree, SymbolTable ST){
 		String res = "";
 		for (CommonTree child : (List<CommonTree>) tree.getChildren()){
 			switch (child.getText()){
