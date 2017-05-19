@@ -20,6 +20,7 @@ import main.symbols.*;
  */
 public class AssemblyBuilder {
 	private static AssemblyBuilder _instance = null;
+	private static int conditionCounter = 0;
 	
 	/**
 	 * Constructeur par défaut de la classe AssemblyBuilder.
@@ -344,28 +345,34 @@ public class AssemblyBuilder {
 		}
 		res += "CMP R1,R2\n";
 		switch (comp) {
-		case ">": res += "JGT #IF-$-2\n"; break;
-		case ">=": res += "JGE #IF-$-2\n"; break;
-		case "<": res += "JLW #IF-$-2\n"; break;
-		case "<=": res += "JLE #IF-$-2\n"; break;
-		case "==": res += "JEQ #IF-$-2\n"; break;
-		case "!=": res += "JNE #IF-$-2\n"; break;
+		case ">": res += String.format("JGT #IF_%d-$-2\n", AssemblyBuilder.conditionCounter); break;
+		case ">=": res += String.format("JGE #IF_%d-$-2\n", AssemblyBuilder.conditionCounter); break;
+		case "<": res += String.format("JLW #IF_%d-$-2\n", AssemblyBuilder.conditionCounter); break;
+		case "<=": res += String.format("JLE #IF_%d-$-2\n", AssemblyBuilder.conditionCounter); break;
+		case "==": res += String.format("JEQ #IF_%d-$-2\n", AssemblyBuilder.conditionCounter); break;
+		case "!=": res += String.format("JNE #IF_%d-$-2\n", AssemblyBuilder.conditionCounter); break;
 		}
 		
 		if (instructionFalse.equals("AFFECT")) {
 			res += this.translateAffectation((CommonTree)tree.getChild(2), ST);
+			res += String.format("JMP #ENDIF_%d\n", AssemblyBuilder.conditionCounter);
 		}
 		else {
 			//TODO
 		}
 		
 		if (instructionTrue.equals("AFFECT")) {
-			res += "IF	";
+			res += String.format("IF_%d ", AssemblyBuilder.conditionCounter);
 			res += this.translateAffectation((CommonTree)tree.getChild(1), ST);
 		} 
 		else {
 			//TODO
 		}
+		
+		res += String.format("ENDIF_%d ", AssemblyBuilder.conditionCounter);
+		
+		AssemblyBuilder.conditionCounter++;
+		
 		return res;
 
 	}
