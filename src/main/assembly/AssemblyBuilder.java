@@ -23,6 +23,7 @@ public class AssemblyBuilder {
 	private static AssemblyBuilder _instance = null;
 	private static int conditionCounter = 0;
 	private static int loopCounter = 0;
+	private static int indexStr = 0;
 	
 	/**
 	 * Constructeur par défaut de la classe AssemblyBuilder.
@@ -76,7 +77,7 @@ public class AssemblyBuilder {
 	 * sous la forme d'un code source écrit en lagnage d'assemblage.
 	 */
 	private String bootstrap(Program prg) {
-		return new String("SP EQU R15\nHP EQU R14\n\nORG 0x0000\n");
+		return new String("EXIT_EXC EQU 64\nREAD_EXC EQU 65\nWRITE_EXC EQU 66\nSP EQU R15\nHP EQU R14\nWR EQU R13\nORG 0x0000\n");
 	}
 	
 	/**
@@ -235,6 +236,9 @@ public class AssemblyBuilder {
 				}
 					
 			}
+			else if(symb.getType().getName().equals("string")){
+				res += "STR_"+symb.getName()+" string "+childTwo.getText()+"\n";
+			}
 			return res;
 	}
 	
@@ -312,7 +316,8 @@ public class AssemblyBuilder {
 	 * @return
 	 */
 	private String translateGlobalInstructions(Program prg) {
-		String res = "MAIN LDW R1, #0xFFFE\nSTW R1, SP\n";
+		String res = "MAIN LDW R1, #0xFFFE\nSTW R1, SP\nLDW R1, #0x7FFF\nSTW R1, HP\n";
+		
 		CommonTree tree = prg.getAbstractTree();
 		SymbolTable ST = prg.getSymbolTable();
 		res += this.mainTranslate(tree, ST);
@@ -435,8 +440,45 @@ public class AssemblyBuilder {
 		AssemblyBuilder.loopCounter++;
 		return res;
 	}
-	
-	
+	private String translateWrite(CommonTree tree, SymbolTable ST){
+		
+		String res = "";
+		String value = tree.getChild(0).getText();
+		if (value.matches("[a-z][a-zA-Z0-9]*")){
+			Symbol sym= ST.getSymbol(value);
+			int offsetV = sym.getOffset();
+			int offsetT = ST.getOffset();
+			
+			res += "LDW R0 , (SP)" + Integer.toString(offsetT - offsetV - 2) + "\n";
+		}else{
+			this.indexStr++;
+			res += "STR"+this.indexStr+" string "+value+"\nLDW R0 , #STR"+this.indexStr+" \n";
+		}
+		res += "LDW WR, #WRITE_EXC \nTRP WR \n";
+		
+		
+		
+		return res;	
+	}
+	private String translateRead(CommonTree tree, SymbolTable ST){
+		String res = "";
+		String value = tree.getChild(0).getText();
+		Symbol sym= ST.getSymbol(value);
+		int offsetV = sym.getOffset();
+		int offsetT = ST.getOffset();
+		res += "LDW R0, HP\nLDQ READ_EXC, WR\nTRP WR\nSTW HP, (SP)" + Integer.toString(offsetT - offsetV - 2) + "\n";
+		
+		res += "LDW R0, #0\n"
+				+ "STR_LEN LDW R1, (HP)\n"
+				+ "CMP R0, R1\n"
+				+ "JEQ #END_STR_LEN-$-2\n"
+				+ "ADQ 1, HP\n"
+				+ "JMP #STR_LEN-$-2\n"
+				+ "END_STR_LEN\n"
+				+ "ADQ 1, HP\n";
+		
+		return res;
+	}
 	private String mainTranslate(CommonTree tree, SymbolTable ST){
 		String res = "";
 		for (CommonTree child : (List<CommonTree>) tree.getChildren()){
@@ -446,9 +488,11 @@ public class AssemblyBuilder {
 			case "DECL_VAR": res += this.translateDeclaration(child, ST); break;
 			case "COND": res += this.translateCond(child,ST); break;
 			case "FOR" : res += this.translateLoop(child,ST); break;
-			default: this.mainTranslate(child, ST); 
+			case "WRITE" : res += this.translateWrite(child,ST); break;
+			case "READ": res += this.translateRead(child, ST); break;
+			default: if (child.getChildCount() != 0){  this.mainTranslate(child, ST);}; 
 			}
 		}
-		return res;
+		return res+ "TRP #EXIT_EXC\n";
 	}
 }
