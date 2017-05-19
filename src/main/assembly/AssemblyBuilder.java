@@ -224,9 +224,17 @@ public class AssemblyBuilder {
 				int offsetT = ST.getOffset();
 				String value = childTwo.getText();
 				
-				if (!value.matches("([+,-,*,/])")) {	
-					res += "LDW R2, #"+value+"\n";
-					res += "STW R2, (SP)"+Integer.toString(offsetT-offsetVar - 2)+"\n";
+				if (!value.matches("([+,-,*,/])")) {
+					if (value.matches("-?[0-9]+")) {
+						res += "LDW R2, #"+value+"\n";
+						res += "STW R2, (SP)"+Integer.toString(offsetT-offsetVar - 2)+"\n";
+					}
+					else {
+						Symbol val = ST.getSymbol(value);
+						int offsetVal = val.getOffset();
+						res += "LDW R2, (SP)"+Integer.toString(offsetT-offsetVal-2)+"\n";
+						res += "STW R2, (SP)"+Integer.toString(offsetT-offsetVar - 2)+"\n";
+					}
 				}
 				else {
 					res += translateArithmetic(childTwo,ST);
@@ -268,7 +276,7 @@ public class AssemblyBuilder {
 			int offsetVar = rightSymb.getOffset();
 			int offsetT = ST.getOffset();
 			int offset = offsetT-offsetVar;
-			res += "LDW R2, (SP)"+offset+"\n";
+			res += "LDW R2, (SP)"+Integer.toString(offset)+"\n";
 			
 		}
 		if (childOne.getText().matches("([+,-,*,/])")) {
@@ -283,7 +291,7 @@ public class AssemblyBuilder {
 			int offsetVar = leftSymb.getOffset();
 			int offsetT = ST.getOffset();
 			int offset = offsetT-offsetVar;
-			res += "LDW R1, (SP)"+offset+"\n";
+			res += "LDW R1, (SP)"+Integer.toString((offset))+"\n";
 		}
 		
 		if (leftSymb == null && !(rightSymb == null)) {
@@ -312,7 +320,7 @@ public class AssemblyBuilder {
 	 * @return
 	 */
 	private String translateGlobalInstructions(Program prg) {
-		String res = "MAIN LDW R1, #0xFFFE\nSTW R1, SP\n";
+		String res = "MAIN LDW R1, #0x1000\nSTW R1, SP\n";
 		CommonTree tree = prg.getAbstractTree();
 		SymbolTable ST = prg.getSymbolTable();
 		res += this.mainTranslate(tree, ST);
@@ -391,6 +399,7 @@ public class AssemblyBuilder {
 		String maxBound = tree.getChild(2).getText();
 		Symbol rightSymbol = null;
 		Symbol leftSymbol = null;
+
 		List<String> instructions = new ArrayList<String>();
 		for (int i=3;i<tree.getChildren().size();i++) {
 			instructions.add(tree.getChild(i).getText());
@@ -421,12 +430,20 @@ public class AssemblyBuilder {
 		res += "JGT #ENDLOOP_"+AssemblyBuilder.loopCounter+"-$-2\n";
 		for (int i=0;i<instructions.size();i++) {
 			if (instructions.get(i).equals("AFFECT")) {
-				res += this.translateAffectation((CommonTree)tree.getChild(3+i), ST);
+				res += "\n" + this.translateAffectation((CommonTree)tree.getChild(3+i), ST) + "\n";
 			}
 		}
 	
-		res += "LDW R1, #1\n";
-		res += "ADD R9 ,R1 ,R9\n";
+		res += "LDW R8, #1\n";
+		res += "ADD R9 ,R8 ,R9\n";
+		
+		
+		Symbol idfSymb = ST.getSymbol(idf);
+		int offsetT = ST.getOffset();
+		
+		
+		
+		res += "STW R9, (SP)"+Integer.toString(offsetT-idfSymb.getOffset()-2)+"\n";
 		res += "JMP #LOOP_"+AssemblyBuilder.loopCounter+"-$-2\n";
 		res += "ENDLOOP_"+AssemblyBuilder.loopCounter+"	";
 		
@@ -446,7 +463,7 @@ public class AssemblyBuilder {
 			case "DECL_VAR": res += this.translateDeclaration(child, ST); break;
 			case "COND": res += this.translateCond(child,ST); break;
 			case "FOR" : res += this.translateLoop(child,ST); break;
-			default: this.mainTranslate(child, ST); 
+			default: if(child.getChildCount() != 0) { this.mainTranslate(child, ST); }; 
 			}
 		}
 		return res;
