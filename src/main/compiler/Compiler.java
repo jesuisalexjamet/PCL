@@ -39,9 +39,9 @@ public class Compiler {
 		loocProgram.processSymbolTable();
 		
 		AssemblyBuilder assBuilder = AssemblyBuilder.getInstance();
-		AssemblyWriter assWriter = new AssemblyWriter("test");
+		AssemblyWriter assWriter = new AssemblyWriter(outputPath);
 		String res = assBuilder.translateProgram(loocProgram);
-		assWriter.writeInFile(res,"test");
+		assWriter.writeInFile(res,outputPath);
 		System.out.println(res);
 	}
 }

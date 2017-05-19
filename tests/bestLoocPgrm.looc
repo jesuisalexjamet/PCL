@@ -3,13 +3,19 @@ var boucle : int;
 var n : int;
 var alex : int; 
 var inter : int;
+var s : string;
+var sbis : string;
+var r : string;
 
 n := 2;
+s := "Money money money !";
+
 inter := 1;
 somme := 0;
 
 for boucle in 0 .. n
 do
+
 	inter := inter * 2;
 	somme := somme + 16;
 	alex := inter + 256;
@@ -19,7 +25,13 @@ do
 	else 
 		inter := 2;
 	fi
-
+	write "Et un tour de boucle !";
 end
 
+
+write s;
+read sbis;
+read r;
+write r;
+write sbis;
 

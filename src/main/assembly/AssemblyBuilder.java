@@ -24,6 +24,7 @@ public class AssemblyBuilder {
 	private static int conditionCounter = 0;
 	private static int loopCounter = 0;
 	private static int indexStr = 0;
+	private static int strLenCounter = 0;
 	
 	/**
 	 * Constructeur par défaut de la classe AssemblyBuilder.
@@ -245,7 +246,12 @@ public class AssemblyBuilder {
 					
 			}
 			else if(symb.getType().getName().equals("string")){
+				int offsetVar = symb.getOffset();
+				int offsetT = ST.getOffset();
+						
 				res += "STR_"+symb.getName()+" string "+childTwo.getText()+"\n";
+				res += String.format("LDW R0, #STR_%s\n", symb.getName());
+				res += String.format("STW R0, (SP)%d\n", offsetT-offsetVar - 2);
 			}
 			return res;
 	}
@@ -381,19 +387,31 @@ public class AssemblyBuilder {
 			res += this.translateAffectation((CommonTree)tree.getChild(2), ST);
 
 		}
-		else {
-			//TODO
+		else if (instructionFalse.equals("WRITE")) {
+			res += this.translateWrite((CommonTree)tree.getChild(2), ST);
 		}
-		res += String.format("JMP #ENDIF_%d", AssemblyBuilder.conditionCounter)+"-$-2\n";	
+		else if(instructionFalse.equals("READ")) {
+			res += this.translateRead((CommonTree)tree.getChild(2), ST);
+		}
+		else if (instructionFalse.equals("FOR")) {
+			res += this.translateLoop((CommonTree)tree.getChild(2), ST);
+		}
+		res += String.format("JMP #ENDIF_%d", AssemblyBuilder.conditionCounter)+"-$-2\n";
+		res += String.format("IF_%d ", AssemblyBuilder.conditionCounter);
 		if (instructionTrue.equals("AFFECT")) {
-			res += String.format("IF_%d ", AssemblyBuilder.conditionCounter);
 			res += this.translateAffectation((CommonTree)tree.getChild(1), ST);
 		} 
-		else {
-			//TODO
+		else if (instructionFalse.equals("WRITE")) {
+			res += this.translateWrite((CommonTree)tree.getChild(1), ST);
+		}
+		else if(instructionFalse.equals("READ")) {
+			res += this.translateRead((CommonTree)tree.getChild(1), ST);
+		}
+		else if (instructionFalse.equals("FOR")) {
+			res += this.translateLoop((CommonTree)tree.getChild(1), ST);
 		}
 		
-		res += String.format("\nENDIF_%d ", AssemblyBuilder.conditionCounter);
+		res += String.format("\nENDIF_%d\n", AssemblyBuilder.conditionCounter);
 		
 		AssemblyBuilder.conditionCounter++;
 		
@@ -445,6 +463,12 @@ public class AssemblyBuilder {
 			{
 				res += this.translateCond((CommonTree)tree.getChild(3+i), ST);
 			}
+			else if (instructions.get(i).equals("WRITE")) {
+				res += this.translateWrite((CommonTree)tree.getChild(3+i), ST);
+			}
+			else if(instructions.get(i).equals("READ")) {
+				res += this.translateRead((CommonTree)tree.getChild(3+i), ST);
+			}
 		}
 	
 		res += "LDW R8, #1\n";
@@ -494,13 +518,15 @@ public class AssemblyBuilder {
 		res += "LDW R0, HP\nLDQ READ_EXC, WR\nTRP WR\nSTW HP, (SP)" + Integer.toString(offsetT - offsetV - 2) + "\n";
 		
 		res += "LDW R0, #0\n"
-				+ "STR_LEN LDW R1, (HP)\n"
+				+ String.format("STR_LEN_%d LDW R1, (HP)\n", AssemblyBuilder.strLenCounter)
 				+ "CMP R0, R1\n"
-				+ "JEQ #END_STR_LEN-$-2\n"
+				+ String.format("JEQ #END_STR_LEN_%d-$-2\n", AssemblyBuilder.strLenCounter)
 				+ "ADQ 1, HP\n"
-				+ "JMP #STR_LEN-$-2\n"
-				+ "END_STR_LEN\n"
+				+ String.format("JMP #STR_LEN_%d-$-2\n", AssemblyBuilder.strLenCounter)
+				+ String.format("END_STR_LEN_%d\n", AssemblyBuilder.strLenCounter)
 				+ "ADQ 1, HP\n";
+		
+		AssemblyBuilder.strLenCounter++;
 		
 		return res;
 	}
