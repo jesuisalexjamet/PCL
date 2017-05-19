@@ -232,7 +232,7 @@ public class AssemblyBuilder {
 					else {
 						Symbol val = ST.getSymbol(value);
 						int offsetVal = val.getOffset();
-						res += "LDW R2, (SP)"+Integer.toString(offsetT-offsetVal-2)+"\n";
+						res += "LDW R2, (SP)"+Integer.toString(offsetT-offsetVal)+"\n";
 						res += "STW R2, (SP)"+Integer.toString(offsetT-offsetVar - 2)+"\n";
 					}
 				}
@@ -348,7 +348,7 @@ public class AssemblyBuilder {
 			int offsetVar = rightSymbol.getOffset();
 			int offsetT = ST.getOffset();
 			int offset = offsetT-offsetVar;
-			res += "LDW R2, (SP)"+offset+"\n";
+			res += "LDW R2, (SP)"+Integer.toString(offset-2)+"\n";
 		}
 		
 		if (left.matches("-?[0-9]+")) {
@@ -359,7 +359,7 @@ public class AssemblyBuilder {
 			int offsetVar = leftSymbol.getOffset();
 			int offsetT = ST.getOffset();
 			int offset = offsetT-offsetVar;
-			res += "LDW R1, (SP)"+offset+"\n";
+			res += "LDW R1, (SP)"+Integer.toString(offset-2)+"\n";
 		}
 		
 		res += "CMP R1,R2\n";
@@ -374,12 +374,12 @@ public class AssemblyBuilder {
 		
 		if (instructionFalse.equals("AFFECT")) {
 			res += this.translateAffectation((CommonTree)tree.getChild(2), ST);
-			res += String.format("JMP #ENDIF_%d", AssemblyBuilder.conditionCounter)+"-$-2\n";
+
 		}
 		else {
 			//TODO
 		}
-		
+		res += String.format("JMP #ENDIF_%d", AssemblyBuilder.conditionCounter)+"-$-2\n";	
 		if (instructionTrue.equals("AFFECT")) {
 			res += String.format("IF_%d ", AssemblyBuilder.conditionCounter);
 			res += this.translateAffectation((CommonTree)tree.getChild(1), ST);
