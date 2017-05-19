@@ -335,7 +335,11 @@ public class AssemblyBuilder {
 		Symbol rightSymbol = null;
 		Symbol leftSymbol = null;
 		String instructionTrue = tree.getChild(1).getText();
-		String instructionFalse = tree.getChild(2).getText();
+		String instructionFalse = "";
+		if (tree.getChildren().size()>2) {
+			instructionFalse = tree.getChild(2).getText();
+		}
+		
 		if (right.matches("-?[0-9]+")) {
 			res += "LDW R2, #" + right+ "\n";
 		}
@@ -370,7 +374,7 @@ public class AssemblyBuilder {
 		
 		if (instructionFalse.equals("AFFECT")) {
 			res += this.translateAffectation((CommonTree)tree.getChild(2), ST);
-			res += String.format("JMP #ENDIF_%d\n", AssemblyBuilder.conditionCounter);
+			res += String.format("JMP #ENDIF_%d", AssemblyBuilder.conditionCounter)+"-$-2\n";
 		}
 		else {
 			//TODO
@@ -431,6 +435,10 @@ public class AssemblyBuilder {
 		for (int i=0;i<instructions.size();i++) {
 			if (instructions.get(i).equals("AFFECT")) {
 				res += "\n" + this.translateAffectation((CommonTree)tree.getChild(3+i), ST) + "\n";
+			}
+			else if (instructions.get(i).equals("COND"))
+			{
+				res += this.translateCond((CommonTree)tree.getChild(3+i), ST);
 			}
 		}
 	
